@@ -25,5 +25,7 @@ public class ChessPlayer implements Player
 	}
 	
 	//testies 123
+	
+	//testies 234
 
 }
