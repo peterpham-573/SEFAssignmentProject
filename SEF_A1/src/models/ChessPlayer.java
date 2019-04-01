@@ -26,6 +26,6 @@ public class ChessPlayer implements Player
 	
 	//testies 123
 	
-	//testies 234
+	//testies 0909090909090
 
 }
