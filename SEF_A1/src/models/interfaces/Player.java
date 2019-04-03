@@ -9,7 +9,19 @@ package models.interfaces;
 
 public interface Player {
 
+	   public abstract String getPlayerId();
+	
 	   public abstract String getPlayerName();
+	   
+	   public abstract void setPlayerName(String playerName);
+	   
+	   public abstract String getPlayerUserName();
+	   
+	   public abstract void setPlayerUserName(String userName);
+	   
+	   public abstract String getPlayerPw();
+	   
+	   public abstract void setPlayerPw(String pw);
 	   
 	   public abstract int getPoints();
 	   
