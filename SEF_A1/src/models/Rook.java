@@ -1,5 +1,47 @@
 package models;
 
-public class Rook {
+import models.interfaces.Piece;
+
+public class Rook implements Piece {
+	
+	private boolean isWhite;
+	private int xPosition;
+	private int yPosition;
+	
+	public Rook(boolean isWhite, int xPos, int yPos) {
+		this.isWhite = isWhite;
+		this.xPosition = xPos;
+		this.yPosition = yPos;
+	}
+
+	@Override
+	public boolean IsWhite() {
+		return isWhite;
+	}
+
+	@Override
+	public boolean isValidMove(int initialx, int initialy, int possiblex, int possibley) {
+		return false;
+	}
+
+	@Override
+	public int getXPos() {
+		return xPosition;
+	}
+
+	@Override
+	public void setXPos(int xPos) {
+		this.xPosition = xPos;
+	}
+
+	@Override
+	public int getYPos() {
+		return yPosition;
+	}
+
+	@Override
+	public void setYPos(int yPos) {
+		this.yPosition = yPos;
+	}
 
 }
