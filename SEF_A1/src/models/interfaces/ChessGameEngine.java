@@ -4,6 +4,8 @@ public interface ChessGameEngine {
 	
 	public abstract void movePiece(Piece piece);
 	
+	public abstract void capture(Piece piece);
+	
 	public abstract void addPlayer(Player player);
 	
 	public abstract void getPlayer(String id);
