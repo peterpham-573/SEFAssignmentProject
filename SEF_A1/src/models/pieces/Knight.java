@@ -1,4 +1,4 @@
-package models;
+package models.pieces;
 
 import models.interfaces.Piece;
 
