@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 import javax.swing.JFrame;
 
@@ -12,6 +13,7 @@ public class Window extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private Board board;
+	private PlayerStatus playerPanel;
 	
 	public Window()
 	{
@@ -22,7 +24,13 @@ public class Window extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
 		
+		
 		board = new Board();
+		board.setBackground(Color.BLUE);
+		add(board, BorderLayout.CENTER);
+		
+		playerPanel = new PlayerStatus();
+		add(playerPanel, BorderLayout.EAST);
 		
 		
 		setVisible(true);

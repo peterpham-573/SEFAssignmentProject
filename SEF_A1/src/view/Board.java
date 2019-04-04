@@ -6,16 +6,27 @@ import javax.swing.JPanel;
 
 public class Board extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	public void paint(Graphics g) {
 		
-		g.fillRect(100, 100, 400, 400);
+		g.fillRect(100, 100, 600, 600);
 		
-		for(int i = 100; i <= 400; i += 100)
+		for(int i = 200; i <= 600; i += 200)
 		{
-			for(int j = 100; j <= 400; j += 100)
+			for(int j = 100; j <= 650; j += 200)
 			{
-				g.clearRect(i, j, 50, 50);
+				g.clearRect(i, j, 100, 100);
+			}
+		}
+		for(int i = 100; i <= 650; i += 200)
+		{
+			for(int j = 200; j <= 600; j += 200)
+			{
+				g.clearRect(i, j, 100, 100);
 			}
 		}
 	}
