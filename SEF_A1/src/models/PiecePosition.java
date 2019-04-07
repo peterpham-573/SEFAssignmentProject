@@ -14,11 +14,19 @@ public class PiecePosition {
 		this.col = col;
 	}
 	
+	public int getRow() {
+		return row;
+	}
+
+	public int getCol() {
+		return col;
+	}
+
 	/*
 	 * This is for converting the Character/String input of the naming convention
 	 * to the equivalent integer value for Col position in the game board
 	 */
-	int rowNameA_FTo0_5(String A_F) {
+	int colNameLetterToNumber(String A_F) {
 		String string = A_F.toUpperCase();
 		switch (string) {
 		case "A":

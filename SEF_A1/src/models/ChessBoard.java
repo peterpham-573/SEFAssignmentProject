@@ -63,7 +63,6 @@ public class ChessBoard {
 				System.out.print(" " + chessBoardArr[i][j].getIcon());
 			}
 		}
-		
 	}
 	
 }

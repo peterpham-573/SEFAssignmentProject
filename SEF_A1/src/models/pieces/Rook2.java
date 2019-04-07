@@ -1,5 +1,7 @@
 package models.pieces;
 
+import java.util.LinkedList;
+
 import models.PiecePosition;
 
 public class Rook2 extends Piece2{
@@ -9,7 +11,28 @@ public class Rook2 extends Piece2{
 		super(isWhite, piecePosition, "r");
 	}
 	
-	void movement() {
-		// the Rook Movement Pattern
+	// the Rook Movement Pattern
+	LinkedList<PiecePosition> movement() {
+		int currRow = piecePosition.getRow();
+		int currCol = piecePosition.getCol();
+		LinkedList<PiecePosition> potentialPositions = new LinkedList<>();
+		
+		potentialPositions.add(new PiecePosition(currRow + 1, currCol));
+		potentialPositions.add(new PiecePosition(currRow + 2, currCol));
+		
+		potentialPositions.add(new PiecePosition(currRow - 1, currCol));
+		potentialPositions.add(new PiecePosition(currRow - 2, currCol));
+		
+		potentialPositions.add(new PiecePosition(currRow, currCol + 1));
+		potentialPositions.add(new PiecePosition(currRow, currCol + 2));
+		
+		potentialPositions.add(new PiecePosition(currRow, currCol - 1));
+		potentialPositions.add(new PiecePosition(currRow, currCol - 2));
+		
+		potentialPositions = removeInvalidPositions(potentialPositions);
+		
+		return potentialPositions;
+
 	}
+	
 }
