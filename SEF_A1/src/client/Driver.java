@@ -2,6 +2,7 @@ package client;
 
 import javax.swing.SwingUtilities;
 
+import models.ChessBoard;
 import view.Window;
 
 public class Driver {
@@ -16,5 +17,7 @@ public class Driver {
 			}
 		}
 		);
+		ChessBoard chessBoard = new ChessBoard();
+		chessBoard.printBoard();
 	}
 }
