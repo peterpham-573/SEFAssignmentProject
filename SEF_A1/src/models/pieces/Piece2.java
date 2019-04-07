@@ -1,5 +1,6 @@
 package models.pieces;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import models.PiecePosition;
@@ -39,7 +40,7 @@ public class Piece2 {
 	 * Step 3: Filter out all of the invalid moves, leaving us with just the valid movement options
 	 * Step 4: Have user specify new position and match it with the valid movement options
 	 */
-	LinkedList<PiecePosition> movement() {
+	public LinkedList<PiecePosition> movement() {
 		// TODO Auto-generated method stub
 		// Default movement pattern
 		return null;
@@ -48,16 +49,22 @@ public class Piece2 {
 	// If any of the potential Positions of the Piece are out of the bounds
 	// of the 2D array then remove it from the list
 	LinkedList<PiecePosition> removeInvalidPositions(LinkedList<PiecePosition> pos) {
+		System.out.println(pos.size());
+		LinkedList<PiecePosition> goodPos = new LinkedList<>();
+		
 		for (PiecePosition piecePosition : pos) {
-			 if ((piecePosition.getRow() > 5) ||
+			//System.out.println("Pos: " + piecePosition.getRow() + " " + piecePosition.getCol());
+			if ((piecePosition.getRow() > 5) ||
 					 (piecePosition.getRow() < 0) ||
 					 (piecePosition.getCol() > 5) ||
 					 (piecePosition.getCol() < 0)) {
-				 pos.remove(piecePosition);
-			 }
-		}
+				 //System.out.println("Removing: " + piecePosition.getRow() + " " + piecePosition.getCol());
+			 } else
+				 goodPos.add(piecePosition);
 		
-		return pos;
+		}
+		//System.out.println(goodPos.size());
+		return goodPos;
 	}
 	
 	public String getIcon() {
