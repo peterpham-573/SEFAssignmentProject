@@ -49,21 +49,19 @@ public class Piece2 {
 	// If any of the potential Positions of the Piece are out of the bounds
 	// of the 2D array then remove it from the list
 	LinkedList<PiecePosition> removeInvalidPositions(LinkedList<PiecePosition> pos) {
-		System.out.println(pos.size());
 		LinkedList<PiecePosition> goodPos = new LinkedList<>();
 		
 		for (PiecePosition piecePosition : pos) {
-			//System.out.println("Pos: " + piecePosition.getRow() + " " + piecePosition.getCol());
+			// Filtering out all of the bad positions that are not in the bounds of 
+			// the game board
 			if ((piecePosition.getRow() > 5) ||
 					 (piecePosition.getRow() < 0) ||
 					 (piecePosition.getCol() > 5) ||
 					 (piecePosition.getCol() < 0)) {
-				 //System.out.println("Removing: " + piecePosition.getRow() + " " + piecePosition.getCol());
 			 } else
+				 // Adding all of the good positions of the Piece to this List
 				 goodPos.add(piecePosition);
-		
 		}
-		//System.out.println(goodPos.size());
 		return goodPos;
 	}
 	
