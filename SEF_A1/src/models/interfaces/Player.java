@@ -8,8 +8,6 @@ package models.interfaces;
  */
 
 public interface Player {
-
-	   public abstract String getPlayerId();
 	
 	   public abstract String getPlayerName();
 	   
@@ -26,6 +24,9 @@ public interface Player {
 	   public abstract int getPoints();
 	   
 	   public abstract void setPoints(int points);
-	   
-	   
+	
+	   public abstract void setNoOfTurns(int noOfTurns) {
+
+           public abstract getNoOfTurns() {
+  
 }
