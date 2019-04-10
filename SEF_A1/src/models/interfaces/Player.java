@@ -25,8 +25,8 @@ public interface Player {
 	   
 	   public abstract void setPoints(int points);
 	
-	   public abstract void setNoOfTurns(int noOfTurns) {
+	   public abstract void setNoOfTurns(int noOfTurns);
 
-           public abstract getNoOfTurns() {
+           public abstract void getNoOfTurns();
   
 }
