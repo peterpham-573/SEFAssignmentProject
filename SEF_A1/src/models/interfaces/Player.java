@@ -27,6 +27,6 @@ public interface Player {
 	
 	   public abstract void setNoOfTurns(int noOfTurns);
 
-           public abstract void getNoOfTurns();
+           public abstract int getNoOfTurns();
   
 }
