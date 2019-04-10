@@ -16,7 +16,7 @@ public class Bishop2 extends Piece2 {
 		int currCol = piecePosition.getCol();
 		LinkedList<PiecePosition> potentialPositions = new LinkedList<>();
 		
-		potentialPositions.add(new PiecePosition(currRow + 1, currCol + 2));
+		potentialPositions.add(new PiecePosition(currRow + 1, currCol + 1));
 		potentialPositions.add(new PiecePosition(currRow + 2, currCol + 2));
 		
 		potentialPositions.add(new PiecePosition(currRow - 1, currCol + 1));
