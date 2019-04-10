@@ -4,24 +4,19 @@ import models.interfaces.Player;
 
 public class ChessPlayer implements Player
 {
-	private String playerId;
 	private String playerName;
 	private String playerUserName;
 	private String password;
 	private int points;
+	private int noOfTurns;
 	
-	public ChessPlayer(String playerId, String playerName, String pUserName, String pw, int points) {
-		this.playerId = playerId;
+	public ChessPlayer(String playerName, String pUserName, String pw, int points) {
 		this.playerName = playerName;
 		this.playerUserName = pUserName;
 		this.password = pw;
 		this.points = points;
 	}
 
-	@Override
-	public String getPlayerId() {
-		return playerId;
-	}
 	@Override
 	public String getPlayerName() {
 		return playerName;
@@ -61,5 +56,15 @@ public class ChessPlayer implements Player
 	@Override
 	public void setPoints(int points) {
 		this.points = points;
+	}
+	
+	@Override
+	public void setNoOfTurns(int noOfTurns) {
+		this.noOfTurns = noOfTurns;
+	}
+	
+	@Override
+	public int getNoOfTurns() {
+		return noOfTurns;
 	}
 }
