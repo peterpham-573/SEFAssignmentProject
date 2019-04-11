@@ -48,6 +48,7 @@ public class ChessBoard {
 	}
 	
 	// Moves the selected Piece at start to the position at end
+	// add another argument of player to help determine if they should be moving a black or white piece
 	public boolean movePiece(String start, String end) {
 		PiecePosition startPos = toPos(start);
 		PiecePosition endPos = toPos(end);
@@ -61,9 +62,11 @@ public class ChessBoard {
 		/*
 		 *  if currentPlayer == Player1 (isWhite) and
 		 *  	chessBoardArr[startPos.getRow()][startPos.getCol()].isWhite then
-		 *   		get movement list and check if for any of the PiecePositions in the list
-		 *   		are equal to endPos (use isEqual Method)
-		 *   			if we get a true then move the Piece else invalid move
+		 *   		x - get movement list and check if for any of the PiecePositions in the list
+		 *   		x - are equal to endPos (use isEqual Method)
+		 *   			x - if we get a true then move the Piece else invalid move
+		 *   
+		 *   x means it has been implemented
 		 */
 		LinkedList<PiecePosition> validMovementsList = chessBoardArr[startPos.getRow()][startPos.getCol()].validMovementsList();
 		for (PiecePosition validPiecePosition : validMovementsList) {
