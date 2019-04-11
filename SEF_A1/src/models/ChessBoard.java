@@ -1,5 +1,6 @@
 package models;
 
+import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,7 +40,6 @@ public class ChessBoard {
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(s);
 		if (!matcher.matches()) {
-			System.out.println("Invalid Input");
 			return null;
 		} else {
 			PiecePosition pos = new PiecePosition(Integer.parseInt(s.substring(1)), s.substring(0, 1));
@@ -52,6 +52,7 @@ public class ChessBoard {
 		PiecePosition startPos = toPos(start);
 		PiecePosition endPos = toPos(end);
 		if (startPos == null || endPos == null) {
+			System.out.println("Invalid Input");
 			return false;
 		}
 		// Check player has selected the right colored piece
@@ -64,10 +65,18 @@ public class ChessBoard {
 		 *   		are equal to endPos (use isEqual Method)
 		 *   			if we get a true then move the Piece else invalid move
 		 */
-		chessBoardArr[endPos.getRow()][endPos.getCol()] = 
-				chessBoardArr[startPos.getRow()][startPos.getCol()];
-		chessBoardArr[startPos.getRow()][startPos.getCol()] = new Piece2();
-		return true;
+		LinkedList<PiecePosition> validMovementsList = chessBoardArr[startPos.getRow()][startPos.getCol()].movement();
+		for (PiecePosition validPiecePosition : validMovementsList) {
+			if (validPiecePosition.isEqual(endPos)) {
+				// move is good
+				chessBoardArr[endPos.getRow()][endPos.getCol()] = 
+						chessBoardArr[startPos.getRow()][startPos.getCol()];
+				chessBoardArr[startPos.getRow()][startPos.getCol()] = new Piece2();
+				return true;
+			}
+		}
+		// endPos is not a valid input for the selected piece at startPos
+		return false;
 	}
 	
 	// These values are just place holders for now
@@ -88,26 +97,4 @@ public class ChessBoard {
 		chessBoardArr[5][4] = new Bishop2(true, new PiecePosition(5, 4));
 		chessBoardArr[5][5] = new Rook2(true, new PiecePosition(5, 5));;
 	}
-	
-	/*This Should be moved to the View Controller of the Game, and once moved to have the argument
-	 * Piece2[][] board, Passed in
-	 *  printBoard - takes in the chessBoard 2D array and prints out its current state
-	 *  	It also prints the position identifiers for the rows and columns of the board
-	 *  
-	 *  i is row, j is column
-	 *  
-	 */
-	public void printBoard() {
-		
-		System.out.print("\n  A B C D E F");
-		for(int i = 0; i < chessBoardArr.length; i++) {
-			System.out.println();
-			System.out.print(i);
-			for(int j = 0; j < chessBoardArr[i].length; j++) {
-				System.out.print(" " + chessBoardArr[i][j].getIcon());
-			}
-		}
-		System.out.println("");
-	}
-	
 }
