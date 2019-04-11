@@ -1,47 +1,35 @@
 package models.pieces;
 
-import models.interfaces.Piece;
+import java.util.LinkedList;
 
-public class Knight implements Piece {
+import models.PiecePosition;
+
+public class Knight extends Piece{
 	
-	private boolean isWhite;
-	private int xPosition;
-	private int yPosition;
+	public Knight(boolean isWhite, PiecePosition piecePosition) {
+		super(isWhite, piecePosition, "k");
+	}
 	
-	public Knight(boolean isWhite, int xPos, int yPos) {
-		this.isWhite = isWhite;
-		this.xPosition = xPos;
-		this.yPosition = yPos;
+	// the Knight Movement Pattern
+	public LinkedList<PiecePosition> validMovementsList() {
+		int currRow = piecePosition.getRow();
+		int currCol = piecePosition.getCol();
+		LinkedList<PiecePosition> potentialPositions = new LinkedList<>();
+		
+		potentialPositions.add(new PiecePosition(currRow + 1, currCol + 2));
+		potentialPositions.add(new PiecePosition(currRow + 2, currCol + 1));
+		
+		potentialPositions.add(new PiecePosition(currRow - 1, currCol + 2));
+		potentialPositions.add(new PiecePosition(currRow - 2, currCol + 1));
+		
+		potentialPositions.add(new PiecePosition(currRow + 2, currCol - 1));
+		potentialPositions.add(new PiecePosition(currRow + 1, currCol - 2));
+		
+		potentialPositions.add(new PiecePosition(currRow - 2, currCol - 1));
+		potentialPositions.add(new PiecePosition(currRow - 1, currCol - 2));
+		
+		potentialPositions = removeInvalidPositions(potentialPositions);
+		
+		return potentialPositions;
 	}
-
-	@Override
-	public boolean IsWhite() {
-		return isWhite;
-	}
-
-	@Override
-	public boolean isValidMove(int initialx, int initialy, int possiblex, int possibley) {
-		return false;
-	}
-
-	@Override
-	public int getXPos() {
-		return xPosition;
-	}
-
-	@Override
-	public void setXPos(int xPos) {
-		this.xPosition = xPos;
-	}
-
-	@Override
-	public int getYPos() {
-		return yPosition;
-	}
-
-	@Override
-	public void setYPos(int yPos) {
-		this.yPosition = yPos;
-	}
-
 }

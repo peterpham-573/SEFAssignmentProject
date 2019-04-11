@@ -1,47 +1,38 @@
 package models.pieces;
 
-import models.interfaces.Piece;
+import java.util.LinkedList;
 
-public class Rook implements Piece {
+import models.PiecePosition;
+
+public class Rook extends Piece{
+
+	public Rook(boolean isWhite, PiecePosition piecePosition) {
+		// TODO Auto-generated constructor stub
+		super(isWhite, piecePosition, "r");
+	}
 	
-	private boolean isWhite;
-	private int xPosition;
-	private int yPosition;
+	// the Rook Movement Pattern
+	public LinkedList<PiecePosition> validMovementsList() {
+		int currRow = piecePosition.getRow();
+		int currCol = piecePosition.getCol();
+		LinkedList<PiecePosition> potentialPositions = new LinkedList<>();
+		
+		potentialPositions.add(new PiecePosition(currRow + 1, currCol));
+		potentialPositions.add(new PiecePosition(currRow + 2, currCol));
+		
+		potentialPositions.add(new PiecePosition(currRow - 1, currCol));
+		potentialPositions.add(new PiecePosition(currRow - 2, currCol));
+		
+		potentialPositions.add(new PiecePosition(currRow, currCol + 1));
+		potentialPositions.add(new PiecePosition(currRow, currCol + 2));
+		
+		potentialPositions.add(new PiecePosition(currRow, currCol - 1));
+		potentialPositions.add(new PiecePosition(currRow, currCol - 2));
+		
+		potentialPositions = removeInvalidPositions(potentialPositions);
+		
+		return potentialPositions;
+
+	}
 	
-	public Rook(boolean isWhite, int xPos, int yPos) {
-		this.isWhite = isWhite;
-		this.xPosition = xPos;
-		this.yPosition = yPos;
-	}
-
-	@Override
-	public boolean IsWhite() {
-		return isWhite;
-	}
-
-	@Override
-	public boolean isValidMove(int initialx, int initialy, int possiblex, int possibley) {
-		return false;
-	}
-
-	@Override
-	public int getXPos() {
-		return xPosition;
-	}
-
-	@Override
-	public void setXPos(int xPos) {
-		this.xPosition = xPos;
-	}
-
-	@Override
-	public int getYPos() {
-		return yPosition;
-	}
-
-	@Override
-	public void setYPos(int yPos) {
-		this.yPosition = yPos;
-	}
-
 }

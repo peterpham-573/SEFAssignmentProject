@@ -48,7 +48,7 @@ class ChessBoardTests {
 	@Test
 	void movePieceInvalidInput() {
 		assertFalse(chessBoard.movePiece("a7", "a3"));
-		assertFalse(chessBoard.movePiece("a0", "a9"));
+		assertFalse(chessBoard.movePiece("A0", "a9"));
 		
 		assertFalse(chessBoard.movePiece("H0", "a3"));
 		assertFalse(chessBoard.movePiece("B6", "a3"));

@@ -6,17 +6,17 @@ import java.util.regex.Pattern;
 
 import org.omg.CORBA.Current;
 
-import models.pieces.Bishop2;
-import models.pieces.Knight2;
-import models.pieces.Piece2;
-import models.pieces.Rook2;
+import models.pieces.Bishop;
+import models.pieces.Knight;
+import models.pieces.Piece;
+import models.pieces.Rook;
 
 public class ChessBoard {
 
-	Piece2 [][] chessBoardArr;
+	Piece [][] chessBoardArr;
 	
 	public ChessBoard() {
-		chessBoardArr = new Piece2[6][6];
+		chessBoardArr = new Piece[6][6];
 		fillBoardWithBlank();
 		setGameBoard();
 	}
@@ -24,12 +24,12 @@ public class ChessBoard {
 	void fillBoardWithBlank() {
 		for(int i = 0; i < chessBoardArr.length; i++) {
 			for(int j = 0; j < chessBoardArr[i].length; j++) {
-				chessBoardArr[i][j] = new Piece2();
+				chessBoardArr[i][j] = new Piece();
 			}
 		}
 	}
 	
-	public Piece2[][] getChessBoardArr() {
+	public Piece[][] getChessBoardArr() {
 		return chessBoardArr;
 	}
 	
@@ -71,7 +71,7 @@ public class ChessBoard {
 				// move is good
 				chessBoardArr[endPos.getRow()][endPos.getCol()] = 
 						chessBoardArr[startPos.getRow()][startPos.getCol()];
-				chessBoardArr[startPos.getRow()][startPos.getCol()] = new Piece2();
+				chessBoardArr[startPos.getRow()][startPos.getCol()] = new Piece();
 				return true;
 			}
 		}
@@ -82,19 +82,19 @@ public class ChessBoard {
 	// These values are just place holders for now
 	void setGameBoard() {
 		// Setting the Black Pieces
-		chessBoardArr[0][0] = new Rook2(false, new PiecePosition(0, 0));
-		chessBoardArr[0][1] = new Bishop2(false, new PiecePosition(0, 1));
-		chessBoardArr[0][2] = new Knight2(false, new PiecePosition(0, 2));
-		chessBoardArr[0][3] = new Knight2(false, new PiecePosition(0, 3));;
-		chessBoardArr[0][4] = new Bishop2(false, new PiecePosition(0, 4));
-		chessBoardArr[0][5] = new Rook2(false, new PiecePosition(0, 5));;
+		chessBoardArr[0][0] = new Rook(false, new PiecePosition(0, 0));
+		chessBoardArr[0][1] = new Bishop(false, new PiecePosition(0, 1));
+		chessBoardArr[0][2] = new Knight(false, new PiecePosition(0, 2));
+		chessBoardArr[0][3] = new Knight(false, new PiecePosition(0, 3));;
+		chessBoardArr[0][4] = new Bishop(false, new PiecePosition(0, 4));
+		chessBoardArr[0][5] = new Rook(false, new PiecePosition(0, 5));;
 		
 		// Setting the White Pieces
-		chessBoardArr[5][0] = new Rook2(true, new PiecePosition(5, 0));
-		chessBoardArr[5][1] = new Bishop2(true, new PiecePosition(5, 1));
-		chessBoardArr[5][2] = new Knight2(true, new PiecePosition(5, 2));
-		chessBoardArr[5][3] = new Knight2(true, new PiecePosition(5, 3));;
-		chessBoardArr[5][4] = new Bishop2(true, new PiecePosition(5, 4));
-		chessBoardArr[5][5] = new Rook2(true, new PiecePosition(5, 5));;
+		chessBoardArr[5][0] = new Rook(true, new PiecePosition(5, 0));
+		chessBoardArr[5][1] = new Bishop(true, new PiecePosition(5, 1));
+		chessBoardArr[5][2] = new Knight(true, new PiecePosition(5, 2));
+		chessBoardArr[5][3] = new Knight(true, new PiecePosition(5, 3));;
+		chessBoardArr[5][4] = new Bishop(true, new PiecePosition(5, 4));
+		chessBoardArr[5][5] = new Rook(true, new PiecePosition(5, 5));;
 	}
 }

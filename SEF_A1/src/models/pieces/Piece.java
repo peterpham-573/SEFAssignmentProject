@@ -1,6 +1,5 @@
 package models.pieces;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 
 import models.PiecePosition;
@@ -9,12 +8,12 @@ import models.PiecePosition;
  * All white Pieces are LowerCase and Black are UpperCase
  */
 
-public class Piece2 {
+public class Piece {
 	boolean isWhite; // true if Piece is white false if black
 	PiecePosition piecePosition;
 	String icon = "_"; // Blank space
 	
-	public Piece2(boolean isWhite, PiecePosition piecePosition, String icon) {
+	public Piece(boolean isWhite, PiecePosition piecePosition, String icon) {
 		this.isWhite = isWhite;
 		this.piecePosition = piecePosition;
 		// all white pieces are LowerCase
@@ -24,7 +23,7 @@ public class Piece2 {
 			this.icon = icon.toUpperCase();
 	}
 	
-	public Piece2() {
+	public Piece() {
 	}
 	
 	/*

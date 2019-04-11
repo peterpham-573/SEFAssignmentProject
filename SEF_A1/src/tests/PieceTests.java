@@ -9,30 +9,30 @@ import org.junit.jupiter.api.Test;
 
 import models.ChessBoard;
 import models.PiecePosition;
-import models.pieces.Bishop2;
-import models.pieces.Knight2;
+import models.pieces.Bishop;
+import models.pieces.Knight;
 import models.pieces.Rook;
-import models.pieces.Rook2;
+import models.pieces.Rook;
 
 class PieceTests {
 	
 	ChessBoard chessBoard;
-	Rook2 rook2;
-	Knight2 knight2;
-	Bishop2 bishop2;
+	Rook rook2;
+	Knight knight2;
+	Bishop bishop2;
 	LinkedList<PiecePosition> piecePositions;
 	
 	@BeforeEach
 	void setUp() throws Exception {
 		chessBoard = new ChessBoard();
-		rook2 = new Rook2(false, new PiecePosition(0, 0));
-		knight2 = new Knight2(false, new PiecePosition(0, 0));
-		bishop2 = new Bishop2(false, new PiecePosition(0, 0));
+		rook2 = new Rook(false, new PiecePosition(0, 0));
+		knight2 = new Knight(false, new PiecePosition(0, 0));
+		bishop2 = new Bishop(false, new PiecePosition(0, 0));
 	}
 
 	@Test
 	void rookMovementTestBlackStart1() {
-		Rook2 rook = new Rook2(false, new PiecePosition(0, 0));
+		Rook rook = new Rook(false, new PiecePosition(0, 0));
 		piecePositions = rook.validMovementsList();
 		// This will have to change after further implementation of Movement
 		assertEquals(4, piecePositions.size()); 
@@ -40,7 +40,7 @@ class PieceTests {
 	
 	@Test
 	void rookMovementTestBlackStart2() {
-		Rook2 rook = new Rook2(false, new PiecePosition(0, 5));
+		Rook rook = new Rook(false, new PiecePosition(0, 5));
 		piecePositions = rook.validMovementsList();
 		// This will have to change after further implementation of Movement
 		assertEquals(4, piecePositions.size()); 
@@ -48,7 +48,7 @@ class PieceTests {
 	
 	@Test
 	void rookMovementTestWhiteStart1() {
-		Rook2 rook = new Rook2(false, new PiecePosition(5, 0));
+		Rook rook = new Rook(false, new PiecePosition(5, 0));
 		piecePositions = rook.validMovementsList();
 		// This will have to change after further implementation of Movement
 		assertEquals(4, piecePositions.size()); 
@@ -56,7 +56,7 @@ class PieceTests {
 	
 	@Test
 	void rookMovementTestWhiteStart2() {
-		Rook2 rook = new Rook2(false, new PiecePosition(5, 5));
+		Rook rook = new Rook(false, new PiecePosition(5, 5));
 		piecePositions = rook.validMovementsList();
 		// This will have to change after further implementation of Movement
 		assertEquals(4, piecePositions.size()); 
@@ -64,7 +64,7 @@ class PieceTests {
 	
 	@Test
 	void rookMovementTestMiddle() {
-		Rook2 rook = new Rook2(false, new PiecePosition(2, 2));
+		Rook rook = new Rook(false, new PiecePosition(2, 2));
 		piecePositions = rook.validMovementsList();
 		// This will have to change after further implementation of Movement
 		assertEquals(8, piecePositions.size()); 
@@ -72,7 +72,7 @@ class PieceTests {
 
 	@Test
 	void knightMovementTestBlackStart1() {
-		Knight2 knight = new Knight2(false, new PiecePosition(0, 2));
+		Knight knight = new Knight(false, new PiecePosition(0, 2));
 		piecePositions = knight.validMovementsList();
 		// This will have to change after further implementation of Movement
 		assertEquals(4, piecePositions.size()); 
@@ -80,7 +80,7 @@ class PieceTests {
 	
 	@Test
 	void knightMovementTestBlackStart2() {
-		Knight2 knight = new Knight2(false, new PiecePosition(0, 3));
+		Knight knight = new Knight(false, new PiecePosition(0, 3));
 		piecePositions = knight.validMovementsList();
 		// This will have to change after further implementation of Movement
 		assertEquals(4, piecePositions.size()); 
@@ -88,7 +88,7 @@ class PieceTests {
 	
 	@Test
 	void knightMovementTestWhiiteStart1() {
-		Knight2 knight = new Knight2(false, new PiecePosition(5, 2));
+		Knight knight = new Knight(false, new PiecePosition(5, 2));
 		piecePositions = knight.validMovementsList();
 		// This will have to change after further implementation of Movement
 		assertEquals(4, piecePositions.size()); 
@@ -96,7 +96,7 @@ class PieceTests {
 	
 	@Test
 	void knightMovementTestWhiteStart2() {
-		Knight2 knight = new Knight2(false, new PiecePosition(5, 3));
+		Knight knight = new Knight(false, new PiecePosition(5, 3));
 		piecePositions = knight.validMovementsList();
 		// This will have to change after further implementation of Movement
 		assertEquals(4, piecePositions.size()); 
@@ -104,7 +104,7 @@ class PieceTests {
 	
 	@Test
 	void knightMovementTestMiddle() {
-		Knight2 knight = new Knight2(false, new PiecePosition(2, 2));
+		Knight knight = new Knight(false, new PiecePosition(2, 2));
 		piecePositions = knight.validMovementsList();
 		// This will have to change after further implementation of Movement
 		assertEquals(8, piecePositions.size()); 
@@ -112,7 +112,7 @@ class PieceTests {
 	
 	@Test
 	void bishopMovementTestBlackStart1() {
-		Bishop2 bishop = new Bishop2(false, new PiecePosition(0, 1));
+		Bishop bishop = new Bishop(false, new PiecePosition(0, 1));
 		piecePositions = bishop.validMovementsList();
 		// This will have to change after further implementation of Movement
 		assertEquals(3, piecePositions.size()); 
@@ -120,7 +120,7 @@ class PieceTests {
 	
 	@Test
 	void bishopMovementTestBlackStart2() {
-		Bishop2 bishop = new Bishop2(false, new PiecePosition(0, 4));
+		Bishop bishop = new Bishop(false, new PiecePosition(0, 4));
 		piecePositions = bishop.validMovementsList();
 		// This will have to change after further implementation of Movement
 		assertEquals(3, piecePositions.size()); 
@@ -128,7 +128,7 @@ class PieceTests {
 	
 	@Test
 	void bishopMovementTestWhiteStart1() {
-		Bishop2 bishop = new Bishop2(false, new PiecePosition(5, 1));
+		Bishop bishop = new Bishop(false, new PiecePosition(5, 1));
 		piecePositions = bishop.validMovementsList();
 		// This will have to change after further implementation of Movement
 		assertEquals(3, piecePositions.size()); 
@@ -136,7 +136,7 @@ class PieceTests {
 	
 	@Test
 	void bishopMovementTestWhiteStart2() {
-		Bishop2 bishop = new Bishop2(false, new PiecePosition(5, 4));
+		Bishop bishop = new Bishop(false, new PiecePosition(5, 4));
 		piecePositions = bishop.validMovementsList();
 		// This will have to change after further implementation of Movement
 		assertEquals(3, piecePositions.size()); 
@@ -144,7 +144,7 @@ class PieceTests {
 	
 	@Test
 	void bishopMovementTestMiddle() {
-		Bishop2 bishop = new Bishop2(false, new PiecePosition(2, 2));
+		Bishop bishop = new Bishop(false, new PiecePosition(2, 2));
 		piecePositions = bishop.validMovementsList();
 		// This will have to change after further implementation of Movement
 		assertEquals(8, piecePositions.size()); 

@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-import models.pieces.Piece2;
+import models.pieces.Piece;
 
 public class Board extends JPanel {
 
@@ -40,7 +40,7 @@ public class Board extends JPanel {
 	 *  i is row, j is column
 	 *  
 	 */
-	public void printBoard(Piece2[][] chessBoardArr) {
+	public void printBoard(Piece[][] chessBoardArr) {
 		
 		System.out.print("\n  A B C D E F");
 		for(int i = 0; i < chessBoardArr.length; i++) {

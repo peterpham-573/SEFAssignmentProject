@@ -2,9 +2,9 @@ package models.interfaces;
 
 public interface ChessGameEngine {
 	
-	public abstract void movePiece(Piece piece);
-	
-	public abstract void capture(Piece piece);
+//	public abstract void movePiece(Piece piece);
+//	
+//	public abstract void capture(Piece piece);
 	
 	public abstract void addPlayer(Player player);
 	
@@ -12,8 +12,8 @@ public interface ChessGameEngine {
 	
 	public abstract void removePlayer(Player player);
 	
-	public abstract void addChessboard(Chessboard cb);
-	
-	public abstract void removeChessboard(Chessboard cb);
+//	public abstract void addChessboard(Chessboard cb);
+//	
+//	public abstract void removeChessboard(Chessboard cb);
 
 }
