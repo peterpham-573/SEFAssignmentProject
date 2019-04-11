@@ -65,7 +65,7 @@ public class ChessBoard {
 		 *   		are equal to endPos (use isEqual Method)
 		 *   			if we get a true then move the Piece else invalid move
 		 */
-		LinkedList<PiecePosition> validMovementsList = chessBoardArr[startPos.getRow()][startPos.getCol()].movement();
+		LinkedList<PiecePosition> validMovementsList = chessBoardArr[startPos.getRow()][startPos.getCol()].validMovementsList();
 		for (PiecePosition validPiecePosition : validMovementsList) {
 			if (validPiecePosition.isEqual(endPos)) {
 				// move is good

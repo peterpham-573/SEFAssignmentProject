@@ -40,7 +40,7 @@ public class Piece2 {
 	 * Step 3: Filter out all of the invalid moves, leaving us with just the valid movement options
 	 * Step 4: Have user specify new position and match it with the valid movement options
 	 */
-	public LinkedList<PiecePosition> movement() {
+	public LinkedList<PiecePosition> validMovementsList() {
 		// TODO Auto-generated method stub
 		// Default movement pattern
 		return null;

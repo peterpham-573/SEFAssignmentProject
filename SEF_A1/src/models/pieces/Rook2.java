@@ -12,7 +12,7 @@ public class Rook2 extends Piece2{
 	}
 	
 	// the Rook Movement Pattern
-	public LinkedList<PiecePosition> movement() {
+	public LinkedList<PiecePosition> validMovementsList() {
 		int currRow = piecePosition.getRow();
 		int currCol = piecePosition.getCol();
 		LinkedList<PiecePosition> potentialPositions = new LinkedList<>();

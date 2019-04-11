@@ -11,7 +11,7 @@ public class Knight2 extends Piece2{
 	}
 	
 	// the Knight Movement Pattern
-	public LinkedList<PiecePosition> movement() {
+	public LinkedList<PiecePosition> validMovementsList() {
 		int currRow = piecePosition.getRow();
 		int currCol = piecePosition.getCol();
 		LinkedList<PiecePosition> potentialPositions = new LinkedList<>();

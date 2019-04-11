@@ -11,7 +11,7 @@ public class Bishop2 extends Piece2 {
 	}
 	
 	// The Bishop Movement Pattern
-	public LinkedList<PiecePosition> movement() {
+	public LinkedList<PiecePosition> validMovementsList() {
 		int currRow = piecePosition.getRow();
 		int currCol = piecePosition.getCol();
 		LinkedList<PiecePosition> potentialPositions = new LinkedList<>();
