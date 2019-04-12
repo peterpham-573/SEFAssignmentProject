@@ -4,8 +4,4 @@ Player1 Hello World
 Player2 Hello3 World3
 PlayerTest1 1 1
 PlayerTest2 2 2
-PlayerTest3 3 3 
-PlayerTest4 4 4
-PlayerTest5 5 5
-PlayerTest6 6 6
-PlayerTest8 8 8
+PlayerTest3 3 3
