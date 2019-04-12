@@ -19,14 +19,14 @@ public class Driver {
 
 	public static void main(String[] args) 
 	{
-//		SwingUtilities.invokeLater(new Runnable()
-//		{
-//			public void run()
-//			{
-//				new Window();
-//			}
-//		}
-//		);
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			public void run()
+			{
+				new Window();
+			}
+		}
+		);
 		
 		System.out.println("Player One Login");
 		// login code call 

@@ -5,35 +5,47 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+
 public class Window extends JFrame {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 	
 	private Board board;
-	private PlayerStatus playerPanel;
+	private PlayerPanel playerPanel;
+	private StatusBarPanel statusBarPanel;
+	private TopMenuBar menuBar;
+	private MovePanel moves;
+
 	
 	public Window()
 	{
 		super("Chess");
 		
 		
-		setBounds(100, 100, 1600, 900);
+		setBounds(100, 100, 1250, 900);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
+		setMinimumSize(new Dimension(1250, 900));
 		
+		menuBar = new TopMenuBar(this);
+		setJMenuBar(menuBar);
+		
+		moves = new MovePanel();
+		add(moves, BorderLayout.EAST);
 		
 		board = new Board();
 		board.setBackground(Color.BLUE);
 		add(board, BorderLayout.CENTER);
 		
-		playerPanel = new PlayerStatus();
-		add(playerPanel, BorderLayout.EAST);
+		statusBarPanel = new StatusBarPanel();
+		add(statusBarPanel, BorderLayout.SOUTH);
+		
+		playerPanel = new PlayerPanel();
+		add(playerPanel, BorderLayout.WEST);
 		
 		
 		setVisible(true);
