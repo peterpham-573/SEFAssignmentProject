@@ -10,13 +10,19 @@ public class ChessPlayer implements Player
 	private int points;
 	private int noOfTurns;
 	
-	public ChessPlayer(String playerName, String pUserName, String pw, int points) {
+	public ChessPlayer(String playerName, String pUserName, String pw) {
 		this.playerName = playerName;
 		this.playerUserName = pUserName;
 		this.password = pw;
-		this.points = points;
+		this.points = 0;
+	}
+	
+	@Override
+	public String toString() {
+		return String.format(playerName + " " + playerUserName + " "  + password);
 	}
 
+	
 	@Override
 	public String getPlayerName() {
 		return playerName;

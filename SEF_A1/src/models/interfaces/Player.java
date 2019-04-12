@@ -9,6 +9,8 @@ package models.interfaces;
 
 public interface Player {
 	
+	   public String toString();
+	
 	   public abstract String getPlayerName();
 	   
 	   public abstract void setPlayerName(String playerName);
@@ -27,6 +29,6 @@ public interface Player {
 	
 	   public abstract void setNoOfTurns(int noOfTurns);
 
-           public abstract int getNoOfTurns();
+       public abstract int getNoOfTurns();
   
 }
