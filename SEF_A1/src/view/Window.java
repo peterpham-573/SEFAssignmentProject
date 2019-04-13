@@ -16,9 +16,10 @@ public class Window extends JFrame {
 	
 	private Board board;
 	private PlayerPanel playerPanel;
-	private StatusBarPanel statusBarPanel;
+	private ControlPanel statusBarPanel;
 	private TopMenuBar menuBar;
 	private MovePanel moves;
+	private StatusPanel status;
 
 	
 	public Window()
@@ -41,11 +42,14 @@ public class Window extends JFrame {
 		board.setBackground(Color.BLUE);
 		add(board, BorderLayout.CENTER);
 		
-		statusBarPanel = new StatusBarPanel();
-		add(statusBarPanel, BorderLayout.SOUTH);
+		statusBarPanel = new ControlPanel();
+		add(statusBarPanel, BorderLayout.NORTH);
 		
 		playerPanel = new PlayerPanel();
 		add(playerPanel, BorderLayout.WEST);
+		
+		status = new StatusPanel();
+		add(status, BorderLayout.SOUTH);
 		
 		
 		setVisible(true);
