@@ -59,21 +59,21 @@ public class PlayerPanel extends JPanel {
 		playerOneColor.setBorder(BorderFactory.createTitledBorder("Color"));
 		playerOneColor.setEditable(false);
 		
-		signup1 = new JButton("Sign Up");
-		signup1.setFont(myFont2);
-		signup1.setBackground(Color.WHITE);
-		
-		login1 = new JButton("Login");
-		login1.setFont(myFont2);
-		login1.setBackground(Color.WHITE);
-		
+//		signup1 = new JButton("Sign Up");
+//		signup1.setFont(myFont2);
+//		signup1.setBackground(Color.WHITE);
+//		
+//		login1 = new JButton("Login");
+//		login1.setFont(myFont2);
+//		login1.setBackground(Color.WHITE);
+//		
+		playerOne.add(new JPanel());
 		playerOne.add(new JPanel());		
 		playerOne.add(playerOneUsername);
 		playerOne.add(playerOneColor);
 		playerOne.add(playerOneScore);
 		playerOne.add(new JPanel());
-		playerOne.add(signup1);
-		playerOne.add(login1);
+		
 		
 		
 		playerTwo = new JPanel();
@@ -96,25 +96,24 @@ public class PlayerPanel extends JPanel {
 		playerTwoColor.setBorder(BorderFactory.createTitledBorder("Color"));
 		playerTwoColor.setEditable(false);
 		
-
-		signup2 = new JButton("Sign Up");
-		signup2.setFont(myFont2);
-		signup2.setBackground(Color.WHITE);
-
+//
+//		signup2 = new JButton("Sign Up");
+//		signup2.setFont(myFont2);
+//		signup2.setBackground(Color.WHITE);
+//
+//		
+//		login2 = new JButton("Login");
+//		login2.setFont(myFont2);
+//		login2.setBackground(Color.WHITE);
 		
-		login2 = new JButton("Login");
-		login2.setFont(myFont2);
-		login2.setBackground(Color.WHITE);
 		
-		
+		playerTwo.add(new JPanel());
 		playerTwo.add(new JPanel());	
 		playerTwo.add(playerTwoUsername);
 		playerTwo.add(playerTwoColor);
 		playerTwo.add(playerTwoScore);
 		playerTwo.add(new JPanel());
-		playerTwo.add(signup2);
-		playerTwo.add(login2);
-	}
+			}
 	
 
 }
