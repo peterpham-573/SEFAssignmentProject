@@ -1,7 +1,2 @@
 PlayerName Username Password
-Danny Danny Le
-Player1 Hello World 
-Player2 Hello3 World3
-PlayerTest1 1 1
-PlayerTest2 2 2
-PlayerTest3 3 3
+PlayerName2 Username2 Password2
