@@ -1,2 +1,0 @@
-PlayerName Username Password
-PlayerName2 Username2 Password2
