@@ -7,7 +7,6 @@ import java.util.LinkedList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import models.ChessBoard;
 import models.ChessGameEngineImpl;
 import models.PiecePosition;
 import models.interfaces.ChessGameEngine;
