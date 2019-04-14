@@ -1,4 +1,4 @@
-package models;
+	package models;
 /*
  *  This class is for creating Position objects for each Piece of the Chess Game
  */
@@ -26,6 +26,8 @@ public class PiecePosition {
 	public int getCol() {
 		return col;
 	}
+	
+	
 	
 	public boolean isEqual(PiecePosition y) {
 		return ((col == y.col) && (row == y.row));

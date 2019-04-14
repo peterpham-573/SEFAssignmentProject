@@ -67,5 +67,20 @@ public class Piece {
 	public String getIcon() {
 		return icon;
 	}
-
+	
+	public PiecePosition getPosition() {
+		return piecePosition;
+	}
+	
+	public void setPosition(Piece piece, int x, int y)
+	{
+		this.piecePosition = new PiecePosition(x, y);
+	}
+	
+	public boolean isWhite()
+	{
+		return isWhite;
+	}
+	
+	
 }

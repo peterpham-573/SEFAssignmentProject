@@ -5,6 +5,8 @@ import java.util.Scanner;
 import javax.swing.SwingUtilities;
 
 import models.ChessBoard;
+import models.ChessGameEngineImpl;
+import models.interfaces.ChessGameEngine;
 import view.Board;
 import view.Window;
 
@@ -19,6 +21,11 @@ public class Driver {
 
 	public static void main(String[] args) 
 	{
+		
+		//Danny's code to implement for logging in 
+		
+		//if both players log in 
+	
 		SwingUtilities.invokeLater(new Runnable()
 		{
 			public void run()
@@ -28,22 +35,29 @@ public class Driver {
 		}
 		);
 		
+		ChessGameEngine ge = new ChessGameEngineImpl();
+		
 		System.out.println("Player One Login");
 		// login code call 
 		System.out.println("Player Two Login");
 		// Login code call 
-		//PLayer one starts as White
-		ChessBoard chessBoard = new ChessBoard();
-		boardView.printBoard(chessBoard.getChessBoardArr());
+		
+		//Player one starts as White
+		
+		
+		boardView.printBoard(ge.getChessBoard().getChessBoardArr());
 		// Do a while loop that loops while game is not ended, Have a method call that checks on the 
 		// game Termination criteria (n moves, Pieces Captured/remaining)
-		while(terminate()) {
+		while(terminate()) 
+		{
 			System.out.println("Select Piece at Location: ");
 			String startPosPiece = scanner.nextLine();
 			System.out.println("Location to Move Piece To: ");
 			String endPosPiece = scanner.nextLine();
-			chessBoard.movePiece(startPosPiece, endPosPiece);
-			boardView.printBoard(chessBoard.getChessBoardArr());
+			ge.movePiece(startPosPiece, endPosPiece);
+			boardView.printBoard(ge.getChessBoard().getChessBoardArr());
+			startPosPiece = null;
+			endPosPiece = null;
 		}
 		// Selecting a Piece
 		// Must be white or black Piece depending on player, and icon != _
@@ -54,4 +68,7 @@ public class Driver {
 	static boolean terminate() {
 		return true;
 	}
+	
+	
+	
 }

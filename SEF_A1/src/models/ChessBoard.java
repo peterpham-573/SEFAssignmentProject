@@ -14,6 +14,8 @@ import models.pieces.Rook;
 public class ChessBoard {
 
 	Piece [][] chessBoardArr;
+	private Piece blackRook1, blackRook2, blackKnight1, blackKnight2, blackBishop1, blackBishop2;
+	private Piece whiteRook1, whiteRook2, whiteKnight1, whiteKnight2, whiteBishop1, whiteBishop2;
 	
 	public ChessBoard() {
 		chessBoardArr = new Piece[6][6];
@@ -56,6 +58,7 @@ public class ChessBoard {
 			System.out.println("Invalid Input");
 			return false;
 		}
+		
 		// Check player has selected the right colored piece
 		// check if the endPos exists in the list
 
@@ -84,20 +87,78 @@ public class ChessBoard {
 	
 	// These values are just place holders for now
 	void setGameBoard() {
+		
+		// Creating the black pieces
+		blackRook1 = new Rook(false, new PiecePosition(0, 0));
+		blackRook2 = new Rook(false, new PiecePosition(0, 5));
+		blackKnight1 = new Knight(false, new PiecePosition(0, 2));
+		blackKnight2 = new Knight(false, new PiecePosition(0, 3));
+		blackBishop1 = new Bishop(false, new PiecePosition(0, 1));
+		blackBishop2 = new Bishop(false, new PiecePosition(0, 4));
+		
 		// Setting the Black Pieces
-		chessBoardArr[0][0] = new Rook(false, new PiecePosition(0, 0));
-		chessBoardArr[0][1] = new Bishop(false, new PiecePosition(0, 1));
-		chessBoardArr[0][2] = new Knight(false, new PiecePosition(0, 2));
-		chessBoardArr[0][3] = new Knight(false, new PiecePosition(0, 3));;
-		chessBoardArr[0][4] = new Bishop(false, new PiecePosition(0, 4));
-		chessBoardArr[0][5] = new Rook(false, new PiecePosition(0, 5));;
+		chessBoardArr[0][0] = blackRook1;
+		chessBoardArr[0][1] = blackBishop1;
+		chessBoardArr[0][2] = blackKnight1;
+		chessBoardArr[0][3] = blackKnight2;
+		chessBoardArr[0][4] = blackBishop2;
+		chessBoardArr[0][5] = blackRook2;
+		
+		whiteRook1 = new Rook(false, new PiecePosition(5, 0));
+		whiteRook2 = new Rook(false, new PiecePosition(5, 5));
+		whiteKnight1 = new Knight(false, new PiecePosition(5, 2));
+		whiteKnight2 = new Knight(false, new PiecePosition(5, 3));
+		whiteBishop1 = new Bishop(false, new PiecePosition(5, 1));
+		whiteBishop2 = new Bishop(false, new PiecePosition(5, 4));
 		
 		// Setting the White Pieces
-		chessBoardArr[5][0] = new Rook(true, new PiecePosition(5, 0));
-		chessBoardArr[5][1] = new Bishop(true, new PiecePosition(5, 1));
-		chessBoardArr[5][2] = new Knight(true, new PiecePosition(5, 2));
-		chessBoardArr[5][3] = new Knight(true, new PiecePosition(5, 3));;
-		chessBoardArr[5][4] = new Bishop(true, new PiecePosition(5, 4));
-		chessBoardArr[5][5] = new Rook(true, new PiecePosition(5, 5));;
+		chessBoardArr[5][0] = whiteRook1;
+		chessBoardArr[5][1] = whiteBishop1;
+		chessBoardArr[5][2] = whiteKnight1;
+		chessBoardArr[5][3] = whiteKnight2;
+		chessBoardArr[5][4] = whiteBishop2;
+		chessBoardArr[5][5] = whiteRook2;
 	}
+	
+	
+	/*
+	 * CUSTOM METHODS
+	 */
+	
+	public Piece getPieceOnBoard(int x, int y)
+	{
+		return chessBoardArr[x][y];
+	}
+	
+	public void removePiece(Piece piece, Piece piece2)
+	{
+		for(int i = 0; i < 6; i++)
+		{
+			for(int j = 0; j < 6; j++)
+			{
+				if(chessBoardArr[i][j] == piece2)
+				{
+					chessBoardArr[i][j] = null;
+					setPiece(piece, i, j);
+				}
+			}
+		}
+	}
+	
+	public void setPiece(Piece piece, int x, int y)
+	{		
+		chessBoardArr[x][y] = piece;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

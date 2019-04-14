@@ -6,13 +6,15 @@ import models.PiecePosition;
 
 public class Rook extends Piece{
 
-	public Rook(boolean isWhite, PiecePosition piecePosition) {
+	public Rook(boolean isWhite, PiecePosition piecePosition) 
+	{
 		// TODO Auto-generated constructor stub
 		super(isWhite, piecePosition, "r");
 	}
 	
 	// the Rook Movement Pattern
-	public LinkedList<PiecePosition> validMovementsList() {
+	public LinkedList<PiecePosition> validMovementsList() 
+	{	
 		int currRow = piecePosition.getRow();
 		int currCol = piecePosition.getCol();
 		LinkedList<PiecePosition> potentialPositions = new LinkedList<>();
@@ -29,7 +31,7 @@ public class Rook extends Piece{
 		potentialPositions.add(new PiecePosition(currRow, currCol - 1));
 		potentialPositions.add(new PiecePosition(currRow, currCol - 2));
 		
-		potentialPositions = removeInvalidPositions(potentialPositions);
+		//potentialPositions = removeInvalidPositions(potentialPositions);
 		
 		return potentialPositions;
 
