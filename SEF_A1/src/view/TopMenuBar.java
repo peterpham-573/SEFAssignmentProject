@@ -6,7 +6,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import controller.AddPlayerButtonActionListener;
 import controller.ExitButtonListener;
 import controller.NewGameButtonListener;
 
