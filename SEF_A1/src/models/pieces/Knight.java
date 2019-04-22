@@ -11,7 +11,7 @@ public class Knight extends Piece{
 	}
 	
 	// the Knight Movement Pattern
-	public LinkedList<PiecePosition> validMovementsList() {
+	public LinkedList<PiecePosition> validMovementsList(Piece[][] arr) {
 		int currRow = piecePosition.getRow();
 		int currCol = piecePosition.getCol();
 		LinkedList<PiecePosition> potentialPositions = new LinkedList<>();
@@ -28,7 +28,7 @@ public class Knight extends Piece{
 		potentialPositions.add(new PiecePosition(currRow - 2, currCol - 1));
 		potentialPositions.add(new PiecePosition(currRow - 1, currCol - 2));
 		
-		potentialPositions = removeInvalidPositions(potentialPositions);
+		potentialPositions = removeInvalidPositions(potentialPositions, arr);
 		
 		return potentialPositions;
 	}
