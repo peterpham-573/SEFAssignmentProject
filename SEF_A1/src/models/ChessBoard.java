@@ -111,12 +111,12 @@ public class ChessBoard {
 		chessBoardArr[0][5] = blackRook2;
 		
 		// Setting the White Pieces
-		chessBoardArr[5][0] = new Rook(true, new PiecePosition(5, 0));
-		chessBoardArr[5][1] = new Bishop(true, new PiecePosition(5, 1));
-		chessBoardArr[5][2] = new Knight(true, new PiecePosition(5, 2));
-		chessBoardArr[5][3] = new Knight(true, new PiecePosition(5, 3));;
-		chessBoardArr[5][4] = new Bishop(true, new PiecePosition(5, 4));
-		chessBoardArr[5][5] = new Rook(true, new PiecePosition(5, 5));;
+		whiteRook1 = new Rook(true, new PiecePosition(5, 0));
+		whiteBishop1 = new Bishop(true, new PiecePosition(5, 1));
+		whiteKnight1 = new Knight(true, new PiecePosition(5, 2));
+		whiteKnight2 = new Knight(true, new PiecePosition(5, 3));;
+		whiteBishop2 = new Bishop(true, new PiecePosition(5, 4));
+		whiteRook2 = new Rook(true, new PiecePosition(5, 5));;
 		
 		// Setting the White Pieces
 		chessBoardArr[5][0] = whiteRook1;
