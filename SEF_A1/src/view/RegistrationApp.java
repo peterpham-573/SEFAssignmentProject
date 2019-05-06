@@ -123,8 +123,17 @@ public class RegistrationApp extends JFrame{
 			//THE TWO PLAYERS CAN BE RETRIVED VIA
 			//chessGameRegistry.getplayers() WHICH IS A ARRAY OF TWO PLAYERS
 			
-			dispose();			
-			createBoard();
+			this.setVisible(false);
+			
+			new Thread()
+			{
+			@Override
+			public void run()
+			{
+				createBoard();
+			}
+			}.start();
+				
 			break;
 			
 		case 3:
@@ -153,14 +162,9 @@ public class RegistrationApp extends JFrame{
 		Scanner scanner = new Scanner(System.in);
 		Board boardView = new Board();
 		
-		SwingUtilities.invokeLater(new Runnable()
-		{
-			public void run()
-			{
-				new Window();
-			}
-		}
-		);
+	
+		new Window();
+	
 		
 		ChessGameEngine ge = new ChessGameEngineImpl();
 		ge.addPlayer(chessGameRegistry.getplayers()[0]);
