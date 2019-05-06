@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Font;
+import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -8,11 +9,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import controller.AddPlayerButtonActionListener;
 import controller.LoginPlayerButtonActionListener;
+import models.ChessGameEngineImpl;
 import models.ChessGameRegistry;
 import models.ChessPlayer;
+import models.interfaces.ChessGameEngine;
 
 public class RegistrationApp extends JFrame{
 	private JLabel registrationLabel, usernameLabel, passwordLabel;
@@ -118,8 +122,9 @@ public class RegistrationApp extends JFrame{
 			//THIS IS WHERE THE REGISTRATION ENDS
 			//THE TWO PLAYERS CAN BE RETRIVED VIA
 			//chessGameRegistry.getplayers() WHICH IS A ARRAY OF TWO PLAYERS
-
-			dispose();
+			
+			dispose();			
+			createBoard();
 			break;
 			
 		case 3:
@@ -141,6 +146,56 @@ public class RegistrationApp extends JFrame{
 		}
 		noOfTurns = Integer.parseInt(stringNoOfTurns);
 		player.setNoOfTurns(noOfTurns);
+	}
+	
+	
+	public void createBoard(){
+		Scanner scanner = new Scanner(System.in);
+		Board boardView = new Board();
+		
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			public void run()
+			{
+				new Window();
+			}
+		}
+		);
+		
+		ChessGameEngine ge = new ChessGameEngineImpl();
+		ge.addPlayer(chessGameRegistry.getplayers()[0]);
+		ge.addPlayer(chessGameRegistry.getplayers()[1]);
+		
+		System.out.println("Player One Login");
+		// login code call 
+		System.out.println("Player Two Login");
+		// Login code call 
+		
+		//Player one starts as White
+			
+		
+		
+		boardView.printBoard(ge.getChessBoard().getChessBoardArr());
+		// Do a while loop that loops while game is not ended, Have a method call that checks on the 
+		// game Termination criteria (n moves, Pieces Captured/remaining)
+		while(terminate()) 
+		{
+			System.out.println("Select Piece at Location: ");
+			String startPosPiece = scanner.nextLine();
+			System.out.println("Location to Move Piece To: ");
+			String endPosPiece = scanner.nextLine();
+			ge.movePiece(startPosPiece, endPosPiece);
+			boardView.printBoard(ge.getChessBoard().getChessBoardArr());
+			startPosPiece = null;
+			endPosPiece = null;
+		}
+		// Selecting a Piece
+		// Must be white or black Piece depending on player, and icon != _
+	}
+	
+	
+	public boolean terminate() {
+		return true;
 	}
 	
 }
