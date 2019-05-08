@@ -26,7 +26,6 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	@Override
 	public ChessPlayer getPlayer(String user) 
 	{
-
 		ChessPlayer p = null;
 		for (int i = 0; i < players.size(); i++)
 		{
@@ -50,18 +49,16 @@ public class ChessGameEngineImpl implements ChessGameEngine
 		
 		//Converts the strings to positions 
 		PiecePosition z = chessboard.toPos(start);
-
 		PiecePosition x = chessboard.toPos(end);
 		
 		//Checks for pieces on the board with the positions 
 		Piece p = chessboard.getChessBoardArr()[z.getRow()][z.getCol()];
-
 		Piece p2 = chessboard.getPieceOnBoard(x.getRow(), x.getCol());
 
 		// If where we move our chess piece has an existing piece AND is not their own piece then capture
 		if(chessboard.getChessBoardArr()[x.getRow()][x.getCol()] instanceof Piece)
 		{
-			//If the oponent piece does not have their piece located on that spot
+			//If the opponent piece does not have their piece located on that spot
 			if(p2.getIcon().equalsIgnoreCase("_"))
 			{
 				chessboard.movePiece(start, end);

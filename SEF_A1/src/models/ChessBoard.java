@@ -127,7 +127,10 @@ public class ChessBoard {
 	
 	public Piece getPieceOnBoard(int x, int y)
 	{
+		if(chessBoardArr[x][y]!=null)
 		return chessBoardArr[x][y];
+		
+		return null;
 	}
 	
 	public void removePiece(Piece piece, Piece piece2)
