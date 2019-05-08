@@ -1,4 +1,4 @@
-	package models;
+package models;
 /*
  *  This class is for creating Position objects for each Piece of the Chess Game
  */
@@ -6,6 +6,25 @@
 
 public class PiecePosition {
 	
+	public class ColumnExeption extends Exception {
+		private static final long serialVersionUID = 1L;
+		String letter;
+		
+		public ColumnExeption(String s) {
+			letter = s;
+		}
+		
+		public String toString() {
+			return "Column Letter identifier " + letter + " is invlaid";
+		}
+
+		public ColumnExeption() {
+			// TODO Auto-generated constructor stub
+		}
+
+	}
+
+
 	private int row;
 	private int col;
 	
@@ -16,7 +35,11 @@ public class PiecePosition {
 	
 	public PiecePosition(int row, String col) {
 		this.row = row;
-		this.col = colNameLetterToNumber(col);
+		try {
+			this.col = colNameLetterToNumber(col);
+		} catch (ColumnExeption e) {
+			System.out.println(e.toString());
+		}
 	}
 	
 	public int getRow() {
@@ -27,8 +50,6 @@ public class PiecePosition {
 		return col;
 	}
 	
-	
-	
 	public boolean isEqual(PiecePosition y) {
 		return ((col == y.col) && (row == y.row));
 	}
@@ -36,8 +57,10 @@ public class PiecePosition {
 	/*
 	 * This is for converting the Character/String input of the naming convention
 	 * to the equivalent integer value for Col position in the game board
+	 * 
+	 * Should create an exception class to be thrown here for wrong input of col
 	 */
-	public int colNameLetterToNumber(String A_F) {
+	public int colNameLetterToNumber(String A_F) throws ColumnExeption {
 		String string = A_F.toUpperCase();
 		switch (string) {
 		case "A":
@@ -54,7 +77,8 @@ public class PiecePosition {
 			return 5;
 
 		}
-		return -1;
+		throw new ColumnExeption(A_F);
 	}
 
 }
+

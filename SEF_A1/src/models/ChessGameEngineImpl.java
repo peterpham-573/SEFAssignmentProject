@@ -52,6 +52,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 		PiecePosition x = chessboard.toPos(end);
 		
 		//Checks for pieces on the board with the positions 
+		
 		Piece p = chessboard.getChessBoardArr()[z.getRow()][z.getCol()];
 		Piece p2 = chessboard.getPieceOnBoard(x.getRow(), x.getCol());
 

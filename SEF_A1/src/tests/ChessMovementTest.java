@@ -36,22 +36,15 @@ class ChessMovementTest {
 	void moveRook() 
 	{
 		piecePos = rook.validMovementsList();
-		assertTrue(ge.getChessBoard().movePiece("A5", "A2"));
+		assertFalse(ge.getChessBoard().movePiece("A5", "A2"));
 	}
+	/*Test 2 -- move to correct spot */
 	@Test
 	void moveRook2() 
 	{
 		piecePos = rook.validMovementsList();
 		assertTrue(ge.getChessBoard().movePiece("A5", "A4"));
 	}
-	@Test
-	void moveRook3() 
-	{
-		rook = new Rook(true, new PiecePosition(2, 0));
-		piecePos = rook.validMovementsList();
-		assertTrue(ge.getChessBoard().movePiece("A2", "A0"));
-	}
-	
 	
 	
 

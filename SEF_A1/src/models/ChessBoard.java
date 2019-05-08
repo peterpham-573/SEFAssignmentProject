@@ -23,7 +23,7 @@ public class ChessBoard {
 		setGameBoard();
 	}
 	
-	void fillBoardWithBlank() {
+	public void fillBoardWithBlank() {
 		for(int i = 0; i < chessBoardArr.length; i++) {
 			for(int j = 0; j < chessBoardArr[i].length; j++) {
 				chessBoardArr[i][j] = new Piece();
@@ -33,6 +33,10 @@ public class ChessBoard {
 	
 	public Piece[][] getChessBoardArr() {
 		return chessBoardArr;
+	}
+	
+	public void putPiece(int row, int col, Piece p) {
+		chessBoardArr[row][col] = p;
 	}
 	
 	// Checks if the string input is of the correct form
@@ -49,6 +53,7 @@ public class ChessBoard {
 		}
 	}
 	
+	
 	// Moves the selected Piece at start to the position at end
 	// add another argument of player to help determine if they should be moving a black or white piece
 	public boolean movePiece(String start, String end) {
@@ -58,7 +63,6 @@ public class ChessBoard {
 			System.out.println("Invalid Input");
 			return false;
 		}
-		
 		// Check player has selected the right colored piece
 		// check if the endPos exists in the list
 
@@ -71,7 +75,9 @@ public class ChessBoard {
 		 *   
 		 *   x means it has been implemented
 		 */
-		LinkedList<PiecePosition> validMovementsList = chessBoardArr[startPos.getRow()][startPos.getCol()].validMovementsList();
+		LinkedList<PiecePosition> validMovementsList = 
+				chessBoardArr[startPos.getRow()][startPos.getCol()].validMovementsList(chessBoardArr);
+		
 		for (PiecePosition validPiecePosition : validMovementsList) {
 			if (validPiecePosition.isEqual(endPos)) {
 				// move is good
@@ -104,12 +110,13 @@ public class ChessBoard {
 		chessBoardArr[0][4] = blackBishop2;
 		chessBoardArr[0][5] = blackRook2;
 		
-		whiteRook1 = new Rook(false, new PiecePosition(5, 0));
-		whiteRook2 = new Rook(false, new PiecePosition(5, 5));
-		whiteKnight1 = new Knight(false, new PiecePosition(5, 2));
-		whiteKnight2 = new Knight(false, new PiecePosition(5, 3));
-		whiteBishop1 = new Bishop(false, new PiecePosition(5, 1));
-		whiteBishop2 = new Bishop(false, new PiecePosition(5, 4));
+		// Setting the White Pieces
+		whiteRook1 = new Rook(true, new PiecePosition(5, 0));
+		whiteBishop1 = new Bishop(true, new PiecePosition(5, 1));
+		whiteKnight1 = new Knight(true, new PiecePosition(5, 2));
+		whiteKnight2 = new Knight(true, new PiecePosition(5, 3));;
+		whiteBishop2 = new Bishop(true, new PiecePosition(5, 4));
+		whiteRook2 = new Rook(true, new PiecePosition(5, 5));;
 		
 		// Setting the White Pieces
 		chessBoardArr[5][0] = whiteRook1;
