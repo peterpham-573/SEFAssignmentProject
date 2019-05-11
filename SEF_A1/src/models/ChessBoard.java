@@ -35,12 +35,10 @@ public class ChessBoard {
 		return chessBoardArr;
 	}
 	
-	public void putPiece(int row, int col, Piece p) {
-		chessBoardArr[row][col] = p;
-	}
+
 	
 	// Checks if the string input is of the correct form
-	PiecePosition toPos(String s) {
+	private PiecePosition toPos(String s) {
 		// Should change this to a Regex
 		String regex = "[A-Fa-f][0-5]";
 		Pattern pattern = Pattern.compile(regex);
@@ -48,7 +46,8 @@ public class ChessBoard {
 		if (!matcher.matches()) {
 			return null;
 		} else {
-			PiecePosition pos = new PiecePosition(Integer.parseInt(s.substring(1)), s.substring(0, 1));
+			PiecePosition pos = new PiecePosition(
+					Integer.parseInt(s.substring(1)), s.substring(0, 1));
 			return pos;
 		}
 	}
@@ -63,28 +62,36 @@ public class ChessBoard {
 			System.out.println("Invalid Input");
 			return false;
 		}
-		// Check player has selected the right colored piece
-		// check if the endPos exists in the list
+		// Should check if start is a legal selected Piece
 
-		/*
-		 *  if currentPlayer == Player1 (isWhite) and
-		 *  	chessBoardArr[startPos.getRow()][startPos.getCol()].isWhite then
-		 *   		x - get movement list and check if for any of the PiecePositions in the list
-		 *   		x - are equal to endPos (use isEqual Method)
-		 *   			x - if we get a true then move the Piece else invalid move
-		 *   
-		 *   x means it has been implemented
-		 */
+		// Getting a List of all the valid movement positions 
+		//  the piece can move to
 		LinkedList<PiecePosition> validMovementsList = 
-				chessBoardArr[startPos.getRow()][startPos.getCol()].validMovementsList(chessBoardArr);
+				chessBoardArr[startPos.getRow()][startPos.getCol()]
+						.validMovementsList(chessBoardArr);
 		
-		for (PiecePosition validPiecePosition : validMovementsList) {
-			if (validPiecePosition.isEqual(endPos)) {
-				// move is good
-				chessBoardArr[endPos.getRow()][endPos.getCol()] = 
-						chessBoardArr[startPos.getRow()][startPos.getCol()];
-				chessBoardArr[startPos.getRow()][startPos.getCol()] = new Piece();
-				return true;
+		// if the validMovementsList is null then that means that the start
+		// Position is a blank space and therefore invalid
+		if (validMovementsList != null) {
+			for (PiecePosition validPiecePosition : validMovementsList) {
+				if (validPiecePosition.isEqual(endPos)) {
+					// move is good so Move Piece
+					// need to check if it is capturing a piece
+					Piece piece = getPiece(startPos);
+					Piece otherPiece = getPiece(endPos);
+					if (piece.isEnemyOf(otherPiece)) {
+						// It is an enemy so update score and capture
+					} else if (piece.isMergable(otherPiece)) {
+						// call merge method
+						
+					} else {
+						// the end position is an empty space
+						setPiece(piece, endPos.getRow(), endPos.getCol());
+						// Replacing the now empty space with a Blank Piece
+						chessBoardArr[startPos.getRow()][startPos.getCol()] = new Piece();
+					}
+					return true;
+				}
 			}
 		}
 		// endPos is not a valid input for the selected piece at startPos
@@ -111,12 +118,12 @@ public class ChessBoard {
 		chessBoardArr[0][5] = blackRook2;
 		
 		// Setting the White Pieces
-		chessBoardArr[5][0] = new Rook(true, new PiecePosition(5, 0));
-		chessBoardArr[5][1] = new Bishop(true, new PiecePosition(5, 1));
-		chessBoardArr[5][2] = new Knight(true, new PiecePosition(5, 2));
-		chessBoardArr[5][3] = new Knight(true, new PiecePosition(5, 3));;
-		chessBoardArr[5][4] = new Bishop(true, new PiecePosition(5, 4));
-		chessBoardArr[5][5] = new Rook(true, new PiecePosition(5, 5));;
+		whiteRook1 = new Rook(true, new PiecePosition(5, 0));
+		whiteBishop1 = new Bishop(true, new PiecePosition(5, 1));
+		whiteKnight1 = new Knight(true, new PiecePosition(5, 2));
+		whiteKnight2 = new Knight(true, new PiecePosition(5, 3));;
+		whiteBishop2 = new Bishop(true, new PiecePosition(5, 4));
+		whiteRook2 = new Rook(true, new PiecePosition(5, 5));;
 		
 		// Setting the White Pieces
 		chessBoardArr[5][0] = whiteRook1;
@@ -132,9 +139,17 @@ public class ChessBoard {
 	 * CUSTOM METHODS
 	 */
 	
-	public Piece getPieceOnBoard(int x, int y)
+//	public void putPiece(int row, int col, Piece p) {
+//		chessBoardArr[row][col] = p;
+//	}
+	
+	private Piece getPiece(PiecePosition position) {
+		return chessBoardArr[position.getRow()][position.getCol()];
+	}
+	
+	public Piece getPieceOnBoard(int row, int col)
 	{
-		return chessBoardArr[x][y];
+		return chessBoardArr[row][col];
 	}
 	
 	public void removePiece(Piece piece, Piece piece2)
@@ -152,9 +167,9 @@ public class ChessBoard {
 		}
 	}
 	
-	public void setPiece(Piece piece, int x, int y)
+	public void setPiece(Piece piece, int row, int col)
 	{		
-		chessBoardArr[x][y] = piece;
+		chessBoardArr[row][col] = piece;
 	}
 	
 	

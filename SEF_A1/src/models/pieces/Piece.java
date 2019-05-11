@@ -2,7 +2,6 @@ package models.pieces;
 
 import java.util.LinkedList;
 
-import models.ChessBoard;
 import models.PiecePosition;
 
 /*
@@ -22,6 +21,24 @@ public class Piece {
 			this.icon = icon.toLowerCase();
 		} else
 			this.icon = icon.toUpperCase();
+	}
+	
+	public boolean isEnemyOf(Piece enemy) {
+		if (isWhite != enemy.isWhite && !enemy.getIcon().equals("_")) {
+			// then it is an enemy Piece
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isMergable(Piece mergePiece) {
+		// if pieces are of same color, not a blank spot, and not the same Piece
+		if (isWhite == mergePiece.isWhite && 
+				!mergePiece.getIcon().equals("_") &&
+				!icon.equals(mergePiece.getIcon())) {
+			return true;
+		}
+		return false;
 	}
 	
 	public Piece() {
