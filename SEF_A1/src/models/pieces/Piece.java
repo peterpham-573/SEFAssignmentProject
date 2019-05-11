@@ -95,5 +95,9 @@ public class Piece {
 	public String getIcon() {
 		return icon;
 	}
+	
+	public boolean isWhite() {
+		return isWhite;
+	}
 
 }

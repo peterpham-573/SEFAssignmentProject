@@ -4,9 +4,7 @@ package view;
 //hi peter testing
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-
 import javax.swing.JFrame;
 
 
@@ -14,12 +12,17 @@ public class Window extends JFrame {
 
 
 	
-	private Board board;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	//private Board board;
 	private PlayerPanel playerPanel;
 	private ControlPanel statusBarPanel;
 	private TopMenuBar menuBar;
 	private MovePanel moves;
 	private StatusPanel status;
+	private Board2 board2;
 
 	
 	public Window()
@@ -38,9 +41,13 @@ public class Window extends JFrame {
 		moves = new MovePanel();
 		add(moves, BorderLayout.EAST);
 		
-		board = new Board();
-		board.setBackground(Color.BLUE);
-		add(board, BorderLayout.CENTER);
+//		board = new Board();
+//		board.setBackground(Color.BLUE);
+//		add(board, BorderLayout.CENTER);
+		
+		board2 = new Board2();
+		add(board2, BorderLayout.CENTER);
+		
 		
 		statusBarPanel = new ControlPanel();
 		add(statusBarPanel, BorderLayout.NORTH);

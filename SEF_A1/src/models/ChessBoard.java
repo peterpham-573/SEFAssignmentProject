@@ -147,8 +147,7 @@ public class ChessBoard {
 		return chessBoardArr[position.getRow()][position.getCol()];
 	}
 	
-	public Piece getPieceOnBoard(int row, int col)
-	{
+	public Piece getPieceOnBoard(int row, int col) {
 		return chessBoardArr[row][col];
 	}
 	
