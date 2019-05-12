@@ -1,5 +1,5 @@
 package models.pieces;
 
-public class Knightshop {
+public class Knightshop extends Piece{
 
 }

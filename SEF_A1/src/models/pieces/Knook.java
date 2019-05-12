@@ -1,5 +1,5 @@
 package models.pieces;
 
-public class Knook {
+public class Knook extends Piece{
 
 }

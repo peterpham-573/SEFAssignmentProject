@@ -1,5 +1,5 @@
 package models.pieces;
 
-public class Bishook {
+public class Bishook extends Piece{
 
 }
