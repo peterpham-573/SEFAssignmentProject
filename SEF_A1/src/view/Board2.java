@@ -53,7 +53,7 @@ public class Board2 extends JPanel{
 			}
 		}
 		
-		
+		//testing
 		
 		paintPieces();
 		
