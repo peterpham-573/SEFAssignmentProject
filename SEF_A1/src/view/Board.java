@@ -38,7 +38,7 @@ public class Board extends JPanel {
 	 *  	It also prints the position identifiers for the rows and columns of the board
 	 *  
 	 *  i is row, j is column
-	 *  
+	 *  testing234
 	 */
 	public void printBoard(Piece[][] chessBoardArr) {
 		
