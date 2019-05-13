@@ -58,11 +58,13 @@ public class ChessBoard {
 	public boolean movePiece(String start, String end) {
 		PiecePosition startPos = toPos(start);
 		PiecePosition endPos = toPos(end);
+		
+		// Should check if start or end is a legal selected Piece
 		if (startPos == null || endPos == null) {
 			System.out.println("Invalid Input");
 			return false;
 		}
-		// Should check if start is a legal selected Piece
+		
 
 		// Getting a List of all the valid movement positions 
 		//  the piece can move to
@@ -87,6 +89,8 @@ public class ChessBoard {
 					} else {
 						// the end position is an empty space
 						setPiece(piece, endPos.getRow(), endPos.getCol());
+						// Need to set the Piece position
+						
 						// Replacing the now empty space with a Blank Piece
 						chessBoardArr[startPos.getRow()][startPos.getCol()] = new Piece();
 					}
@@ -95,6 +99,7 @@ public class ChessBoard {
 			}
 		}
 		// endPos is not a valid input for the selected piece at startPos
+		System.out.println("Invalid Movement");
 		return false;
 	}
 	
@@ -168,6 +173,8 @@ public class ChessBoard {
 	
 	public void setPiece(Piece piece, int row, int col)
 	{		
+		PiecePosition piecePosition = new PiecePosition(row, col);
+		piece.setPiecePositon(piecePosition);
 		chessBoardArr[row][col] = piece;
 	}
 	

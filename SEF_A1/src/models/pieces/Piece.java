@@ -99,5 +99,9 @@ public class Piece {
 	public boolean isWhite() {
 		return isWhite;
 	}
+	
+	public void setPiecePositon(PiecePosition piecePosition) {
+		this.piecePosition = piecePosition;
+	}
 
 }
