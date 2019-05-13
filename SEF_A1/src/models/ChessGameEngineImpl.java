@@ -11,6 +11,8 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	private List<ChessPlayer> players = new ArrayList<ChessPlayer>();
 
 	private ChessBoard chessboard;
+	
+	private ChessPlayer player1, player2;
 
 	public ChessGameEngineImpl()
 	{
@@ -93,4 +95,26 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	public ChessBoard getChessBoard() {
 		return chessboard;
 	}
+	
+	
+	public ChessPlayer getPlayerOne()
+	{
+		return player1;
+	}
+	
+	public ChessPlayer getPlayerTwo()
+	{
+		return player2;
+	}
+	
+	public void setPlayerOne(ChessPlayer player)
+	{
+		player1 = player;
+	}
+	
+	public void setPlayerTwo(ChessPlayer player)
+	{
+		player2 = player;
+	}
+	
 }

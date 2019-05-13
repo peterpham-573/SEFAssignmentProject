@@ -162,13 +162,15 @@ public class RegistrationApp extends JFrame{
 		Scanner scanner = new Scanner(System.in);
 		Board boardView = new Board();
 		
-	
-		new Window();
+
+		ChessGameEngine ge = new ChessGameEngineImpl();
+
+		ge.setPlayerOne(chessGameRegistry.getplayers()[0]);
+		ge.setPlayerTwo(chessGameRegistry.getplayers()[1]);
+		
+		new Window(ge);
 	
 		
-		ChessGameEngine ge = new ChessGameEngineImpl();
-		ge.addPlayer(chessGameRegistry.getplayers()[0]);
-		ge.addPlayer(chessGameRegistry.getplayers()[1]);
 		
 		System.out.println("Player One Login");
 		// login code call 

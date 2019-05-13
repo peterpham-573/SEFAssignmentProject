@@ -39,7 +39,7 @@ public class Board2 extends JPanel{
 			for(int j = 0; j < 6; j++)
 			{
 				squares[i][j] = new JButton();
-				squares[i][j].setBorderPainted(false);
+				squares[i][j].setBorderPainted(true);
 
 				if( (i + j)% 2 != 0)
 				{

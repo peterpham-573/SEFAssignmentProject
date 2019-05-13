@@ -312,7 +312,6 @@ class PieceTests {
 		Bishop bishop4 = new Bishop(true, new PiecePosition(4, 3));
 		
 		blankBoard.putPiece(3, 2, bishop);
-		
 		blankBoard.putPiece(2, 1, bishop1);
 		blankBoard.putPiece(2, 3, bishop2);
 		blankBoard.putPiece(4, 1, bishop3);

@@ -18,7 +18,7 @@ public class ControlPanel extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 	private JLabel turn;
-	private JButton setRules, startGame;
+	private JButton startGame;
 	
 	public ControlPanel() {
 		
@@ -33,19 +33,14 @@ public class ControlPanel extends JPanel{
 		
 		turn = new JLabel("Current Player's Turn:", JLabel.LEFT);
 		turn.setFont(myFont);
-				
-		setRules = new JButton("Set Rules");
-		setRules.setFont(myFont);
-		setRules.setBackground(Color.WHITE);
+
 		
 		startGame = new JButton("Start Game");
 		startGame.setFont(myFont);
 		startGame.setBackground(Color.WHITE);
 
 		add(new JPanel());
-		add(setRules);
-		add(new JPanel());	
-		add(startGame);
+		add(startGame);	
 		add(new JPanel());
 		
 		

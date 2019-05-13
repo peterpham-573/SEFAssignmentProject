@@ -7,6 +7,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import models.interfaces.ChessGameEngine;
+
 public class PlayerPanel extends JPanel {
 
 
@@ -18,10 +20,13 @@ public class PlayerPanel extends JPanel {
 	
 	private JTextArea playerOneUsername, playerOneScore, playerTwoUsername, playerTwoScore, playerOneColor, playerTwoColor;
 	private JPanel playerOne, playerTwo;
+	private ChessGameEngine gameEngine;
 	
 	
-	public PlayerPanel()
+	public PlayerPanel(ChessGameEngine gameEngine)
 	{
+		this.gameEngine = gameEngine;
+		
 		setLayout(new GridLayout(2, 1));
 		setPreferredSize(new Dimension(200, 150));
 		setBorder(BorderFactory.createBevelBorder(1));
@@ -40,8 +45,7 @@ public class PlayerPanel extends JPanel {
 		playerOne.setLayout(new GridLayout(8,1));
 		add(playerOne);
 		
-		playerOneUsername = new JTextArea();
-		playerOneUsername.setFont(myFont);
+		playerOneUsername = new JTextArea(gameEngine.getPlayerOne().getPlayerUserName());
 		playerOneUsername.setEditable(false);
 		playerOneUsername.setBorder(BorderFactory.createTitledBorder("Username"));
 		
@@ -50,7 +54,7 @@ public class PlayerPanel extends JPanel {
 		playerOneScore.setEditable(false);
 		playerOneScore.setBorder(BorderFactory.createTitledBorder("Score"));
 		
-		playerOneColor = new JTextArea();
+		playerOneColor = new JTextArea("Black");
 		playerOneColor.setBorder(BorderFactory.createTitledBorder("Color"));
 		playerOneColor.setEditable(false);
 		
@@ -69,8 +73,7 @@ public class PlayerPanel extends JPanel {
 		playerTwo.setLayout(new GridLayout(8,1));
 		add(playerTwo);
 		
-		playerTwoUsername = new JTextArea();
-		playerTwoUsername.setFont(myFont);
+		playerTwoUsername = new JTextArea(gameEngine.getPlayerTwo().getPlayerUserName());
 		playerTwoUsername.setEditable(false);
 		playerTwoUsername.setBorder(BorderFactory.createTitledBorder("Username"));
 		
@@ -79,7 +82,7 @@ public class PlayerPanel extends JPanel {
 		playerTwoScore.setEditable(false);
 		playerTwoScore.setBorder(BorderFactory.createTitledBorder("Score"));
 		
-		playerTwoColor = new JTextArea();
+		playerTwoColor = new JTextArea("White");
 		playerTwoColor.setBorder(BorderFactory.createTitledBorder("Color"));
 		playerTwoColor.setEditable(false);
 	

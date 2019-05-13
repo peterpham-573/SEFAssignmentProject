@@ -18,4 +18,12 @@ public interface ChessGameEngine {
 	public abstract void removePlayer(ChessPlayer player);
 	
 	public ChessBoard getChessBoard();
+	
+	public abstract ChessPlayer getPlayerOne();
+
+	public abstract ChessPlayer getPlayerTwo();
+
+	public abstract void setPlayerOne(ChessPlayer player);
+
+	public abstract void setPlayerTwo(ChessPlayer player);
 }

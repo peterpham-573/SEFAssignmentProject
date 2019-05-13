@@ -7,6 +7,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 
+import models.interfaces.ChessGameEngine;
+
 
 public class Window extends JFrame {
 
@@ -24,11 +26,13 @@ public class Window extends JFrame {
 	private StatusPanel status;
 	private Board2 board2;
 
+	private ChessGameEngine gameEngine;
 	
-	public Window()
+	public Window(ChessGameEngine gameEngine)
 	{
 		super("Chess");
 		
+		this.gameEngine = gameEngine;
 		
 		setBounds(100, 100, 1250, 900);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,7 +46,6 @@ public class Window extends JFrame {
 		add(moves, BorderLayout.EAST);
 		
 //		board = new Board();
-//		board.setBackground(Color.BLUE);
 //		add(board, BorderLayout.CENTER);
 		
 		board2 = new Board2();
@@ -52,7 +55,7 @@ public class Window extends JFrame {
 		statusBarPanel = new ControlPanel();
 		add(statusBarPanel, BorderLayout.NORTH);
 		
-		playerPanel = new PlayerPanel();
+		playerPanel = new PlayerPanel(gameEngine);
 		add(playerPanel, BorderLayout.WEST);
 		
 		status = new StatusPanel();

@@ -38,7 +38,7 @@ public class ChessBoard {
 
 	
 	// Checks if the string input is of the correct form
-	private PiecePosition toPos(String s) {
+	PiecePosition toPos(String s) {
 		// Should change this to a Regex
 		String regex = "[A-Fa-f][0-5]";
 		Pattern pattern = Pattern.compile(regex);
@@ -139,9 +139,9 @@ public class ChessBoard {
 	 * CUSTOM METHODS
 	 */
 	
-//	public void putPiece(int row, int col, Piece p) {
-//		chessBoardArr[row][col] = p;
-//	}
+	public void putPiece(int row, int col, Piece p) {
+		chessBoardArr[row][col] = p;
+	}
 	
 	private Piece getPiece(PiecePosition position) {
 		return chessBoardArr[position.getRow()][position.getCol()];
