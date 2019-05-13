@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import javax.swing.SwingUtilities;
 
-import models.ChessBoard;
 import models.ChessGameEngineImpl;
 import models.interfaces.ChessGameEngine;
 import view.Board;
@@ -25,17 +24,17 @@ public class Driver {
 		//Danny's code to implement for logging in 
 		
 		//if both players log in 
+		ChessGameEngine ge = new ChessGameEngineImpl();
 	
 		SwingUtilities.invokeLater(new Runnable()
 		{
 			public void run()
 			{
-				new Window();
+				new Window(ge);
 			}
 		}
 		);
 		
-		ChessGameEngine ge = new ChessGameEngineImpl();
 		
 		System.out.println("Player One Login");
 		// login code call 
@@ -54,7 +53,7 @@ public class Driver {
 			String startPosPiece = scanner.nextLine();
 			System.out.println("Location to Move Piece To: ");
 			String endPosPiece = scanner.nextLine();
-			ge.movePiece(startPosPiece, endPosPiece);
+//			ge.movePiece(startPosPiece, endPosPiece);
 			boardView.printBoard(ge.getChessBoard().getChessBoardArr());
 			startPosPiece = null;
 			endPosPiece = null;

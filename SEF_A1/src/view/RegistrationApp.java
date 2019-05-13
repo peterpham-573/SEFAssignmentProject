@@ -186,14 +186,14 @@ public class RegistrationApp extends JFrame{
 		// game Termination criteria (n moves, Pieces Captured/remaining)
 		while(terminate()) 
 		{
-			System.out.println("Select Piece at Location: ");
-			String startPosPiece = scanner.nextLine();
-			System.out.println("Location to Move Piece To: ");
-			String endPosPiece = scanner.nextLine();
-			ge.movePiece(startPosPiece, endPosPiece);
-			boardView.printBoard(ge.getChessBoard().getChessBoardArr());
-			startPosPiece = null;
-			endPosPiece = null;
+//			System.out.println("Select Piece at Location: ");
+//			String startPosPiece = scanner.nextLine();
+//			System.out.println("Location to Move Piece To: ");
+//			String endPosPiece = scanner.nextLine();
+//			ge.movePiece(startPosPiece, endPosPiece);
+//			boardView.printBoard(ge.getChessBoard().getChessBoardArr());
+//			startPosPiece = null;
+//			endPosPiece = null;
 		}
 		// Selecting a Piece
 		// Must be white or black Piece depending on player, and icon != _

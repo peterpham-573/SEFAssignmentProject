@@ -17,6 +17,7 @@ public class ChessBoard {
 	private Piece blackRook1, blackRook2, blackKnight1, blackKnight2, blackBishop1, blackBishop2;
 	private Piece whiteRook1, whiteRook2, whiteKnight1, whiteKnight2, whiteBishop1, whiteBishop2;
 	
+	
 	public ChessBoard() {
 		chessBoardArr = new Piece[6][6];
 		fillBoardWithBlank();
@@ -34,8 +35,6 @@ public class ChessBoard {
 	public Piece[][] getChessBoardArr() {
 		return chessBoardArr;
 	}
-	
-
 	
 	// Checks if the string input is of the correct form
 	PiecePosition toPos(String s) {
@@ -103,6 +102,55 @@ public class ChessBoard {
 		return false;
 	}
 	
+	public boolean movePiece2(PiecePosition startPos, PiecePosition endPos) {
+		
+		// Should check if start or end is a legal selected Piece
+		if (startPos == null || endPos == null) {
+			System.out.println("Invalid Input");
+			return false;
+		}
+		
+
+		// Getting a List of all the valid movement positions 
+		//  the piece can move to
+		LinkedList<PiecePosition> validMovementsList = 
+				chessBoardArr[startPos.getRow()][startPos.getCol()]
+						.validMovementsList(chessBoardArr);
+		
+		// if the validMovementsList is null then that means that the start
+		// Position is a blank space and therefore invalid
+		if (validMovementsList != null) {
+			for (PiecePosition validPiecePosition : validMovementsList) {
+				if (validPiecePosition.isEqual(endPos)) {
+					// move is good so Move Piece
+					// need to check if it is capturing a piece
+					Piece piece = getPiece(startPos);
+					Piece otherPiece = getPiece(endPos);
+					if (piece.isEnemyOf(otherPiece)) {
+						// It is an enemy so update score and capture
+					} else if (piece.isMergable(otherPiece)) {
+						// call merge method
+						
+					} else {
+						// the end position is an empty space
+						setPiece(piece, endPos.getRow(), endPos.getCol());
+						// Need to set the Piece position
+						
+						// Replacing the now empty space with a Blank Piece
+						chessBoardArr[startPos.getRow()][startPos.getCol()] = new Piece();
+					}
+					return true;
+				}
+			}
+		}
+		// endPos is not a valid input for the selected piece at startPos
+		System.out.println("Invalid Movement");
+		return false;
+	}
+	
+	
+	
+	
 	// These values are just place holders for now
 	void setGameBoard() {
 		
@@ -148,7 +196,7 @@ public class ChessBoard {
 		chessBoardArr[row][col] = p;
 	}
 	
-	private Piece getPiece(PiecePosition position) {
+	public Piece getPiece(PiecePosition position) {
 		return chessBoardArr[position.getRow()][position.getCol()];
 	}
 	

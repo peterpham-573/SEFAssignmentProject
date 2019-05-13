@@ -3,27 +3,42 @@ package models.interfaces;
 
 import models.ChessBoard;
 import models.ChessPlayer;
+import models.PiecePosition;
 import models.pieces.Piece;
 
 public interface ChessGameEngine {
 	
-	public abstract void movePiece(String start, String end);
+	public boolean movePiece(PiecePosition start, PiecePosition end);
 	
-	public abstract void capture(Piece piece, Piece piece2);
+	public void capture(Piece piece, Piece piece2);
 	
-	public abstract void addPlayer(ChessPlayer player);
+	public void addPlayer(ChessPlayer player);
 	
-	public abstract ChessPlayer getPlayer(String user);
+	public ChessPlayer getPlayer(String user);
 	
-	public abstract void removePlayer(ChessPlayer player);
+	public void removePlayer(ChessPlayer player);
 	
 	public ChessBoard getChessBoard();
 	
-	public abstract ChessPlayer getPlayerOne();
+	public ChessPlayer getPlayerOne();
 
-	public abstract ChessPlayer getPlayerTwo();
+	public ChessPlayer getPlayerTwo();
 
-	public abstract void setPlayerOne(ChessPlayer player);
+	public void setPlayerOne(ChessPlayer player);
 
-	public abstract void setPlayerTwo(ChessPlayer player);
+	public void setPlayerTwo(ChessPlayer player);
+	
+	public PiecePosition getStart();
+	
+	public PiecePosition getEnd();
+	
+	public void setStart(int i, int j);
+	
+	public void setEnd(int i, int j);
+	
+	public boolean checkStart();
+	public boolean checkEnd();
+	public void resetChecks();
+	
+//	public void checkMovePiece();
 }

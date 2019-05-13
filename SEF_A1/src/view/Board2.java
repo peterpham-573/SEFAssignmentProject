@@ -7,6 +7,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import controller.PieceClickedButtonListener;
+import models.interfaces.ChessGameEngine;
+
 public class Board2 extends JPanel{
 
 
@@ -28,9 +31,14 @@ public class Board2 extends JPanel{
 	private ImageIcon whiteBishop = new ImageIcon("images/white_bishop.png");
 	private ImageIcon whiteRook = new ImageIcon("images/white_rook.png");
 	
+	private ChessGameEngine ge;
+
 	
-	public Board2()
+	
+	public Board2(ChessGameEngine ge)
 	{
+		
+		this.ge = ge;
 
 		setLayout(new GridLayout(6,6));		
 
@@ -39,7 +47,6 @@ public class Board2 extends JPanel{
 			for(int j = 0; j < 6; j++)
 			{
 				squares[i][j] = new JButton();
-				squares[i][j].setBorderPainted(true);
 
 				if( (i + j)% 2 != 0)
 				{
@@ -50,7 +57,10 @@ public class Board2 extends JPanel{
 					squares[i][j].setBackground(whiteSquare);
 				}
 				add(squares[i][j]);
-			}
+				
+				squares[i][j].addActionListener(new PieceClickedButtonListener(i,j,ge,this));
+
+			}	
 		}
 		
 		//testing
@@ -60,7 +70,11 @@ public class Board2 extends JPanel{
 		setVisible(true);
 
 	}
-
+	
+	public JButton getTile(int i, int j)
+	{
+		return squares[i][j];
+	}
 
 	public void paintPieces()
 	{
@@ -78,7 +92,8 @@ public class Board2 extends JPanel{
 		squares[5][3].setIcon(whiteKnight);
 		squares[5][4].setIcon(whiteBishop);
 		squares[5][5].setIcon(whiteRook);
-		
-		
 	}	
+	
+	
+	
 }

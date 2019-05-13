@@ -48,7 +48,7 @@ public class Window extends JFrame {
 //		board = new Board();
 //		add(board, BorderLayout.CENTER);
 		
-		board2 = new Board2();
+		board2 = new Board2(gameEngine);
 		add(board2, BorderLayout.CENTER);
 		
 		
@@ -65,4 +65,27 @@ public class Window extends JFrame {
 		setVisible(true);
 	}
 
+	public PlayerPanel getPlayerPanel()
+	{
+		return playerPanel;
+	}
+	
+	public MovePanel getMovePanel()
+	{
+		return moves;
+	}
+	
+	public StatusPanel getStatusPanel()
+	{
+		return status;
+	}
+	
+	public Board2 getBoard()
+	{
+		return board2;
+	}
+	
+	
 }
+
+

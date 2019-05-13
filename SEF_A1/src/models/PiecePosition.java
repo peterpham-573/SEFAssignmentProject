@@ -15,7 +15,7 @@ public class PiecePosition {
 		}
 		
 		public String toString() {
-			return "Column Letter identifier " + letter + " is invlaid";
+			return "Column Letter identifier " + letter + " is invalid";
 		}
 
 		public ColumnExeption() {
@@ -79,6 +79,5 @@ public class PiecePosition {
 		}
 		throw new ColumnExeption(A_F);
 	}
-
 }
 

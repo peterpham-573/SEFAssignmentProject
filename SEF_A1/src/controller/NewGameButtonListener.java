@@ -3,6 +3,10 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.SwingUtilities;
+
+import models.ChessGameRegistry;
+import view.RegistrationApp;
 import view.Window;
 
 public class NewGameButtonListener implements ActionListener{
@@ -19,8 +23,9 @@ public class NewGameButtonListener implements ActionListener{
 	{
 		//MAKES NEW GAME
 		window.dispose();
-		new Window();
-		window.repaint();
+		
+		final ChessGameRegistry chessGameRegistry = new ChessGameRegistry();
+		SwingUtilities.invokeLater(() -> new RegistrationApp(chessGameRegistry));
 		
 	}
 

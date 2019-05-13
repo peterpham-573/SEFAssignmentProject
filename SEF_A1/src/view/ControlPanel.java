@@ -18,7 +18,7 @@ public class ControlPanel extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 	private JLabel turn;
-	private JButton startGame;
+	private JButton startGame, splitPiece;
 	
 	public ControlPanel() {
 		
@@ -31,14 +31,18 @@ public class ControlPanel extends JPanel{
 		
 		Font myFont = new Font("Arial", Font.PLAIN , 15);
 		
-		turn = new JLabel("Current Player's Turn:", JLabel.LEFT);
-		turn.setFont(myFont);
-
+		splitPiece = new JButton("Split Piece");
+		splitPiece.setFont(myFont);
+		splitPiece.setBackground(Color.WHITE);
+		splitPiece.setEnabled(false);
+		
 		
 		startGame = new JButton("Start Game");
 		startGame.setFont(myFont);
 		startGame.setBackground(Color.WHITE);
 
+		add(new JPanel());
+		add(splitPiece);
 		add(new JPanel());
 		add(startGame);	
 		add(new JPanel());

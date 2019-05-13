@@ -13,6 +13,9 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	private ChessBoard chessboard;
 	
 	private ChessPlayer player1, player2;
+	
+	private PiecePosition start, end;
+	private boolean checkStart, checkEnd;
 
 	public ChessGameEngineImpl()
 	{
@@ -46,25 +49,22 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	}
 
 	@Override
-	public void movePiece(String start, String end)
+	public boolean movePiece(PiecePosition start, PiecePosition end)
 	{
 		
-		//Converts the strings to positions 
-		PiecePosition z = chessboard.toPos(start);
-		PiecePosition x = chessboard.toPos(end);
-		
 		//Checks for pieces on the board with the positions 
+		Piece p = chessboard.getPiece(start);
 		
-		Piece p = chessboard.getChessBoardArr()[z.getRow()][z.getCol()];
-		Piece p2 = chessboard.getPieceOnBoard(x.getRow(), x.getCol());
+		Piece p2 = chessboard.getPiece(end);
 
 		// If where we move our chess piece has an existing piece AND is not their own piece then capture
-		if(chessboard.getChessBoardArr()[x.getRow()][x.getCol()] instanceof Piece)
+		if(chessboard.getChessBoardArr()[end.getRow()][end.getCol()] instanceof Piece)
 		{
 			//If the opponent piece does not have their piece located on that spot
 			if(p2.getIcon().equalsIgnoreCase("_"))
 			{
-				chessboard.movePiece(start, end);
+				chessboard.movePiece2(start, end);
+				return true;
 			}
 			else
 			{
@@ -72,12 +72,19 @@ public class ChessGameEngineImpl implements ChessGameEngine
 				if( p.isWhite() != p2.isWhite())
 				{
 					capture( p, p2);
+					return true;
 				}
 				else
 				{
-					//You can not capture your own piece.
+					//merge (p, p2);
+					System.out.println("wow");
+					return true;
 				}
 			}
+		}
+		else
+		{
+			return false;
 		}
 	}
 
@@ -115,6 +122,47 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	public void setPlayerTwo(ChessPlayer player)
 	{
 		player2 = player;
+	}
+	
+	public PiecePosition getStart()
+	{
+		return start;		
+	}
+	
+	public PiecePosition getEnd()
+	{
+		return end;
+	}
+	
+	public void setStart(int i, int j)
+	{
+		start = new PiecePosition(i, j);
+		checkStart = true;
+	}
+	
+	public void setEnd(int i, int j)
+	{
+		end = new PiecePosition(i, j);
+		checkEnd = true;
+	}
+
+	@Override
+	public boolean checkStart() 
+	{
+		return checkStart;
+	}
+
+	@Override
+	public boolean checkEnd() 
+	{
+		return checkEnd;
+	}
+
+	@Override
+	public void resetChecks() 
+	{
+		checkStart = false;
+		checkEnd = false;
 	}
 	
 }
