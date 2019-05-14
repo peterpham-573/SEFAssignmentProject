@@ -37,8 +37,12 @@ public interface ChessGameEngine {
 	public void setEnd(int i, int j);
 	
 	public boolean checkStart();
+	
 	public boolean checkEnd();
+	
 	public void resetChecks();
+	
+	public boolean getValidCheck();
 	
 //	public void checkMovePiece();
 }

@@ -15,7 +15,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	private ChessPlayer player1, player2;
 	
 	private PiecePosition start, end;
-	private boolean checkStart, checkEnd;
+	private boolean checkStart, checkEnd, checkValid;
 
 	public ChessGameEngineImpl()
 	{
@@ -63,7 +63,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			//If the opponent piece does not have their piece located on that spot
 			if(p2.getIcon().equalsIgnoreCase("_"))
 			{
-				chessboard.movePiece2(start, end);
+				checkValid = chessboard.movePiece2(start, end);
 				return true;
 			}
 			else
@@ -163,6 +163,11 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	{
 		checkStart = false;
 		checkEnd = false;
+	}
+	
+	public boolean getValidCheck()
+	{
+		return checkValid;
 	}
 	
 }

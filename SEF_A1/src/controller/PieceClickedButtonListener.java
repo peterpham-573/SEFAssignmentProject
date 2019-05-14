@@ -18,16 +18,16 @@ public class PieceClickedButtonListener implements ActionListener {
 	private ImageIcon blackKnight = new ImageIcon("images/black_knight.png");
 	private ImageIcon blackBishop = new ImageIcon("images/black_bishop.png");
 	private ImageIcon blackRook = new ImageIcon("images/black_rook.png");
-	
+
 	private ImageIcon whiteKnight = new ImageIcon("images/white_knight.png");
 	private ImageIcon whiteBishop = new ImageIcon("images/white_bishop.png");
 	private ImageIcon whiteRook = new ImageIcon("images/white_rook.png");
-	
+
 	private int i;
 	private int j;
 	private ChessGameEngine ge;
 	private Board2 b;
-	
+
 	public PieceClickedButtonListener(int i, int j, ChessGameEngine ge, Board2 b)
 	{
 		this.b = b;
@@ -35,12 +35,12 @@ public class PieceClickedButtonListener implements ActionListener {
 		this.i = i;
 		this.j = j;		
 	}
-	
-	
+
+
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
-		
+
 		if (ge.checkStart() == false)
 		{
 			ge.setStart(i, j);
@@ -48,7 +48,7 @@ public class PieceClickedButtonListener implements ActionListener {
 		else
 		{
 			ge.setEnd(i, j);
-			
+
 			if (ge.getStart() == ge.getEnd())
 			{
 				//if player selects same place; deselect
@@ -56,13 +56,14 @@ public class PieceClickedButtonListener implements ActionListener {
 			}
 			else
 			{
-				
-				//TODO : VALIDATE THE THING
-				
 				ge.movePiece(ge.getStart(), ge.getEnd());
 				
-				b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
-				
+				boolean check = ge.getValidCheck();
+
+				if(check == true)
+				{
+					b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
+
 					if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Rook && !ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
 					{
 						b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackRook);
@@ -87,23 +88,24 @@ public class PieceClickedButtonListener implements ActionListener {
 					{
 						b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteBishop);
 					}
-					
+				} 
+				
 				ge.resetChecks();
-				
+
 				b.repaint();
-				
+
 				b.revalidate();
 			}
-			
-			
+
+
 		}
-		
-		
-		
-		
-		
+
+
+
+
+
 	}
-	
+
 	/*
 	 * 
 	 * All three cases require movement validation
@@ -118,6 +120,6 @@ public class PieceClickedButtonListener implements ActionListener {
 	 * Case 5: Deselecting a piece 
 	 * 
 	 * */
-	
+
 
 }
