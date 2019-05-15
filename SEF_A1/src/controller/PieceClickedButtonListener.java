@@ -13,6 +13,7 @@ import models.pieces.Knightshop;
 import models.pieces.Knook;
 import models.pieces.Rook;
 import view.Board2;
+import view.Window;
 
 public class PieceClickedButtonListener implements ActionListener {
 
@@ -37,12 +38,13 @@ public class PieceClickedButtonListener implements ActionListener {
 	private Window window;
 	private Board2 b;
 
-	public PieceClickedButtonListener(int i, int j, ChessGameEngine ge, Board2 b)
+	public PieceClickedButtonListener(int i, int j, ChessGameEngine ge, Board2 b, Window window)
 	{
 		this.b = b;
 		this.ge = ge;
 		this.i = i;
 		this.j = j;		
+		this.window = window;
 	}
 
 
@@ -53,6 +55,17 @@ public class PieceClickedButtonListener implements ActionListener {
 		if (ge.checkStart() == false)
 		{
 			ge.setStart(i, j);
+			
+			if (
+				ge.getChessBoard().getPieceOnBoard(i, j) instanceof Knook || 
+				ge.getChessBoard().getPieceOnBoard(i, j) instanceof Knightshop || 
+				ge.getChessBoard().getPieceOnBoard(i, j) instanceof Bishook
+				)
+			{
+				window.getControl().setEnabled(true);
+				window.repaint();
+				window.revalidate();
+			}
 		}
 		else
 		{
@@ -61,7 +74,10 @@ public class PieceClickedButtonListener implements ActionListener {
 			if (ge.getStart() == ge.getEnd())
 			{
 				//if player selects same place; deselect
+				window.getControl().setEnabled(false);
 				ge.resetChecks();
+				window.repaint();
+				window.revalidate();
 			}
 			else
 			{

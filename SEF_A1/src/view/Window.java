@@ -1,8 +1,6 @@
 package view;
 
 
-//hi peter testing
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JFrame;
@@ -48,14 +46,14 @@ public class Window extends JFrame {
 //		board = new Board();
 //		add(board, BorderLayout.CENTER);
 		
-		board2 = new Board2(gameEngine, this);
+		board2 = new Board2(this.gameEngine, this);
 		add(board2, BorderLayout.CENTER);
 		
 		
 		statusBarPanel = new ControlPanel();
 		add(statusBarPanel, BorderLayout.NORTH);
 		
-		playerPanel = new PlayerPanel(gameEngine);
+		playerPanel = new PlayerPanel(this.gameEngine);
 		add(playerPanel, BorderLayout.WEST);
 		
 		status = new StatusPanel();
@@ -85,6 +83,10 @@ public class Window extends JFrame {
 		return board2;
 	}
 	
+	public ControlPanel getControl()
+	{
+		return statusBarPanel;
+	}
 	
 }
 

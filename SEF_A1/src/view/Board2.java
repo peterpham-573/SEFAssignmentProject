@@ -31,16 +31,11 @@ public class Board2 extends JPanel{
 	private ImageIcon whiteBishop = new ImageIcon("images/white_bishop.png");
 	private ImageIcon whiteRook = new ImageIcon("images/white_rook.png");
 	
-	private ChessGameEngine ge;
-	private Window window;
 
 	
 	
 	public Board2(ChessGameEngine ge, Window window)
 	{
-		
-		this.ge = ge;
-		this.window = window;
 
 		setLayout(new GridLayout(6,6));		
 
@@ -60,7 +55,7 @@ public class Board2 extends JPanel{
 				}
 				add(squares[i][j]);
 				
-				squares[i][j].addActionListener(new PieceClickedButtonListener(i,j,ge,this));
+				squares[i][j].addActionListener(new PieceClickedButtonListener(i,j,ge,this, window));
 
 			}	
 		}
