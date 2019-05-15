@@ -34,6 +34,7 @@ public class PieceClickedButtonListener implements ActionListener {
 	private int i;
 	private int j;
 	private ChessGameEngine ge;
+	private Window window;
 	private Board2 b;
 
 	public PieceClickedButtonListener(int i, int j, ChessGameEngine ge, Board2 b)

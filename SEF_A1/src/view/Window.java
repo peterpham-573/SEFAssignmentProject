@@ -48,7 +48,7 @@ public class Window extends JFrame {
 //		board = new Board();
 //		add(board, BorderLayout.CENTER);
 		
-		board2 = new Board2(gameEngine);
+		board2 = new Board2(gameEngine, this);
 		add(board2, BorderLayout.CENTER);
 		
 		

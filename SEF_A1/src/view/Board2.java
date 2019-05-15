@@ -32,13 +32,15 @@ public class Board2 extends JPanel{
 	private ImageIcon whiteRook = new ImageIcon("images/white_rook.png");
 	
 	private ChessGameEngine ge;
+	private Window window;
 
 	
 	
-	public Board2(ChessGameEngine ge)
+	public Board2(ChessGameEngine ge, Window window)
 	{
 		
 		this.ge = ge;
+		this.window = window;
 
 		setLayout(new GridLayout(6,6));		
 
