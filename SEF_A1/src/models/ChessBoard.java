@@ -210,6 +210,12 @@ public class ChessBoard {
 		{
 			for(int j = 0; j < 6; j++)
 			{
+				//set start position as new piece
+				if (chessBoardArr[i][j] == piece)
+				{
+					chessBoardArr[i][j] = null;
+					setPiece(new Piece(), i, j);
+				}
 				if(chessBoardArr[i][j] == piece2)
 				{
 					chessBoardArr[i][j] = null;

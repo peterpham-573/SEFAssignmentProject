@@ -4,7 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import models.interfaces.ChessGameEngine;
+import models.pieces.Bishook;
+import models.pieces.Bishop;
+import models.pieces.Knight;
+import models.pieces.Knightshop;
+import models.pieces.Knook;
 import models.pieces.Piece;
+import models.pieces.Rook;
 
 public class ChessGameEngineImpl implements ChessGameEngine
 {
@@ -45,9 +51,13 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	@Override
 	public void removePlayer(ChessPlayer player) 
 	{
-		// TODO Auto-generated method stub
+		//do we even do anything with this method lol
 	}
 
+	/*
+	 *	if returns false, piece has moved to empty place
+	 *	if returns true, piece has merged with piece
+	 */
 	@Override
 	public boolean movePiece(PiecePosition start, PiecePosition end)
 	{
@@ -64,7 +74,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			if(p2.getIcon().equalsIgnoreCase("_"))
 			{
 				checkValid = chessboard.movePiece2(start, end);
-				return true;
+				return false;
 			}
 			else
 			{
@@ -72,13 +82,20 @@ public class ChessGameEngineImpl implements ChessGameEngine
 				if( p.isWhite() != p2.isWhite())
 				{
 					capture( p, p2);
-					return true;
+					return false;
 				}
 				else
 				{
-					//merge (p, p2);
-					System.out.println("wow");
-					return true;
+					if (p2 instanceof Knook || p2 instanceof Knightshop || p2 instanceof Bishook)
+					{
+						return false;
+					}
+					else
+					{
+						merge (p, p2, start, end);
+						System.out.println("Piece has been merged");
+						return true;
+					}
 				}
 			}
 		}
@@ -93,9 +110,56 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	{
 		//This method removes piece 2 and replaces it piece 1
 		chessboard.removePiece(piece, piece2);
-
 		//Updates the player's points by 5 every time a capture is successful
 		//p.setPoints(p.getPoints()+ 5);
+		if (piece2 instanceof Rook || piece2 instanceof Knight || piece2 instanceof Bishop)
+		{
+			if (piece2.isWhite() == true)
+			{
+				player1.setPoints(player1.getPoints() + 5);
+			}
+			else
+			{
+				player2.setPoints(player2.getPoints() + 5);
+			}
+		}
+		else if (piece2 instanceof Knook || piece2 instanceof Knightshop || piece2 instanceof Bishook)
+		{
+			if (piece2.isWhite() == true)
+			{
+				player1.setPoints(player1.getPoints() + 5);
+			}
+			else
+			{
+				player2.setPoints(player2.getPoints() + 5);
+			}
+		}
+	}
+	
+	@Override
+	public void merge(Piece piece, Piece piece2, PiecePosition start, PiecePosition end)
+	{
+		if ( (piece instanceof Rook && piece2 instanceof Knight) || (piece instanceof Knight && piece2 instanceof Rook))
+		{
+			chessboard.setPiece(new Piece(), start.getRow(), start.getCol());
+			chessboard.setPiece(new Knook(piece.isWhite(), new PiecePosition(end.getRow(), end.getCol())), end.getRow(), end.getCol());
+		}
+		else if ( (piece instanceof Bishop && piece2 instanceof Knight) || (piece instanceof Knight && piece2 instanceof Bishop))
+		{
+			chessboard.setPiece(new Piece(), start.getRow(), start.getCol());
+			chessboard.setPiece(new Knightshop(piece.isWhite(), new PiecePosition(end.getRow(), end.getCol())), end.getRow(), end.getCol());
+		}
+		else if ( (piece instanceof Rook && piece2 instanceof Bishop) || (piece instanceof Bishop && piece2 instanceof Rook))
+		{
+			chessboard.setPiece(new Piece(), start.getRow(), start.getCol());
+			chessboard.setPiece(new Bishook(piece.isWhite(), new PiecePosition(end.getRow(), end.getCol())), end.getRow(), end.getCol());
+		}
+	}
+	
+	@Override
+	public void split(PiecePosition place)
+	{
+		//TODO :: add split piece
 	}
 
 	@Override

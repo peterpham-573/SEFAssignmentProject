@@ -12,6 +12,10 @@ public interface ChessGameEngine {
 	
 	public void capture(Piece piece, Piece piece2);
 	
+	public void merge(Piece piece, Piece piece2, PiecePosition start, PiecePosition end);
+	
+	public void split(PiecePosition place);
+	
 	public void addPlayer(ChessPlayer player);
 	
 	public ChessPlayer getPlayer(String user);
