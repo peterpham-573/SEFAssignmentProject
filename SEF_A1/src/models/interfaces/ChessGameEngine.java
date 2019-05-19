@@ -47,6 +47,10 @@ public interface ChessGameEngine {
 	public void resetChecks();
 	
 	public boolean getValidCheck();
+
+	public void calculateMaxTurns();
+
+	public boolean checkGameEnd();
 	
 //	public void checkMovePiece();
 }

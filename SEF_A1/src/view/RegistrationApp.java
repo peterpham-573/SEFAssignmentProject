@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.Font;
-import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -9,7 +8,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
 import controller.AddPlayerButtonActionListener;
 import controller.LoginPlayerButtonActionListener;
@@ -19,6 +17,10 @@ import models.ChessPlayer;
 import models.interfaces.ChessGameEngine;
 
 public class RegistrationApp extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JLabel registrationLabel, usernameLabel, passwordLabel;
 	private JTextField usernameTextField;
 	private JButton registerButton, loginButton;
@@ -55,6 +57,7 @@ public class RegistrationApp extends JFrame{
 	  add(loginButton);
 
 	  setSize(650, 350);
+	  setLocationRelativeTo(null);
 	  setLayout(null);
 	  setVisible(true);
 	 }
@@ -159,7 +162,7 @@ public class RegistrationApp extends JFrame{
 	
 	
 	public void createBoard(){
-		Scanner scanner = new Scanner(System.in);
+		//Scanner scanner = new Scanner(System.in);
 		Board boardView = new Board();
 		
 
@@ -167,19 +170,18 @@ public class RegistrationApp extends JFrame{
 
 		ge.setPlayerOne(chessGameRegistry.getplayers()[0]);
 		ge.setPlayerTwo(chessGameRegistry.getplayers()[1]);
-		
+		ge.calculateMaxTurns();
 		new Window(ge);
 	
 		
 		
-		System.out.println("Player One Login");
+		//System.out.println("Player One Login");
 		// login code call 
-		System.out.println("Player Two Login");
+		//System.out.println("Player Two Login");
 		// Login code call 
 		
 		//Player one starts as White
 			
-		
 		
 		boardView.printBoard(ge.getChessBoard().getChessBoardArr());
 		// Do a while loop that loops while game is not ended, Have a method call that checks on the 

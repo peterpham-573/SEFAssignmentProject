@@ -21,7 +21,9 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	private ChessPlayer player1, player2;
 	
 	private PiecePosition start, end;
-	private boolean checkStart, checkEnd, checkValid;
+	private boolean checkStart, checkEnd, checkValid, checkGameEnd = false;
+	
+	private int maxTurns, turnNumber;
 
 	public ChessGameEngineImpl()
 	{
@@ -127,13 +129,14 @@ public class ChessGameEngineImpl implements ChessGameEngine
 		{
 			if (piece2.isWhite() == true)
 			{
-				player1.setPoints(player1.getPoints() + 5);
+				player1.setPoints(player1.getPoints() + 10);
 			}
 			else
 			{
-				player2.setPoints(player2.getPoints() + 5);
+				player2.setPoints(player2.getPoints() + 10);
 			}
 		}
+		moveCheckEnd();
 	}
 	
 	@Override
@@ -232,6 +235,30 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	public boolean getValidCheck()
 	{
 		return checkValid;
+	}
+	
+	public boolean checkGameEnd() 
+	{
+		return checkGameEnd;
+	}
+	
+	public void moveCheckEnd() {
+		if(player1.getPoints() == 30) {
+			checkGameEnd = true;
+		}
+		if(player2.getPoints() == 30) {
+			checkGameEnd = true;
+		}
+	}
+	
+	public void turnCheckEnd() {
+		if(turnNumber/2 == maxTurns) {
+			checkGameEnd = true;
+		}
+	}
+	
+	public void calculateMaxTurns() {
+		maxTurns = (player1.getNoOfTurns() + player2.getNoOfTurns()) / 2;
 	}
 	
 }

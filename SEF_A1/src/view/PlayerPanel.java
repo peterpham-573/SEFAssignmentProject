@@ -49,7 +49,7 @@ public class PlayerPanel extends JPanel {
 		playerOneUsername.setEditable(false);
 		playerOneUsername.setBorder(BorderFactory.createTitledBorder("Username"));
 		
-		playerOneScore = new JTextArea();
+		playerOneScore = new JTextArea("0");
 		playerOneScore.setFont(myFont);
 		playerOneScore.setEditable(false);
 		playerOneScore.setBorder(BorderFactory.createTitledBorder("Score"));
@@ -77,7 +77,7 @@ public class PlayerPanel extends JPanel {
 		playerTwoUsername.setEditable(false);
 		playerTwoUsername.setBorder(BorderFactory.createTitledBorder("Username"));
 		
-		playerTwoScore = new JTextArea();
+		playerTwoScore = new JTextArea("0");
 		playerTwoScore.setFont(myFont);
 		playerTwoScore.setEditable(false);
 		playerTwoScore.setBorder(BorderFactory.createTitledBorder("Score"));
@@ -95,7 +95,11 @@ public class PlayerPanel extends JPanel {
 		playerTwo.add(new JPanel());
 			
 	}
-	
+
+	public void updateScore() {
+		playerOneScore.setText( String.valueOf(gameEngine.getPlayerOne().getPoints()));
+		playerTwoScore.setText( String.valueOf(gameEngine.getPlayerTwo().getPoints()));
+	}
 
 }
 

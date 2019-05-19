@@ -16,11 +16,10 @@ public class Window extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	//private Board board;
+
 	private PlayerPanel playerPanel;
 	private ControlPanel statusBarPanel;
 	private TopMenuBar menuBar;
-	private MovePanel moves;
 	private StatusPanel status;
 	private Board2 board2;
 
@@ -40,15 +39,8 @@ public class Window extends JFrame {
 		menuBar = new TopMenuBar(this);
 		setJMenuBar(menuBar);
 		
-		moves = new MovePanel();
-		add(moves, BorderLayout.EAST);
-		
-//		board = new Board();
-//		add(board, BorderLayout.CENTER);
-		
 		board2 = new Board2(this.gameEngine, this);
 		add(board2, BorderLayout.CENTER);
-		
 		
 		statusBarPanel = new ControlPanel();
 		add(statusBarPanel, BorderLayout.NORTH);
@@ -66,11 +58,6 @@ public class Window extends JFrame {
 	public PlayerPanel getPlayerPanel()
 	{
 		return playerPanel;
-	}
-	
-	public MovePanel getMovePanel()
-	{
-		return moves;
 	}
 	
 	public StatusPanel getStatusPanel()
