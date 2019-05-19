@@ -39,8 +39,8 @@ class Registration {
 	
 	@AfterAll
 	public static void tearDown() throws Exception {
-		//Deletes the two players created after all the tests are run
-		final int PLAYERS_CREATED = 2;
+		//Deletes the four players created after all the tests are run
+		final int PLAYERS_CREATED = 4;
 		deletePlayers(PLAYERS_CREATED);
 	}
 	
@@ -129,14 +129,43 @@ class Registration {
 		}	
 	}
 	
-	//Login a player that does exist in the registry
+	//Login a player that does not exist in the registry
 	//adds the player into the registry
 	//Attempts to login the same player
 	@Test
 	void loginThenRegisterPlayer() {
-		ChessPlayer newPlayer = new ChessPlayer("newPlayer", "New2", "Player2");
-		assertEquals(chessGameRegistry.playerLogin(newPlayer),3);
+		ChessPlayer newPlayer = new ChessPlayer("newPlayer2", "New2", "Player2");
+		assertEquals(chessGameRegistry.userNameCheck(newPlayer),false);
 		chessGameRegistry.addPlayerToRegistration(newPlayer);
 		assertEquals(chessGameRegistry.playerLogin(newPlayer),0);
 	}
+	
+	//Login a player that does  not exist in the registry
+	//Adds the player into the registry
+	//Attempts to login the same player
+    //Attempts to login the same player again
+    //Login a second player that does  not exist in the registry
+    //Adds the second player into the registry
+    //Attempts to login the second player
+	@Test
+	void AllCases() {
+		ChessPlayer newPlayer = new ChessPlayer("AllCases", "Player_1", "Player_1");
+		ChessPlayer newPlayer2 = new ChessPlayer("AllCases", "Player_2", "Player_2");
+		String[] playerDetails = {"Player_1" ,"Player_1"};
+		String[] playerDetails2 = {"Player_2" ,"Player_2"};
+		assertEquals(chessGameRegistry.userNameCheck(newPlayer),false);
+		assertEquals(chessGameRegistry.playerLogin(chessGameRegistry.getPlayer(playerDetails)),3);
+		if(!chessGameRegistry.userNameCheck(newPlayer)) {
+			chessGameRegistry.addPlayerToRegistration(newPlayer);
+		}	
+		assertEquals(chessGameRegistry.playerLogin(newPlayer),0);
+		assertEquals(chessGameRegistry.playerLogin(newPlayer),1);
+		
+		assertEquals(chessGameRegistry.playerLogin(chessGameRegistry.getPlayer(playerDetails2)),3);
+		if(!chessGameRegistry.userNameCheck(newPlayer2)) {
+			chessGameRegistry.addPlayerToRegistration(newPlayer2);
+		}
+		assertEquals(chessGameRegistry.playerLogin(newPlayer2),2);
+	}
+
 }
