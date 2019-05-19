@@ -109,8 +109,6 @@ public class ChessBoard {
 	}
 	
 	
-	
-	
 	// These values are just place holders for now
 	void setGameBoard() {
 		
