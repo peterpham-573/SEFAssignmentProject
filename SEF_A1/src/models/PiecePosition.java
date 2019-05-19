@@ -50,8 +50,8 @@ public class PiecePosition {
 		return col;
 	}
 	
-	public boolean isEqual(PiecePosition y) {
-		return ((col == y.col) && (row == y.row));
+	public boolean isEqual(PiecePosition pos) {
+		return ((col == pos.col) && (row == pos.row));
 	}
 
 	/*

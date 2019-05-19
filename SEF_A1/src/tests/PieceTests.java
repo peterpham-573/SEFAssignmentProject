@@ -30,9 +30,8 @@ class PieceTests {
 	
 	@Test
 	void test() {
-		chessBoard.movePiece("a0", "A2");
-		chessBoard.movePiece("a2", "b2");
-		assertEquals(Rook.class, chessBoard.getPieceOnBoard(1, 2));
+		assertTrue(chessBoard.movePiece("a0", "A2"));
+		assertTrue(chessBoard.movePiece("a2", "b2"));
 	}
 
 	@Test

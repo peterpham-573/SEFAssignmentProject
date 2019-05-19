@@ -73,7 +73,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			//If the opponent piece does not have their piece located on that spot
 			if(p2.getIcon().equalsIgnoreCase("_"))
 			{
-				checkValid = chessboard.movePiece2(start, end);
+				checkValid = chessboard.movePiece(start, end);
 				return false;
 			}
 			else
