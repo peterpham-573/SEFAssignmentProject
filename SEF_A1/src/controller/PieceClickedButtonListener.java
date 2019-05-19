@@ -154,13 +154,7 @@ public class PieceClickedButtonListener implements ActionListener {
 				if(ge.checkGameEnd()) {
 					JOptionPane.showMessageDialog(window, "Game has ended");
 				}
-				
-				
-				
-				
-				
-				
-					
+									
 				ge.resetChecks();
 				b.repaint();
 				b.revalidate();
