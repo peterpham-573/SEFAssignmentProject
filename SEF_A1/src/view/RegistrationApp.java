@@ -55,6 +55,7 @@ public class RegistrationApp extends JFrame{
 	  add(loginButton);
 
 	  setSize(650, 350);
+	  setLocationRelativeTo(null);
 	  setLayout(null);
 	  setVisible(true);
 	 }
@@ -167,7 +168,7 @@ public class RegistrationApp extends JFrame{
 
 		ge.setPlayerOne(chessGameRegistry.getplayers()[0]);
 		ge.setPlayerTwo(chessGameRegistry.getplayers()[1]);
-		
+		ge.calculateMaxTurns();
 		new Window(ge);
 	
 		

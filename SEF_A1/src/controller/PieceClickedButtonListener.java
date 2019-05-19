@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 import models.interfaces.ChessGameEngine;
 import models.pieces.Bishook;
@@ -82,7 +83,7 @@ public class PieceClickedButtonListener implements ActionListener {
 			else
 			{
 				boolean mergeCheck = ge.movePiece(ge.getStart(), ge.getEnd());
-				
+				window.getPlayerPanel().updateScore();
 				boolean check = ge.getValidCheck();
 				
 				//if the merge is true
@@ -147,6 +148,17 @@ public class PieceClickedButtonListener implements ActionListener {
 							}
 						} 
 				}
+				
+				
+				
+				if(ge.checkGameEnd()) {
+					JOptionPane.showMessageDialog(window, "Game has ended");
+				}
+				
+				
+				
+				
+				
 				
 					
 				ge.resetChecks();
