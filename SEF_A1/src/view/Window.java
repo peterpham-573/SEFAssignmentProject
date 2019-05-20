@@ -49,6 +49,8 @@ public class Window extends JFrame {
 		add(playerPanel, BorderLayout.WEST);
 		
 		status = new StatusPanel();
+		status.updateTurnsRemaining(String.valueOf(gameEngine.remainingTurns()));
+		status.updateCurrentPlayer(gameEngine.getCurrentPlayerTurn());
 		add(status, BorderLayout.SOUTH);
 		
 		

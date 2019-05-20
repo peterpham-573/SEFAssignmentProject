@@ -51,6 +51,12 @@ public interface ChessGameEngine {
 	public void calculateMaxTurns();
 
 	public boolean checkGameEnd();
+
+	public int remainingTurns();
+	
+	public String getWinningMessage();
+	
+	public String getCurrentPlayerTurn();
 	
 //	public void checkMovePiece();
 }

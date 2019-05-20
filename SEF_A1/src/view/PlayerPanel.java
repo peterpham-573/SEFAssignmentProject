@@ -50,7 +50,6 @@ public class PlayerPanel extends JPanel {
 		playerOneUsername.setBorder(BorderFactory.createTitledBorder("Username"));
 		
 		playerOneScore = new JTextArea("0");
-		playerOneScore.setFont(myFont);
 		playerOneScore.setEditable(false);
 		playerOneScore.setBorder(BorderFactory.createTitledBorder("Score"));
 		
@@ -78,7 +77,6 @@ public class PlayerPanel extends JPanel {
 		playerTwoUsername.setBorder(BorderFactory.createTitledBorder("Username"));
 		
 		playerTwoScore = new JTextArea("0");
-		playerTwoScore.setFont(myFont);
 		playerTwoScore.setEditable(false);
 		playerTwoScore.setBorder(BorderFactory.createTitledBorder("Score"));
 		

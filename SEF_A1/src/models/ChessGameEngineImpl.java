@@ -17,12 +17,11 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	private List<ChessPlayer> players = new ArrayList<ChessPlayer>();
 
 	private ChessBoard chessboard;
-	
+
 	private ChessPlayer player1, player2;
-	
+
 	private PiecePosition start, end;
-	private boolean checkStart, checkEnd, checkValid, checkGameEnd = false;
-	
+	private boolean checkStart, checkEnd, checkValid, checkGameEnd = false, isWhitePlayerTurn = true;
 	private int maxTurns, turnNumber;
 
 	public ChessGameEngineImpl()
@@ -63,48 +62,58 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	@Override
 	public boolean movePiece(PiecePosition start, PiecePosition end)
 	{
-		
+
 		//Checks for pieces on the board with the positions 
 		Piece p = chessboard.getPiece(start);
-		
+
 		Piece p2 = chessboard.getPiece(end);
 
-		// If where we move our chess piece has an existing piece AND is not their own piece then capture
-		if(chessboard.getChessBoardArr()[end.getRow()][end.getCol()] instanceof Piece)
-		{
-			//If the opponent piece does not have their piece located on that spot
-			if(p2.getIcon().equalsIgnoreCase("_"))
+		if(p.isWhite() == isWhitePlayerTurn)
+		{		
+			// If where we move our chess piece has an existing piece AND is not their own piece then capture
+			if(chessboard.getChessBoardArr()[end.getRow()][end.getCol()] instanceof Piece)
 			{
-				checkValid = chessboard.movePiece(start, end);
-				return false;
-			}
-			else
-			{
-				//Checks to see if capturing enemy or self
-				if( p.isWhite() != p2.isWhite())
+				//If the opponent piece does not have their piece located on that spot
+				if(p2.getIcon().equalsIgnoreCase("_"))
 				{
-					capture( p, p2);
+					checkValid = chessboard.movePiece(start, end);
+					turnNumber++;
+					isWhitePlayerTurn = !isWhitePlayerTurn;
 					return false;
 				}
 				else
 				{
-					if (p2 instanceof Knook || p2 instanceof Knightshop || p2 instanceof Bishook)
+					//Checks to see if capturing enemy or self
+					if( p.isWhite() != p2.isWhite())
 					{
+						capture( p, p2);
+						turnNumber++;
+						isWhitePlayerTurn = !isWhitePlayerTurn;
 						return false;
 					}
 					else
 					{
-						merge (p, p2, start, end);
-						System.out.println("Piece has been merged");
-						return true;
+						if (p2 instanceof Knook || p2 instanceof Knightshop || p2 instanceof Bishook)
+						{
+							return false;
+						}
+						else
+						{
+							merge (p, p2, start, end);
+							turnNumber++;
+							isWhitePlayerTurn = !isWhitePlayerTurn;
+							System.out.println("Piece has been merged");
+							return true;
+						}
 					}
 				}
 			}
+			else
+			{
+				return false;
+			}
 		}
-		else
-		{
-			return false;
-		}
+		return false;
 	}
 
 	@Override
@@ -138,7 +147,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 		}
 		moveCheckEnd();
 	}
-	
+
 	@Override
 	public void merge(Piece piece, Piece piece2, PiecePosition start, PiecePosition end)
 	{
@@ -157,8 +166,11 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			chessboard.setPiece(new Piece(), start.getRow(), start.getCol());
 			chessboard.setPiece(new Bishook(piece.isWhite(), new PiecePosition(end.getRow(), end.getCol())), end.getRow(), end.getCol());
 		}
+
+
+
 	}
-	
+
 	@Override
 	public void split(PiecePosition place)
 	{
@@ -169,44 +181,44 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	public ChessBoard getChessBoard() {
 		return chessboard;
 	}
-	
-	
+
+
 	public ChessPlayer getPlayerOne()
 	{
 		return player1;
 	}
-	
+
 	public ChessPlayer getPlayerTwo()
 	{
 		return player2;
 	}
-	
+
 	public void setPlayerOne(ChessPlayer player)
 	{
 		player1 = player;
 	}
-	
+
 	public void setPlayerTwo(ChessPlayer player)
 	{
 		player2 = player;
 	}
-	
+
 	public PiecePosition getStart()
 	{
 		return start;		
 	}
-	
+
 	public PiecePosition getEnd()
 	{
 		return end;
 	}
-	
+
 	public void setStart(int i, int j)
 	{
 		start = new PiecePosition(i, j);
 		checkStart = true;
 	}
-	
+
 	public void setEnd(int i, int j)
 	{
 		end = new PiecePosition(i, j);
@@ -231,17 +243,21 @@ public class ChessGameEngineImpl implements ChessGameEngine
 		checkStart = false;
 		checkEnd = false;
 	}
-	
+
 	public boolean getValidCheck()
 	{
 		return checkValid;
 	}
-	
+
 	public boolean checkGameEnd() 
 	{
+		//If turnNumber = 0
+
+		moveCheckEnd();
+		turnCheckEnd();
 		return checkGameEnd;
 	}
-	
+
 	public void moveCheckEnd() {
 		if(player1.getPoints() == 30) {
 			checkGameEnd = true;
@@ -250,15 +266,48 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			checkGameEnd = true;
 		}
 	}
-	
+
 	public void turnCheckEnd() {
 		if(turnNumber/2 == maxTurns) {
 			checkGameEnd = true;
 		}
 	}
-	
+
 	public void calculateMaxTurns() {
 		maxTurns = (player1.getNoOfTurns() + player2.getNoOfTurns()) / 2;
 	}
-	
+
+	public int remainingTurns()
+	{
+		return maxTurns - (turnNumber/2);
+	}
+
+	public String getWinningMessage() {
+
+		if(player1.getPoints() > player2.getPoints())
+		{
+			return player1.getPlayerName() + " wins with " + player1.getPoints() + " points.";
+		}
+		else if(player1.getPoints() == player2.getPoints())
+		{
+			return "Draw.";
+		}
+		else
+		{
+			return player2.getPlayerName() + " wins with " + player2.getPoints() + " points.";
+		}
+	}
+
+public String getCurrentPlayerTurn()
+{
+	if(isWhitePlayerTurn)
+	{
+		return player1.getPlayerUserName();
+	}
+	else
+	{
+		return player2.getPlayerUserName();
+	}
+}
+
 }
