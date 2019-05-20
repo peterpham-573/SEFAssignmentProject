@@ -58,5 +58,7 @@ public interface ChessGameEngine {
 	
 	public String getCurrentPlayerTurn();
 	
+	public boolean isWhitePlayerTurn();
+	
 //	public void checkMovePiece();
 }

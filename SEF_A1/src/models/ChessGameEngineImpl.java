@@ -21,7 +21,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	private ChessPlayer player1, player2;
 
 	private PiecePosition start, end;
-	private boolean checkStart, checkEnd, checkValid, checkGameEnd = false, isWhitePlayerTurn = true;
+	private boolean checkStart, checkEnd, checkValid = false, checkGameEnd = false, isWhitePlayerTurn = true;
 	private int maxTurns, turnNumber;
 
 	public ChessGameEngineImpl()
@@ -77,27 +77,23 @@ public class ChessGameEngineImpl implements ChessGameEngine
 				if(p2.getIcon().equalsIgnoreCase("_"))
 				{
 					checkValid = chessboard.movePiece(start, end);
-					turnNumber++;
-					isWhitePlayerTurn = !isWhitePlayerTurn;
-					return false;
+					if(checkValid) {
+						turnNumber++;
+						isWhitePlayerTurn = !isWhitePlayerTurn;
+					}
 				}
 				else
 				{
 					//Checks to see if capturing enemy or self
-					if( p.isWhite() != p2.isWhite())
+					if(p.isWhite() != p2.isWhite())
 					{
-						capture( p, p2);
+						capture(p,p2);
 						turnNumber++;
 						isWhitePlayerTurn = !isWhitePlayerTurn;
-						return false;
 					}
 					else
 					{
-						if (p2 instanceof Knook || p2 instanceof Knightshop || p2 instanceof Bishook)
-						{
-							return false;
-						}
-						else
+						if(!(p2 instanceof Knook || p2 instanceof Knightshop || p2 instanceof Bishook))
 						{
 							merge (p, p2, start, end);
 							turnNumber++;
@@ -107,10 +103,6 @@ public class ChessGameEngineImpl implements ChessGameEngine
 						}
 					}
 				}
-			}
-			else
-			{
-				return false;
 			}
 		}
 		return false;
@@ -298,16 +290,21 @@ public class ChessGameEngineImpl implements ChessGameEngine
 		}
 	}
 
-public String getCurrentPlayerTurn()
-{
-	if(isWhitePlayerTurn)
+	public String getCurrentPlayerTurn()
 	{
-		return player1.getPlayerUserName();
+		if(isWhitePlayerTurn)
+		{
+			return player1.getPlayerUserName();
+		}
+		else
+		{
+			return player2.getPlayerUserName();
+		}
 	}
-	else
-	{
-		return player2.getPlayerUserName();
-	}
-}
 
+
+	public boolean isWhitePlayerTurn()
+	{
+		return isWhitePlayerTurn;
+	}
 }
