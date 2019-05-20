@@ -66,11 +66,10 @@ public class ChessBoard {
 		
 		// Should check if start or end is a legal selected Piece
 		if (startPos == null || endPos == null) {
-			System.out.println("Invalid Input");
+			//System.out.println("Invalid Input");
 			return false;
 		}
 		
-
 		// Getting a List of all the valid movement positions 
 		//  the piece can move to
 		LinkedList<PiecePosition> validMovementsList = 
@@ -85,26 +84,17 @@ public class ChessBoard {
 					// move is good so Move Piece
 					// need to check if it is capturing a piece
 					Piece piece = getPiece(startPos);
-					Piece otherPiece = getPiece(endPos);
-					if (piece.isEnemyOf(otherPiece)) {
-						// It is an enemy so update score and capture
-					} else if (piece.isMergable(otherPiece)) {
-						// call merge method
-						
-					} else {
-						// the end position is an empty space
-						setPiece(piece, endPos.getRow(), endPos.getCol());
-						// Need to set the Piece position
-						
-						// Replacing the now empty space with a Blank Piece
-						chessBoardArr[startPos.getRow()][startPos.getCol()] = new Piece();
-					}
+					// Need to set the Piece position
+					setPiece(piece, endPos.getRow(), endPos.getCol());
+					// Replacing the now empty space with a Blank Piece
+					chessBoardArr[startPos.getRow()][startPos.getCol()] = new Piece();
+			
 					return true;
 				}
 			}
 		}
 		// endPos is not a valid input for the selected piece at startPos
-		System.out.println("Invalid Movement");
+		//System.out.println("Invalid Movement");
 		return false;
 	}
 	
