@@ -13,6 +13,7 @@ import models.pieces.Bishop;
 import models.pieces.Knight;
 import models.pieces.Knightshop;
 import models.pieces.Knook;
+import models.pieces.Piece;
 import models.pieces.Rook;
 import view.Board2;
 import view.Window;
@@ -84,6 +85,7 @@ public class PieceClickedButtonListener implements ActionListener {
 			}
 			else
 			{
+				Piece tempPiece = ge.getChessBoard().getPiece(ge.getStart());
 				boolean mergeCheck = ge.movePiece(ge.getStart(), ge.getEnd());
 				window.getPlayerPanel().updateScore();
 				boolean check = ge.getValidCheck();
@@ -91,7 +93,7 @@ public class PieceClickedButtonListener implements ActionListener {
 				System.out.println(ge.getChessBoard().getPiece(ge.getEnd()).isWhite());
 				System.out.println(!ge.isWhitePlayerTurn());
 				//if the merge is true
-				if (ge.getChessBoard().getPiece(ge.getEnd()).isWhite() == !ge.isWhitePlayerTurn())
+				if (tempPiece.isWhite() == !ge.isWhitePlayerTurn())
 				{
 					if (mergeCheck == true)
 					{
