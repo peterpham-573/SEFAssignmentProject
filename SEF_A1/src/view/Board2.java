@@ -2,12 +2,14 @@ package view;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.util.LinkedList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import controller.PieceClickedButtonListener;
+import models.PiecePosition;
 import models.interfaces.ChessGameEngine;
 
 public class Board2 extends JPanel{
@@ -22,6 +24,7 @@ public class Board2 extends JPanel{
 
 	private Color blackSquare = Color.GRAY;
 	private Color whiteSquare = Color.WHITE;
+	private Color selectSquare = Color.CYAN;
 	
 	private ImageIcon blackKnight = new ImageIcon("images/black_knight.png");
 	private ImageIcon blackBishop = new ImageIcon("images/black_bishop.png");
@@ -66,6 +69,41 @@ public class Board2 extends JPanel{
 		
 		setVisible(true);
 
+	}
+	
+	public void paintSelected(LinkedList<PiecePosition> pieces)
+	{
+		for (int i = 0; i < 6; i++)
+		{
+			for (int j = 0; j < 6; j++)
+			{
+				for (PiecePosition r : pieces)
+				{
+					if (i == r.getRow() && j == r.getCol())
+					{
+						squares[i][j].setBackground(selectSquare);
+					}
+				}
+			}
+		}
+	}
+	
+	public void repaintBackground()
+	{
+		for(int i = 0; i < 6; i++)
+		{
+			for(int j = 0; j < 6; j++)
+			{
+				if( (i + j)% 2 != 0)
+				{
+					squares[i][j].setBackground(blackSquare);
+				}
+				else
+				{
+					squares[i][j].setBackground(whiteSquare);
+				}
+			}	
+		}
 	}
 	
 	public JButton getTile(int i, int j)

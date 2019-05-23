@@ -56,7 +56,13 @@ public class PieceClickedButtonListener implements ActionListener {
 
 		if (ge.checkStart() == false)
 		{
-			ge.setStart(i, j);
+			if (ge.getChessBoard().getPieceOnBoard(i, j).isWhite() == ge.isWhitePlayerTurn())
+			{
+				ge.setStart(i, j);
+			
+				Piece temp = ge.getChessBoard().getPiece(ge.getStart());
+				window.getBoard().paintSelected(temp.validMovementsList(ge.getChessBoard().getChessBoardArr()));
+			}
 
 			if (
 					ge.getChessBoard().getPieceOnBoard(i, j) instanceof Knook || 
@@ -77,6 +83,7 @@ public class PieceClickedButtonListener implements ActionListener {
 			{
 				//if player selects same place; deselect
 				JOptionPane.showMessageDialog(b, "Piece deselected!");
+				window.getBoard().repaintBackground();
 				window.getControl().setEnabled(false);
 				ge.resetChecks();
 			}
@@ -171,10 +178,12 @@ public class PieceClickedButtonListener implements ActionListener {
 			if(!ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
 			{
 				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackRook);
+				window.getBoard().repaintBackground();
 			}
 			else
 			{
 				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteRook);
+				window.getBoard().repaintBackground();
 			}
 			
 			
@@ -187,10 +196,12 @@ public class PieceClickedButtonListener implements ActionListener {
 			if(!ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
 			{
 				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackKnight);
+				window.getBoard().repaintBackground();
 			}
 			else
 			{
 				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteKnight);
+				window.getBoard().repaintBackground();
 			}
 			ge.changePlayerTurn();
 		}
@@ -202,10 +213,12 @@ public class PieceClickedButtonListener implements ActionListener {
 			if(!ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
 			{
 				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackBishop);
+				window.getBoard().repaintBackground();
 			}
 			else
 			{
 				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteBishop);
+				window.getBoard().repaintBackground();
 			}
 			ge.changePlayerTurn();
 		}
@@ -220,10 +233,12 @@ public class PieceClickedButtonListener implements ActionListener {
 			if (!ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
 			{
 				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackKnook);
+				window.getBoard().repaintBackground();
 			}
 			else
 			{
 				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteKnook);
+				window.getBoard().repaintBackground();
 			}
 			
 			
@@ -237,10 +252,12 @@ public class PieceClickedButtonListener implements ActionListener {
 			if (!ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
 			{
 				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackKnightshop);
+				window.getBoard().repaintBackground();
 			}
 			else
 			{
 				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteKnightshop);
+				window.getBoard().repaintBackground();
 			}
 			
 			
@@ -254,10 +271,12 @@ public class PieceClickedButtonListener implements ActionListener {
 			if(!ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
 			{
 				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackBishook);
+				window.getBoard().repaintBackground();
 			}
 			else
 			{
 				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteBishook);
+				window.getBoard().repaintBackground();
 			}
 			
 			
@@ -273,33 +292,39 @@ public class PieceClickedButtonListener implements ActionListener {
 		{
 			if (ge.getChessBoard().getPieceOnBoard(ge.getStart().getRow(), ge.getStart().getCol()).isWhite())
 			{
-			b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(whiteBishop);
+				b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(whiteBishop);
+				window.getBoard().repaintBackground();
 			}
 			else
 			{
-			b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(blackBishop);
+				b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(blackBishop);
+				window.getBoard().repaintBackground();
 			}
 		}
 		else if(ge.getChessBoard().getPieceOnBoard(ge.getStart().getRow(), ge.getStart().getCol()) instanceof Rook)
 		{
 			if (ge.getChessBoard().getPieceOnBoard(ge.getStart().getRow(), ge.getStart().getCol()).isWhite())
 			{
-			b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(whiteRook);
+				b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(whiteRook);
+				window.getBoard().repaintBackground();
 			}
 			else
 			{
-			b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(blackRook);
+				b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(blackRook);
+				window.getBoard().repaintBackground();
 			}
 		}
 		else if(ge.getChessBoard().getPieceOnBoard(ge.getStart().getRow(), ge.getStart().getCol()) instanceof Knight)
 		{
 			if (ge.getChessBoard().getPieceOnBoard(ge.getStart().getRow(), ge.getStart().getCol()).isWhite())
 			{
-			b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(whiteKnight);
+				b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(whiteKnight);
+				window.getBoard().repaintBackground();
 			}
 			else
 			{
-			b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(blackKnight);
+				b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(blackKnight);
+				window.getBoard().repaintBackground();
 			}
 		}
 		//paint the end
@@ -307,33 +332,39 @@ public class PieceClickedButtonListener implements ActionListener {
 		{
 			if (ge.getChessBoard().getPieceOnBoard(ge.getEnd().getRow(), ge.getEnd().getCol()).isWhite())
 			{
-			b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteBishop);
+				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteBishop);
+				window.getBoard().repaintBackground();
 			}
 			else
 			{
-			b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackBishop);
+				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackBishop);
+				window.getBoard().repaintBackground();
 			}
 		}
 		else if(ge.getChessBoard().getPieceOnBoard(ge.getEnd().getRow(), ge.getEnd().getCol()) instanceof Rook)
 		{
 			if (ge.getChessBoard().getPieceOnBoard(ge.getEnd().getRow(), ge.getEnd().getCol()).isWhite())
 			{
-			b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteRook);
+				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteRook);
+				window.getBoard().repaintBackground();
 			}
 			else
 			{
-			b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackRook);
+				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackRook);
+				window.getBoard().repaintBackground();
 			}
 		}
 		else if(ge.getChessBoard().getPieceOnBoard(ge.getEnd().getRow(), ge.getEnd().getCol()) instanceof Knight)
 		{
 			if (ge.getChessBoard().getPieceOnBoard(ge.getEnd().getRow(), ge.getEnd().getCol()).isWhite())
 			{
-			b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteKnight);
+				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteKnight);
+				window.getBoard().repaintBackground();
 			}
 			else
 			{
-			b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackKnight);
+				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackKnight);
+				window.getBoard().repaintBackground();
 			}
 		}
 		
