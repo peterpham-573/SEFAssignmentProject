@@ -3,19 +3,8 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-
 import models.interfaces.ChessGameEngine;
-import models.pieces.Bishook;
-import models.pieces.Bishop;
-import models.pieces.Knight;
-import models.pieces.Knightshop;
-import models.pieces.Knook;
-import models.pieces.Piece;
-import models.pieces.Rook;
-import view.Board2;
-import view.Window;
+
 
 public class SplitActionListener implements ActionListener {
 
@@ -32,12 +21,14 @@ public class SplitActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
-		if (!ge.getSplitCheck)
+		if (!ge.getSplitCheck())
 		{
+			System.out.println("SPLIT CLICKED");
 			ge.setSplitCheck(true);
 		}
 		else
 		{
+			System.out.println("SPLIT UNCLICKED");
 			ge.setSplitCheck(false);
 		}
 	}

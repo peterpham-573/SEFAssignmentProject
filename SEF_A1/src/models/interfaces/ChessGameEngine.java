@@ -14,7 +14,7 @@ public interface ChessGameEngine {
 	
 	public void merge(Piece piece, Piece piece2, PiecePosition start, PiecePosition end);
 	
-	public void split(PiecePosition place);
+	public boolean splitPieces(Piece piece, PiecePosition start, PiecePosition end);
 	
 	public void addPlayer(ChessPlayer player);
 	

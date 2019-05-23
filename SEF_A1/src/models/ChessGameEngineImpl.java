@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import models.interfaces.ChessGameEngine;
@@ -64,44 +65,55 @@ public class ChessGameEngineImpl implements ChessGameEngine
 
 		if(p.isWhite() == isWhitePlayerTurn)
 		{	
-			//moving the piece positions
-			checkValid = chessboard.movePiece(start, end);
-			// If where we move our chess piece has an existing piece AND is not their own piece then capture
-			if(chessboard.getChessBoardArr()[end.getRow()][end.getCol()] instanceof Piece)
+			if (split == true)
 			{
-				//If the opponent piece does not have their piece located on that spot
-				if(p2.getIcon().equalsIgnoreCase("_"))
+				System.out.println("running split");
+				splitPieces(p, start, end);
+			}
+			else
+			{
+				//moving the piece positions
+				checkValid = chessboard.movePiece(start, end);
+				
+				System.out.println("running not split");
+				// If where we move our chess piece has an existing piece AND is not their own piece then capture
+				if(chessboard.getChessBoardArr()[end.getRow()][end.getCol()] instanceof Piece)
 				{
-					if(checkValid) {
-						turnNumber++;
-					}
-					System.out.println("DEBUG: move piece to empty spot");
-				}
-				else
-				{
-					//Checks to see if capturing enemy or self
-					if((p.isWhite() != p2.isWhite()) && checkValid)
+					//If the opponent piece does not have their piece located on that spot
+					if(p2.getIcon().equalsIgnoreCase("_"))
 					{
-						capture(p,p2);
-						turnNumber++;
-						System.out.println("DEBUG: move piece to capture");
+						if(checkValid) {
+							turnNumber++;
+						}
+						System.out.println("DEBUG: move piece to empty spot");
 					}
 					else
 					{
-						if(!(p2 instanceof Knook || p2 instanceof Knightshop || p2 instanceof Bishook) && checkValid)
+						//Checks to see if capturing enemy or self
+						if((p.isWhite() != p2.isWhite()) && checkValid)
 						{
-							merge(p, p2, start, end);
+							capture(p,p2);
 							turnNumber++;
-							System.out.println("Piece has been merged");
-							return true;
+							System.out.println("DEBUG: move piece to capture");
+						}
+						else
+						{
+							if(!(p2 instanceof Knook || p2 instanceof Knightshop || p2 instanceof Bishook) && checkValid)
+							{
+								merge(p, p2, start, end);
+								turnNumber++;
+								System.out.println("Piece has been merged");
+								return true;
+							}
 						}
 					}
 				}
 			}
 		}
+
 		System.out.println("DEBUG: reached end of line and returned false");
 		return false;
-		
+
 	}
 
 	@Override
@@ -158,9 +170,112 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	}
 
 	@Override
-	public void split(PiecePosition place)
+	public boolean splitPieces(Piece piece, PiecePosition start, PiecePosition end)
 	{
+		boolean s = false;
 		//TODO :: add split piece
+		/*
+		 * PSEUDO CODE:
+		 * 
+		 *  Check for which piece split is,
+		 *  Check for where the end position is for the split pieces
+		 *  set piece at the position of the board if it is empty
+		 */
+		if(piece instanceof Knook)
+		{
+			//Make temporary pieces at the starting position
+			Piece tempK = new Knight(piece.isWhite(), start);
+			Piece tempR = new Rook(piece.isWhite(), start);
+			
+			//Creates the valid positions for knights at the point, checks if the end position is correct
+			LinkedList<PiecePosition> kPos = tempK.validMovementsList(chessboard.getChessBoardArr());
+			for (PiecePosition k : kPos)
+			{
+				if (end == k)
+				{
+					chessboard.putPiece(end.getRow(), end.getCol(), new Knight(piece.isWhite(), end));
+					chessboard.putPiece(start.getRow(), start.getCol(), tempR);
+					s = true;
+				}
+			}
+			LinkedList<PiecePosition> rPos = tempR.validMovementsList(chessboard.getChessBoardArr());
+			for (PiecePosition r : rPos)
+			{
+				if (end == r)
+				{
+					chessboard.putPiece(end.getRow(), end.getCol(), new Rook(piece.isWhite(), end));
+					chessboard.putPiece(start.getRow(), start.getCol(), tempK);
+					s = true;
+				}
+			}
+			
+		}
+		else if(piece instanceof Knightshop)
+		{
+			//Make temporary pieces at the starting position
+			Piece tempK = new Knight(piece.isWhite(), start);
+			Piece tempB = new Bishop(piece.isWhite(), start);
+			
+			//Creates the valid positions for knights at the point, checks if the end position is correct
+			LinkedList<PiecePosition> kPos = tempK.validMovementsList(chessboard.getChessBoardArr());
+			for (PiecePosition k : kPos)
+			{
+				if (end == k)
+				{
+					chessboard.putPiece(end.getRow(), end.getCol(), new Knight(piece.isWhite(), end));
+					chessboard.putPiece(start.getRow(), start.getCol(), tempB);
+					s = true;
+				}
+			}
+			LinkedList<PiecePosition> bPos = tempB.validMovementsList(chessboard.getChessBoardArr());
+			for (PiecePosition b : bPos)
+			{
+				if (end == b)
+				{
+					chessboard.putPiece(end.getRow(), end.getCol(), new Bishop(piece.isWhite(), end));
+					chessboard.putPiece(start.getRow(), start.getCol(), tempK);
+					s = true;
+				}
+			}
+			
+		}
+		else if(piece instanceof Bishook)
+		{
+			System.out.println("Piece is a Bishook");
+			//Make temporary pieces at the starting position
+			Piece tempB = new Bishop(piece.isWhite(), start);
+			Piece tempR = new Rook(piece.isWhite(), start);
+			
+			//Creates the valid positions for knights at the point, checks if the end position is correct
+			LinkedList<PiecePosition> bPos = tempB.validMovementsList(chessboard.getChessBoardArr());
+			for (PiecePosition b : bPos)
+			{
+//				System.out.println("temp row: " + b.getRow() + "  temp col: " + b.getCol());
+//				System.out.println("end row: " + end.getRow() + " end col: " + end.getCol());
+				if (end.getRow() == b.getRow() && end.getCol() == b.getCol())
+				{
+					System.out.println("Place1");
+					chessboard.putPiece(end.getRow(), end.getCol(), new Bishop(piece.isWhite(), end));
+					chessboard.putPiece(start.getRow(), start.getCol(), tempR);
+					s = true;
+				}
+			}
+			LinkedList<PiecePosition> rPos = tempR.validMovementsList(chessboard.getChessBoardArr());
+			for (PiecePosition r : rPos)
+			{
+//				System.out.println("temp row: " + r.getRow() + "  temp col: " + r.getCol());
+//				System.out.println("end row: " + end.getRow() + " end col: " + end.getCol());
+				if (end.getRow() == r.getRow() && end.getCol() == r.getCol())
+				{
+					System.out.println("Place2");
+					chessboard.putPiece(end.getRow(), end.getCol(), new Rook(piece.isWhite(), end));
+					chessboard.putPiece(start.getRow(), start.getCol(), tempB);
+					s = true;
+				}
+			}
+			
+		}
+		return s;
 	}
 
 	@Override

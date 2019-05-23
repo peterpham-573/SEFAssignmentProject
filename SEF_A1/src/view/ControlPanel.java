@@ -8,6 +8,9 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import controller.SplitActionListener;
+import models.interfaces.ChessGameEngine;
+
 public class ControlPanel extends JPanel{
 	
 	
@@ -23,7 +26,7 @@ public class ControlPanel extends JPanel{
 		
 		setLayout(new GridLayout(1,6));
 		
-		create(ChessGameEngine ge);
+		create(ge);
 	}
 	
 	public void create(ChessGameEngine ge){
@@ -34,7 +37,7 @@ public class ControlPanel extends JPanel{
 		splitPiece.setFont(myFont);
 		splitPiece.setBackground(Color.WHITE);
 		splitPiece.setEnabled(false);
-		splitPiece.addActionListener(new SplitActionListener(ge))
+		splitPiece.addActionListener(new SplitActionListener(ge));
 		
 		
 		startGame = new JButton("Start Game");
