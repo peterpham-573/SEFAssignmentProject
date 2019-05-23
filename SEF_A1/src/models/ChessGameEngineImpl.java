@@ -188,9 +188,12 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			{
 				if (end.getRow() == k.getRow() && end.getCol() == k.getCol())
 				{
-					chessboard.putPiece(end.getRow(), end.getCol(), new Knight(piece.isWhite(), end));
-					chessboard.putPiece(start.getRow(), start.getCol(), tempR);
-					s = true;
+					if (chessboard.getPiece(end).getIcon().equalsIgnoreCase("_"))
+					{
+						chessboard.putPiece(end.getRow(), end.getCol(), new Knight(piece.isWhite(), end));
+						chessboard.putPiece(start.getRow(), start.getCol(), tempR);
+						s = true;
+					}
 				}
 			}
 			LinkedList<PiecePosition> rPos = tempR.validMovementsList(chessboard.getChessBoardArr());
@@ -198,9 +201,12 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			{
 				if (end.getRow() == r.getRow() && end.getCol() == r.getCol())
 				{
-					chessboard.putPiece(end.getRow(), end.getCol(), new Rook(piece.isWhite(), end));
-					chessboard.putPiece(start.getRow(), start.getCol(), tempK);
-					s = true;
+					if (chessboard.getPiece(end).getIcon().equalsIgnoreCase("_"))
+					{
+						chessboard.putPiece(end.getRow(), end.getCol(), new Rook(piece.isWhite(), end));
+						chessboard.putPiece(start.getRow(), start.getCol(), tempK);
+						s = true;
+					}
 				}
 			}
 			
@@ -217,9 +223,12 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			{
 				if (end.getRow() == k.getRow() && end.getCol() == k.getCol())
 				{
-					chessboard.putPiece(end.getRow(), end.getCol(), new Knight(piece.isWhite(), end));
-					chessboard.putPiece(start.getRow(), start.getCol(), tempB);
-					s = true;
+					if (chessboard.getPiece(end).getIcon().equalsIgnoreCase("_"))
+					{
+						chessboard.putPiece(end.getRow(), end.getCol(), new Knight(piece.isWhite(), end));
+						chessboard.putPiece(start.getRow(), start.getCol(), tempB);
+						s = true;
+					}
 				}
 			}
 			LinkedList<PiecePosition> bPos = tempB.validMovementsList(chessboard.getChessBoardArr());
@@ -227,9 +236,12 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			{
 				if (end.getRow() == b.getRow() && end.getCol() == b.getCol())
 				{
-					chessboard.putPiece(end.getRow(), end.getCol(), new Bishop(piece.isWhite(), end));
-					chessboard.putPiece(start.getRow(), start.getCol(), tempK);
-					s = true;
+					if (chessboard.getPiece(end).getIcon().equalsIgnoreCase("_"))
+					{
+						chessboard.putPiece(end.getRow(), end.getCol(), new Bishop(piece.isWhite(), end));
+						chessboard.putPiece(start.getRow(), start.getCol(), tempK);
+						s = true;
+					}
 				}
 			}
 			
@@ -246,9 +258,12 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			{
 				if (end.getRow() == b.getRow() && end.getCol() == b.getCol())
 				{
-					chessboard.putPiece(end.getRow(), end.getCol(), new Bishop(piece.isWhite(), end));
-					chessboard.putPiece(start.getRow(), start.getCol(), tempR);
-					s = true;
+					if (chessboard.getPiece(end).getIcon().equalsIgnoreCase("_"))
+					{
+						chessboard.putPiece(end.getRow(), end.getCol(), new Bishop(piece.isWhite(), end));
+						chessboard.putPiece(start.getRow(), start.getCol(), tempR);
+						s = true;
+					}
 				}
 			}
 			LinkedList<PiecePosition> rPos = tempR.validMovementsList(chessboard.getChessBoardArr());
@@ -256,9 +271,12 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			{
 				if (end.getRow() == r.getRow() && end.getCol() == r.getCol())
 				{
-					chessboard.putPiece(end.getRow(), end.getCol(), new Rook(piece.isWhite(), end));
-					chessboard.putPiece(start.getRow(), start.getCol(), tempB);
-					s = true;
+					if (chessboard.getPiece(end).getIcon().equalsIgnoreCase("_"))
+					{
+						chessboard.putPiece(end.getRow(), end.getCol(), new Rook(piece.isWhite(), end));
+						chessboard.putPiece(start.getRow(), start.getCol(), tempB);
+						s = true;
+					}
 				}
 			}
 			
