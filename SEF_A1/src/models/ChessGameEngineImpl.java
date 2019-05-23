@@ -191,7 +191,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			LinkedList<PiecePosition> kPos = tempK.validMovementsList(chessboard.getChessBoardArr());
 			for (PiecePosition k : kPos)
 			{
-				if (end == k)
+				if (end.getRow() == k.getRow() && end.getCol() == k.getCol())
 				{
 					chessboard.putPiece(end.getRow(), end.getCol(), new Knight(piece.isWhite(), end));
 					chessboard.putPiece(start.getRow(), start.getCol(), tempR);
@@ -201,7 +201,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			LinkedList<PiecePosition> rPos = tempR.validMovementsList(chessboard.getChessBoardArr());
 			for (PiecePosition r : rPos)
 			{
-				if (end == r)
+				if (end.getRow() == r.getRow() && end.getCol() == r.getCol())
 				{
 					chessboard.putPiece(end.getRow(), end.getCol(), new Rook(piece.isWhite(), end));
 					chessboard.putPiece(start.getRow(), start.getCol(), tempK);
@@ -220,7 +220,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			LinkedList<PiecePosition> kPos = tempK.validMovementsList(chessboard.getChessBoardArr());
 			for (PiecePosition k : kPos)
 			{
-				if (end == k)
+				if (end.getRow() == k.getRow() && end.getCol() == k.getCol())
 				{
 					chessboard.putPiece(end.getRow(), end.getCol(), new Knight(piece.isWhite(), end));
 					chessboard.putPiece(start.getRow(), start.getCol(), tempB);
@@ -230,7 +230,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			LinkedList<PiecePosition> bPos = tempB.validMovementsList(chessboard.getChessBoardArr());
 			for (PiecePosition b : bPos)
 			{
-				if (end == b)
+				if (end.getRow() == b.getRow() && end.getCol() == b.getCol())
 				{
 					chessboard.putPiece(end.getRow(), end.getCol(), new Bishop(piece.isWhite(), end));
 					chessboard.putPiece(start.getRow(), start.getCol(), tempK);
@@ -241,7 +241,6 @@ public class ChessGameEngineImpl implements ChessGameEngine
 		}
 		else if(piece instanceof Bishook)
 		{
-			System.out.println("Piece is a Bishook");
 			//Make temporary pieces at the starting position
 			Piece tempB = new Bishop(piece.isWhite(), start);
 			Piece tempR = new Rook(piece.isWhite(), start);
@@ -250,11 +249,8 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			LinkedList<PiecePosition> bPos = tempB.validMovementsList(chessboard.getChessBoardArr());
 			for (PiecePosition b : bPos)
 			{
-//				System.out.println("temp row: " + b.getRow() + "  temp col: " + b.getCol());
-//				System.out.println("end row: " + end.getRow() + " end col: " + end.getCol());
 				if (end.getRow() == b.getRow() && end.getCol() == b.getCol())
 				{
-					System.out.println("Place1");
 					chessboard.putPiece(end.getRow(), end.getCol(), new Bishop(piece.isWhite(), end));
 					chessboard.putPiece(start.getRow(), start.getCol(), tempR);
 					s = true;
@@ -263,17 +259,19 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			LinkedList<PiecePosition> rPos = tempR.validMovementsList(chessboard.getChessBoardArr());
 			for (PiecePosition r : rPos)
 			{
-//				System.out.println("temp row: " + r.getRow() + "  temp col: " + r.getCol());
-//				System.out.println("end row: " + end.getRow() + " end col: " + end.getCol());
 				if (end.getRow() == r.getRow() && end.getCol() == r.getCol())
 				{
-					System.out.println("Place2");
 					chessboard.putPiece(end.getRow(), end.getCol(), new Rook(piece.isWhite(), end));
 					chessboard.putPiece(start.getRow(), start.getCol(), tempB);
 					s = true;
 				}
 			}
 			
+		}
+		
+		if (s == false)
+		{
+			resetChecks();
 		}
 		return s;
 	}

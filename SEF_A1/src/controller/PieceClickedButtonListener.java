@@ -323,7 +323,10 @@ public class PieceClickedButtonListener implements ActionListener {
 			}
 		}
 		
-		ge.changePlayerTurn();
+		if(ge.getValidCheck())
+		{
+			ge.changePlayerTurn();
+		}
 		ge.setSplitCheck(false);
 		ge.resetChecks();
 		window.getControl().setEnabled(false);
