@@ -91,7 +91,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 					}
 					else
 					{
-						if(!(p2 instanceof Knook || p2 instanceof Knightshop || p2 instanceof Bishook))
+						if(!(p2 instanceof Knook || p2 instanceof Knightshop || p2 instanceof Bishook) && checkValid)
 						{
 							merge (p, p2, start, end);
 							turnNumber++;
@@ -231,6 +231,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	{
 		checkStart = false;
 		checkEnd = false;
+		checkValid = false;
 	}
 
 	public boolean getValidCheck()
@@ -304,7 +305,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	{
 		return isWhitePlayerTurn;
 	}
-	
+	//changeplayerturn
 	public void changePlayerTurn()
 	{
 		if (isWhitePlayerTurn == true)

@@ -59,6 +59,6 @@ public interface ChessGameEngine {
 	public String getCurrentPlayerTurn();
 	
 	public boolean isWhitePlayerTurn();
-	
+	//change player turn
 	public void changePlayerTurn();
 }

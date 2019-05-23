@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-import models.PiecePosition;
 import models.interfaces.ChessGameEngine;
 import models.pieces.Bishook;
 import models.pieces.Bishop;
@@ -95,7 +94,7 @@ public class PieceClickedButtonListener implements ActionListener {
 				//if the merge is true
 				if (tempPiece.isWhite() == ge.isWhitePlayerTurn())
 				{
-					if (mergeCheck == true)
+					if (mergeCheck == true && check == true)
 					{
 
 						if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Knook && !ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
@@ -135,7 +134,11 @@ public class PieceClickedButtonListener implements ActionListener {
 							ge.changePlayerTurn();
 						}
 					}
-					else
+					else if (mergeCheck == true && check == false)
+					{
+						ge.resetChecks();
+					}
+					else if (mergeCheck == false)
 					{
 						if(check == true)
 						{
