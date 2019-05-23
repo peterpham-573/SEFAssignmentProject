@@ -2,7 +2,6 @@ package models.pieces;
 
 import java.util.LinkedList;
 
-import models.ChessBoard;
 import models.PiecePosition;
 
 public class Bishop extends Piece {
