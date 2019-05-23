@@ -20,7 +20,7 @@ public class ControlPanel extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 //	private JLabel turn;
-	private JButton startGame, splitPiece;
+	private JButton splitPiece;
 	
 	public ControlPanel(ChessGameEngine ge, Window b) {
 		
@@ -39,15 +39,8 @@ public class ControlPanel extends JPanel{
 		splitPiece.setEnabled(false);
 		splitPiece.addActionListener(new SplitActionListener(ge, b));
 		
-		
-		startGame = new JButton("Start Game");
-		startGame.setFont(myFont);
-		startGame.setBackground(Color.WHITE);
-
 		add(new JPanel());
 		add(splitPiece);
-		add(new JPanel());
-		add(startGame);	
 		add(new JPanel());
 		
 	}
