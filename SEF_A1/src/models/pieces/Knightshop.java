@@ -43,7 +43,7 @@ public class Knightshop extends Piece
 		}
 		
 		// if there is a piece their and it is the same color then don't add
-		if((piece == null) || (!(piece.icon.equals("_")) && (piece.isWhite == isWhite))) {
+		if((piece == null)) {
 			
 		} else {
 			potentialPositions.add(new PiecePosition(currRow + 1, currCol + 1));
@@ -56,7 +56,7 @@ public class Knightshop extends Piece
 		} catch (ArrayIndexOutOfBoundsException e) {
 			piece = null;
 		}
-		if((piece == null) || (!(piece.icon.equals("_")) && (piece.isWhite == isWhite))) {
+		if((piece == null)) {
 			
 		} else {
 			potentialPositions.add(new PiecePosition(currRow - 1, currCol + 1));
@@ -69,7 +69,7 @@ public class Knightshop extends Piece
 			piece = null;
 		}
 		
-		if((piece == null) || (!(piece.icon.equals("_")) && (piece.isWhite == isWhite))) {
+		if((piece == null)) {
 			
 		} else {
 			potentialPositions.add(new PiecePosition(currRow + 1, currCol - 1));
@@ -83,7 +83,7 @@ public class Knightshop extends Piece
 			piece = null;
 		}
 		
-		if((piece == null) || (!(piece.icon.equals("_")) && (piece.isWhite == isWhite))) {
+		if((piece == null)) {
 			
 		} else {
 			potentialPositions.add(new PiecePosition(currRow - 1, currCol - 1));

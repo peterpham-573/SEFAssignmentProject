@@ -28,7 +28,7 @@ public class Knight extends Piece{
 		potentialPositions.add(new PiecePosition(currRow - 2, currCol - 1));
 		potentialPositions.add(new PiecePosition(currRow - 1, currCol - 2));
 		
-		potentialPositions = removeInvalidPositions(potentialPositions, arr);
+		//potentialPositions = removeInvalidPositions(potentialPositions, arr);
 		
 		return potentialPositions;
 	}

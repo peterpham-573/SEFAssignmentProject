@@ -25,7 +25,7 @@ public class Rook extends Piece{
 		}
 		
 		// if there is a piece their and it is the same color then don't add
-		if((piece == null) || (!(piece.icon.equals("_")) && (piece.isWhite == isWhite))) {
+		if((piece == null)) {
 			
 		} else {
 			potentialPositions.add(new PiecePosition(currRow + 1, currCol));
@@ -38,7 +38,7 @@ public class Rook extends Piece{
 		} catch (ArrayIndexOutOfBoundsException e) {
 			piece = null;
 		}
-		if((piece == null) || (!(piece.icon.equals("_")) && (piece.isWhite == isWhite))) {
+		if((piece == null)) {
 			
 		} else {
 			potentialPositions.add(new PiecePosition(currRow - 1, currCol));
@@ -51,7 +51,7 @@ public class Rook extends Piece{
 			piece = null;
 		}
 		
-		if((piece == null) || (!(piece.icon.equals("_")) && (piece.isWhite == isWhite))) {
+		if((piece == null)) {
 			
 		} else {
 			potentialPositions.add(new PiecePosition(currRow, currCol + 1));
@@ -65,14 +65,14 @@ public class Rook extends Piece{
 			piece = null;
 		}
 		
-		if((piece == null) || (!(piece.icon.equals("_")) && (piece.isWhite == isWhite))) {
+		if((piece == null)) {
 			
 		} else {
 			potentialPositions.add(new PiecePosition(currRow, currCol - 1));
 			potentialPositions.add(new PiecePosition(currRow, currCol - 2));
 		}
 		
-		potentialPositions = removeInvalidPositions(potentialPositions, arr);
+		//potentialPositions = removeInvalidPositions(potentialPositions, arr);
 		
 		return potentialPositions;
 

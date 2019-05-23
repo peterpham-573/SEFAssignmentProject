@@ -76,11 +76,9 @@ public class PieceClickedButtonListener implements ActionListener {
 			if (ge.getStart().isEqual(ge.getEnd()))
 			{
 				//if player selects same place; deselect
-				//window.getControl().setEnabled(false);
+				window.getControl().setEnabled(false);
 				ge.resetChecks();
-				System.out.println("testies");
-				//				window.repaint();
-				//				window.revalidate();
+				System.out.println("DEBUG: piece unchecked");
 			}
 			else
 			{
@@ -89,50 +87,15 @@ public class PieceClickedButtonListener implements ActionListener {
 				window.getPlayerPanel().updateScore();
 				boolean check = ge.getValidCheck();
 
-				System.out.println(ge.getChessBoard().getPiece(ge.getEnd()).isWhite());
-				System.out.println(ge.isWhitePlayerTurn());
-				//if the merge is true
-				if (tempPiece.isWhite() == ge.isWhitePlayerTurn())
+				if (tempPiece.isWhite() != ge.isWhitePlayerTurn())
+				{
+					ge.resetChecks();
+				}
+				else if (tempPiece.isWhite() == ge.isWhitePlayerTurn())
 				{
 					if (mergeCheck == true && check == true)
 					{
-
-						if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Knook && !ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
-						{
-							b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
-							b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackKnook);
-							ge.changePlayerTurn();
-						}
-						else if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Knightshop && !ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
-						{
-							b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
-							b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackKnightshop);
-							ge.changePlayerTurn();
-						}
-						else if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Bishook && !ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
-						{
-							b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
-							b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackBishook);
-							ge.changePlayerTurn();
-						}
-						else if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Knook && ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
-						{
-							b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
-							b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteKnook);
-							ge.changePlayerTurn();
-						}
-						else if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Knightshop && ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
-						{
-							b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
-							b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteKnightshop);
-							ge.changePlayerTurn();
-						}
-						else if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Bishook && ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
-						{
-							b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
-							b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteBishook);
-							ge.changePlayerTurn();
-						}
+						mergeMove();
 					}
 					else if (check == false)
 					{
@@ -142,59 +105,21 @@ public class PieceClickedButtonListener implements ActionListener {
 					{
 						if(check == true)
 						{
-
-							if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Rook && !ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
-							{
-								b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
-								b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackRook);
-								ge.changePlayerTurn();
-							}
-							else if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Knight && !ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
-							{
-								b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
-								b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackKnight);
-								ge.changePlayerTurn();
-							}
-							else if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Bishop && !ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
-							{
-
-								b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
-								b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackBishop);
-								ge.changePlayerTurn();
-							}
-							else if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Rook && ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
-							{
-								b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
-								b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteRook);
-								ge.changePlayerTurn();
-							}
-							else if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Knight && ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
-							{
-								b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
-								b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteKnight);
-								ge.changePlayerTurn();
-							}
-							else if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Bishop && ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
-							{
-								b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
-								b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteBishop);
-								ge.changePlayerTurn();	
-							}
+							//MERGED PIECES
+							mergeMove();
+							//NORMAL PIECES
+							normalMove();
 						} 
 					}
-
+					
 					b.repaint();
 					b.revalidate();
-
 				}
-
-
 
 				if(ge.checkGameEnd()) 
 				{
 					JOptionPane.showMessageDialog(window, "Game has ended \n" + ge.getWinningMessage());
 				}
-
 
 
 				String turns = String.valueOf(ge.remainingTurns());
@@ -203,18 +128,94 @@ public class PieceClickedButtonListener implements ActionListener {
 				window.getStatusPanel().updateTurnsRemaining(turns);
 				window.getStatusPanel().updateCurrentPlayer(ge.getCurrentPlayerTurn());
 
-
+				//Debugging
+				System.out.println("Is it white players turn?: " + ge.isWhitePlayerTurn());
+				System.out.println();
 				ge.resetChecks();
 
 			}
-
-
 		}
+	}
+	
+	public void normalMove()
+	{
+		if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Rook && !ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
+		{
+			b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
+			b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackRook);
+			ge.changePlayerTurn();
+		}
+		else if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Knight && !ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
+		{
+			b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
+			b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackKnight);
+			ge.changePlayerTurn();
+		}
+		else if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Bishop && !ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
+		{
 
-
-
-
-
+			b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
+			b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackBishop);
+			ge.changePlayerTurn();
+		}
+		else if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Rook && ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
+		{
+			b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
+			b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteRook);
+			ge.changePlayerTurn();
+		}
+		else if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Knight && ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
+		{
+			b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
+			b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteKnight);
+			ge.changePlayerTurn();
+		}
+		else if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Bishop && ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
+		{
+			b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
+			b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteBishop);
+			ge.changePlayerTurn();	
+		}
+	}
+	
+	public void mergeMove()
+	{
+		if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Knook && !ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
+		{
+			b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
+			b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackKnook);
+			ge.changePlayerTurn();
+		}
+		else if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Knightshop && !ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
+		{
+			b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
+			b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackKnightshop);
+			ge.changePlayerTurn();
+		}
+		else if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Bishook && !ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
+		{
+			b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
+			b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackBishook);
+			ge.changePlayerTurn();
+		}
+		else if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Knook && ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
+		{
+			b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
+			b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteKnook);
+			ge.changePlayerTurn();
+		}
+		else if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Knightshop && ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
+		{
+			b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
+			b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteKnightshop);
+			ge.changePlayerTurn();
+		}
+		else if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Bishook && ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
+		{
+			b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
+			b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteBishook);
+			ge.changePlayerTurn();
+		}
 	}
 
 	/*

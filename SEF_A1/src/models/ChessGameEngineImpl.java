@@ -63,20 +63,21 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	public boolean movePiece(PiecePosition start, PiecePosition end)
 	{
 
-		//Checks for pieces on the board with the positions 
+		//Checks for pieces on the board with the positions -- These are temporary values
 		Piece p = chessboard.getPiece(start);
 
 		Piece p2 = chessboard.getPiece(end);
 
 		if(p.isWhite() == isWhitePlayerTurn)
-		{		
+		{	
+			//moving the piece positions
+			checkValid = chessboard.movePiece(start, end);
 			// If where we move our chess piece has an existing piece AND is not their own piece then capture
 			if(chessboard.getChessBoardArr()[end.getRow()][end.getCol()] instanceof Piece)
 			{
 				//If the opponent piece does not have their piece located on that spot
 				if(p2.getIcon().equalsIgnoreCase("_"))
 				{
-					checkValid = chessboard.movePiece(start, end);
 					if(checkValid) {
 						turnNumber++;
 					}
@@ -85,7 +86,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 				else
 				{
 					//Checks to see if capturing enemy or self
-					if(p.isWhite() != p2.isWhite())
+					if((p.isWhite() != p2.isWhite()) && checkValid)
 					{
 						capture(p,p2);
 						turnNumber++;
@@ -93,7 +94,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 					}
 					else
 					{
-						if(!(p2 instanceof Knook || p2 instanceof Knightshop || p2 instanceof Bishook))
+						if(!(p2 instanceof Knook || p2 instanceof Knightshop || p2 instanceof Bishook) && checkValid)
 						{
 							merge(p, p2, start, end);
 							turnNumber++;
@@ -112,8 +113,6 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	@Override
 	public void capture(Piece piece, Piece piece2) 
 	{
-		//This method removes piece 2 and replaces it piece 1
-		chessboard.removePiece(piece, piece2);
 		//Updates the player's points by 5 every time a capture is successful
 		//p.setPoints(p.getPoints()+ 5);
 		if (piece2 instanceof Rook || piece2 instanceof Knight || piece2 instanceof Bishop)

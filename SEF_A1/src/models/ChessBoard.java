@@ -152,27 +152,6 @@ public class ChessBoard {
 		return chessBoardArr[row][col];
 	}
 	
-	public void removePiece(Piece piece, Piece piece2)
-	{
-		for(int i = 0; i < 6; i++)
-		{
-			for(int j = 0; j < 6; j++)
-			{
-				//set start position as new piece
-				if (chessBoardArr[i][j] == piece)
-				{
-					chessBoardArr[i][j] = null;
-					setPiece(new Piece(), i, j);
-				}
-				if(chessBoardArr[i][j] == piece2)
-				{
-					chessBoardArr[i][j] = null;
-					setPiece(piece, i, j);
-				}
-			}
-		}
-	}
-	
 	public void setPiece(Piece piece, int row, int col)
 	{		
 		PiecePosition piecePosition = new PiecePosition(row, col);
