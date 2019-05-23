@@ -63,6 +63,7 @@ public class Piece {
 	
 	// If any of the potential Positions of the Piece are out of the bounds
 	// of the 2D array then remove it from the list
+	//unused method
 	LinkedList<PiecePosition> removeInvalidPositions(LinkedList<PiecePosition> pos, Piece[][] arr) {
 		LinkedList<PiecePosition> goodPos = new LinkedList<>();
 		LinkedList<PiecePosition> goodMoves = new LinkedList<>();

@@ -134,8 +134,6 @@ public class Bishook extends Piece
 		
 		// End Rook
 			
-		//potentialPositions = removeInvalidPositions(potentialPositions, arr);
-			
 		return potentialPositions;
 	}
 }

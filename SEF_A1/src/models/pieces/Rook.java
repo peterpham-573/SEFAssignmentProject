@@ -72,8 +72,6 @@ public class Rook extends Piece{
 			potentialPositions.add(new PiecePosition(currRow, currCol - 2));
 		}
 		
-		//potentialPositions = removeInvalidPositions(potentialPositions, arr);
-		
 		return potentialPositions;
 
 	}

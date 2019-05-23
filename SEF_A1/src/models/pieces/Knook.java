@@ -94,8 +94,6 @@ public class Knook extends Piece
 		}
 		// End Rook ------------------------------------------------------------
 		
-		//potentialPositions = removeInvalidPositions(potentialPositions, arr);
-		
 		return potentialPositions;
 
 	}

@@ -72,8 +72,6 @@ public class Bishop extends Piece {
 			potentialPositions.add(new PiecePosition(currRow - 2, currCol - 2));
 		}
 		
-		//potentialPositions = removeInvalidPositions(potentialPositions, arr);
-		
 		return potentialPositions;
 	}
 

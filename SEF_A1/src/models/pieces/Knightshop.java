@@ -92,8 +92,6 @@ public class Knightshop extends Piece
 		
 		// Bishop end ----------------------------------------------------------
 		
-		potentialPositions = removeInvalidPositions(potentialPositions, arr);
-		
 		return potentialPositions;
 	}
 
