@@ -50,7 +50,10 @@ public class Knook extends Piece
 			
 		} else {
 			potentialPositions.add(new PiecePosition(currRow + 1, currCol));
-			potentialPositions.add(new PiecePosition(currRow + 2, currCol));
+			if (arr[currRow + 1][currCol].getIcon().equalsIgnoreCase("_"))
+			{
+				potentialPositions.add(new PiecePosition(currRow + 2, currCol));
+			}
 		}
 		
 		
@@ -63,7 +66,10 @@ public class Knook extends Piece
 			
 		} else {
 			potentialPositions.add(new PiecePosition(currRow - 1, currCol));
-			potentialPositions.add(new PiecePosition(currRow - 2, currCol));
+			if (arr[currRow - 1][currCol].getIcon().equalsIgnoreCase("_"))
+			{
+				potentialPositions.add(new PiecePosition(currRow - 2, currCol));
+			}
 		}
 		
 		try {
@@ -76,7 +82,10 @@ public class Knook extends Piece
 			
 		} else {
 			potentialPositions.add(new PiecePosition(currRow, currCol + 1));
-			potentialPositions.add(new PiecePosition(currRow, currCol + 2));
+			if (arr[currRow][currCol + 1].getIcon().equalsIgnoreCase("_"))
+			{
+				potentialPositions.add(new PiecePosition(currRow, currCol + 2));
+			}
 		}
 		
 		
@@ -90,7 +99,10 @@ public class Knook extends Piece
 			
 		} else {
 			potentialPositions.add(new PiecePosition(currRow, currCol - 1));
-			potentialPositions.add(new PiecePosition(currRow, currCol - 2));
+			if (arr[currRow][currCol - 1].getIcon().equalsIgnoreCase("_"))
+			{
+				potentialPositions.add(new PiecePosition(currRow, currCol - 2));
+			}
 		}
 		// End Rook ------------------------------------------------------------
 		

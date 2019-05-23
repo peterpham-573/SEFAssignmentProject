@@ -47,7 +47,10 @@ public class Knightshop extends Piece
 			
 		} else {
 			potentialPositions.add(new PiecePosition(currRow + 1, currCol + 1));
+			if (arr[currRow + 1][currCol + 1].getIcon().equalsIgnoreCase("_"))
+			{
 			potentialPositions.add(new PiecePosition(currRow + 2, currCol + 2));
+			}
 		}
 		
 		
@@ -60,7 +63,10 @@ public class Knightshop extends Piece
 			
 		} else {
 			potentialPositions.add(new PiecePosition(currRow - 1, currCol + 1));
-			potentialPositions.add(new PiecePosition(currRow - 2, currCol + 2));
+			if (arr[currRow - 1][currCol + 1].getIcon().equalsIgnoreCase("_"))
+			{
+				potentialPositions.add(new PiecePosition(currRow - 2, currCol + 2));
+			}
 		}
 		
 		try {
@@ -73,7 +79,10 @@ public class Knightshop extends Piece
 			
 		} else {
 			potentialPositions.add(new PiecePosition(currRow + 1, currCol - 1));
-			potentialPositions.add(new PiecePosition(currRow + 2, currCol - 2));
+			if (arr[currRow + 1][currCol - 1].getIcon().equalsIgnoreCase("_"))
+			{
+				potentialPositions.add(new PiecePosition(currRow + 2, currCol - 2));
+			}
 		}
 		
 		
@@ -87,7 +96,10 @@ public class Knightshop extends Piece
 			
 		} else {
 			potentialPositions.add(new PiecePosition(currRow - 1, currCol - 1));
-			potentialPositions.add(new PiecePosition(currRow - 2, currCol - 2));
+			if (arr[currRow - 1][currCol - 1].getIcon().equalsIgnoreCase("_"))
+			{
+				potentialPositions.add(new PiecePosition(currRow - 2, currCol - 2));
+			}
 		}
 		
 		// Bishop end ----------------------------------------------------------

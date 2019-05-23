@@ -87,7 +87,7 @@ public class PieceClickedButtonListener implements ActionListener {
 				window.getControl().setEnabled(false);
 				ge.resetChecks();
 			}
-			else if((ge.getChessBoard().getPiece(ge.getStart()) instanceof Knight &&
+			else if(((ge.getChessBoard().getPiece(ge.getStart()) instanceof Knight &&
 					 ge.getChessBoard().getPiece(ge.getEnd()) instanceof Knight) ||
 					
 					(ge.getChessBoard().getPiece(ge.getStart()) instanceof Bishop &&
@@ -104,8 +104,12 @@ public class PieceClickedButtonListener implements ActionListener {
 				   
 				    (ge.getChessBoard().getPiece(ge.getStart()) instanceof Knook &&
 					 ge.getChessBoard().getPiece(ge.getEnd()) instanceof Knook)
-					 )
+					 ) && 
+					(ge.getChessBoard().getPiece(ge.getEnd()).isWhite() == ge.getChessBoard().getPiece(ge.getStart()).isWhite())
+					)
 			{
+				JOptionPane.showMessageDialog(b, "Warning: Invalid Move!");
+				window.getBoard().repaintBackground();
 				ge.resetChecks();
 			}
 			else
@@ -117,6 +121,7 @@ public class PieceClickedButtonListener implements ActionListener {
 
 				if (tempPiece.isWhite() != ge.isWhitePlayerTurn())
 				{
+					window.getBoard().repaintBackground();
 					ge.resetChecks();
 				}
 				else if (tempPiece.isWhite() == ge.isWhitePlayerTurn())
@@ -133,6 +138,7 @@ public class PieceClickedButtonListener implements ActionListener {
 						}
 						else if (check == false)
 						{
+							window.getBoard().repaintBackground();
 							ge.resetChecks();
 						}
 						else if (mergeCheck == false)
