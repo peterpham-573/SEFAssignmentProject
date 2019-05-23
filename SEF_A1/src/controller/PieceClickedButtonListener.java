@@ -86,6 +86,8 @@ public class PieceClickedButtonListener implements ActionListener {
 				boolean mergeCheck = ge.movePiece(ge.getStart(), ge.getEnd());
 				window.getPlayerPanel().updateScore();
 				boolean check = ge.getValidCheck();
+				
+				System.out.println("");
 
 				if (tempPiece.isWhite() != ge.isWhitePlayerTurn())
 				{
@@ -229,7 +231,7 @@ public class PieceClickedButtonListener implements ActionListener {
 			window.getControl().setEnabled(false);
 			ge.changePlayerTurn();
 		}
-		else if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Bishook && !ge.getChessBoard().getPiece(ge.getEnd()).isWhite())
+		else if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Bishook)
 		{
 			b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(null);
 			
