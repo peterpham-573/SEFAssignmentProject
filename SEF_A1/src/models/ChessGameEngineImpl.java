@@ -79,7 +79,6 @@ public class ChessGameEngineImpl implements ChessGameEngine
 					checkValid = chessboard.movePiece(start, end);
 					if(checkValid) {
 						turnNumber++;
-						isWhitePlayerTurn = !isWhitePlayerTurn;
 					}
 				}
 				else
@@ -89,7 +88,6 @@ public class ChessGameEngineImpl implements ChessGameEngine
 					{
 						capture(p,p2);
 						turnNumber++;
-						isWhitePlayerTurn = !isWhitePlayerTurn;
 					}
 					else
 					{
@@ -97,7 +95,6 @@ public class ChessGameEngineImpl implements ChessGameEngine
 						{
 							merge (p, p2, start, end);
 							turnNumber++;
-							isWhitePlayerTurn = !isWhitePlayerTurn;
 							System.out.println("Piece has been merged");
 							return true;
 						}
@@ -306,5 +303,17 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	public boolean isWhitePlayerTurn()
 	{
 		return isWhitePlayerTurn;
+	}
+	
+	public void changePlayerTurn()
+	{
+		if (isWhitePlayerTurn == true)
+		{
+			isWhitePlayerTurn = false;
+		}
+		else
+		{
+			isWhitePlayerTurn = true;
+		}
 	}
 }
