@@ -6,8 +6,11 @@ import java.util.regex.Pattern;
 
 import org.omg.CORBA.Current;
 
+import models.pieces.Bishook;
 import models.pieces.Bishop;
 import models.pieces.Knight;
+import models.pieces.Knightshop;
+import models.pieces.Knook;
 import models.pieces.Piece;
 import models.pieces.Rook;
 
@@ -67,6 +70,16 @@ public class ChessBoard {
 		// Should check if start or end is a legal selected Piece
 		if (startPos == null || endPos == null) {
 			//System.out.println("Invalid Input");
+			return false;
+		}
+		if ((chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Knook ||
+			 chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Knightshop || 
+			 chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Bishook) &&
+			(chessBoardArr[endPos.getRow()][endPos.getCol()] instanceof Knight ||
+			 chessBoardArr[endPos.getRow()][endPos.getCol()] instanceof Bishop || 
+			 chessBoardArr[endPos.getRow()][endPos.getCol()] instanceof Rook) &&
+			 chessBoardArr[startPos.getRow()][startPos.getCol()].isWhite() == chessBoardArr[endPos.getRow()][endPos.getCol()].isWhite())
+		{
 			return false;
 		}
 		

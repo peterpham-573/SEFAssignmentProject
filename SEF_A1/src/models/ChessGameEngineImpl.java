@@ -62,6 +62,12 @@ public class ChessGameEngineImpl implements ChessGameEngine
 		Piece p = chessboard.getPiece(start);
 
 		Piece p2 = chessboard.getPiece(end);
+		
+		if (p.getIcon().equalsIgnoreCase("_"))
+		{
+			checkValid = false;
+			return false;
+		}
 
 		if(p.isWhite() == isWhitePlayerTurn)
 		{	
@@ -73,7 +79,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			{
 				//moving the piece positions
 				checkValid = chessboard.movePiece(start, end);
-				
+				System.out.println(checkValid);
 				// If where we move our chess piece has an existing piece AND is not their own piece then capture
 				if(chessboard.getChessBoardArr()[end.getRow()][end.getCol()] instanceof Piece)
 				{
@@ -94,7 +100,14 @@ public class ChessGameEngineImpl implements ChessGameEngine
 						}
 						else
 						{
-							if(!(p2 instanceof Knook || p2 instanceof Knightshop || p2 instanceof Bishook) && checkValid)
+							System.out.println(p.getIcon());
+							if(p instanceof Knook || p instanceof Knightshop || p instanceof Bishook)
+							{
+								checkValid = false;
+								return false;
+							}
+							else if(!(p2 instanceof Knook || p2 instanceof Knightshop || p2 instanceof Bishook) &&
+									 (p instanceof Knight || p instanceof Bishop || p instanceof Rook) && checkValid)
 							{
 								merge(p, p2, start, end);
 								turnNumber++;

@@ -82,7 +82,7 @@ public class PieceClickedButtonListener implements ActionListener {
 			if (ge.getStart().isEqual(ge.getEnd()))
 			{
 				//if player selects same place; deselect
-				JOptionPane.showMessageDialog(b, "Piece deselected!");
+				//JOptionPane.showMessageDialog(b, "Piece deselected!");
 				window.getBoard().repaintBackground();
 				window.getControl().setEnabled(false);
 				ge.resetChecks();
