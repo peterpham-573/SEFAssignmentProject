@@ -80,6 +80,27 @@ public class PieceClickedButtonListener implements ActionListener {
 				window.getControl().setEnabled(false);
 				ge.resetChecks();
 			}
+			else if((ge.getChessBoard().getPiece(ge.getStart()) instanceof Knight &&
+					 ge.getChessBoard().getPiece(ge.getEnd()) instanceof Knight) ||
+					
+					(ge.getChessBoard().getPiece(ge.getStart()) instanceof Bishop &&
+					 ge.getChessBoard().getPiece(ge.getEnd()) instanceof Bishop) ||
+					
+				    (ge.getChessBoard().getPiece(ge.getStart()) instanceof Rook &&
+			    	 ge.getChessBoard().getPiece(ge.getEnd()) instanceof Rook) ||
+				   
+				    (ge.getChessBoard().getPiece(ge.getStart()) instanceof Bishook &&
+					 ge.getChessBoard().getPiece(ge.getEnd()) instanceof Bishook) ||
+				   
+				    (ge.getChessBoard().getPiece(ge.getStart()) instanceof Knightshop &&
+					 ge.getChessBoard().getPiece(ge.getEnd()) instanceof Knightshop) ||
+				   
+				    (ge.getChessBoard().getPiece(ge.getStart()) instanceof Knook &&
+					 ge.getChessBoard().getPiece(ge.getEnd()) instanceof Knook)
+					 )
+			{
+				ge.resetChecks();
+			}
 			else
 			{
 				Piece tempPiece = ge.getChessBoard().getPiece(ge.getStart());
