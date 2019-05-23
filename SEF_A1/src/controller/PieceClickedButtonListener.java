@@ -78,7 +78,6 @@ public class PieceClickedButtonListener implements ActionListener {
 				//if player selects same place; deselect
 				window.getControl().setEnabled(false);
 				ge.resetChecks();
-				System.out.println("DEBUG: piece unchecked");
 			}
 			else
 			{
@@ -86,8 +85,6 @@ public class PieceClickedButtonListener implements ActionListener {
 				boolean mergeCheck = ge.movePiece(ge.getStart(), ge.getEnd());
 				window.getPlayerPanel().updateScore();
 				boolean check = ge.getValidCheck();
-				
-				System.out.println("");
 
 				if (tempPiece.isWhite() != ge.isWhitePlayerTurn())
 				{
@@ -97,7 +94,6 @@ public class PieceClickedButtonListener implements ActionListener {
 				{
 					if (ge.getSplitCheck())
 					{
-						System.out.println("get split check has been checked");
 						splitMove();
 					}
 					else if (!ge.getSplitCheck())
@@ -137,9 +133,7 @@ public class PieceClickedButtonListener implements ActionListener {
 					window.getStatusPanel().updateTurnsRemaining(turns);
 					window.getStatusPanel().updateCurrentPlayer(ge.getCurrentPlayerTurn());
 
-					//Debugging
-					System.out.println("Is it white players turn?: " + ge.isWhitePlayerTurn());
-					System.out.println();
+
 					ge.resetChecks();
 				}
 			}
@@ -257,7 +251,6 @@ public class PieceClickedButtonListener implements ActionListener {
 		{
 			if (ge.getChessBoard().getPieceOnBoard(ge.getStart().getRow(), ge.getStart().getCol()).isWhite())
 			{
-			System.out.println("bishop has been painted");
 			b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(whiteBishop);
 			}
 			else
@@ -269,7 +262,6 @@ public class PieceClickedButtonListener implements ActionListener {
 		{
 			if (ge.getChessBoard().getPieceOnBoard(ge.getStart().getRow(), ge.getStart().getCol()).isWhite())
 			{
-				System.out.println("rook has been painted");
 			b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(whiteRook);
 			}
 			else

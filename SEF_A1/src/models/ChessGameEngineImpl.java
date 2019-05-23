@@ -67,7 +67,6 @@ public class ChessGameEngineImpl implements ChessGameEngine
 		{	
 			if (split == true)
 			{
-				System.out.println("running split");
 				splitPieces(p, start, end);
 			}
 			else
@@ -75,7 +74,6 @@ public class ChessGameEngineImpl implements ChessGameEngine
 				//moving the piece positions
 				checkValid = chessboard.movePiece(start, end);
 				
-				System.out.println("running not split");
 				// If where we move our chess piece has an existing piece AND is not their own piece then capture
 				if(chessboard.getChessBoardArr()[end.getRow()][end.getCol()] instanceof Piece)
 				{
@@ -85,7 +83,6 @@ public class ChessGameEngineImpl implements ChessGameEngine
 						if(checkValid) {
 							turnNumber++;
 						}
-						System.out.println("DEBUG: move piece to empty spot");
 					}
 					else
 					{
@@ -94,7 +91,6 @@ public class ChessGameEngineImpl implements ChessGameEngine
 						{
 							capture(p,p2);
 							turnNumber++;
-							System.out.println("DEBUG: move piece to capture");
 						}
 						else
 						{
@@ -102,7 +98,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 							{
 								merge(p, p2, start, end);
 								turnNumber++;
-								System.out.println("Piece has been merged");
+
 								return true;
 							}
 						}
@@ -111,9 +107,8 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			}
 		}
 
-		System.out.println("DEBUG: reached end of line and returned false");
-		return false;
 
+		return false;
 	}
 
 	@Override
