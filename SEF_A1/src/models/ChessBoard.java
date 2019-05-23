@@ -94,7 +94,7 @@ public class ChessBoard {
 			}
 		}
 		// endPos is not a valid input for the selected piece at startPos
-		//System.out.println("Invalid Movement");
+		System.out.println("Invalid Movement");
 		return false;
 	}
 	

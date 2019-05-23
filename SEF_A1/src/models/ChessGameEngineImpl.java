@@ -80,6 +80,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 					if(checkValid) {
 						turnNumber++;
 					}
+					System.out.println("DEBUG: move piece to empty spot");
 				}
 				else
 				{
@@ -88,12 +89,13 @@ public class ChessGameEngineImpl implements ChessGameEngine
 					{
 						capture(p,p2);
 						turnNumber++;
+						System.out.println("DEBUG: move piece to capture");
 					}
 					else
 					{
-						if(!(p2 instanceof Knook || p2 instanceof Knightshop || p2 instanceof Bishook) && checkValid)
+						if(!(p2 instanceof Knook || p2 instanceof Knightshop || p2 instanceof Bishook))
 						{
-							merge (p, p2, start, end);
+							merge(p, p2, start, end);
 							turnNumber++;
 							System.out.println("Piece has been merged");
 							return true;
@@ -102,7 +104,9 @@ public class ChessGameEngineImpl implements ChessGameEngine
 				}
 			}
 		}
+		System.out.println("DEBUG: reached end of line and returned false");
 		return false;
+		
 	}
 
 	@Override

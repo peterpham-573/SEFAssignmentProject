@@ -134,7 +134,7 @@ public class PieceClickedButtonListener implements ActionListener {
 							ge.changePlayerTurn();
 						}
 					}
-					else if (mergeCheck == true && check == false)
+					else if (check == false)
 					{
 						ge.resetChecks();
 					}
