@@ -42,7 +42,7 @@ public class Window extends JFrame {
 		board2 = new Board2(this.gameEngine, this);
 		add(board2, BorderLayout.CENTER);
 		
-		statusBarPanel = new ControlPanel();
+		statusBarPanel = new ControlPanel(this.gameEngine);
 		add(statusBarPanel, BorderLayout.NORTH);
 		
 		playerPanel = new PlayerPanel(this.gameEngine);

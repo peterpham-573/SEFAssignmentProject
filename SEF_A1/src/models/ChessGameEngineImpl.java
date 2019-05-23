@@ -21,7 +21,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	private ChessPlayer player1, player2;
 
 	private PiecePosition start, end;
-	private boolean checkStart, checkEnd, checkValid = false, checkGameEnd = false, isWhitePlayerTurn = true;
+	private boolean checkStart, checkEnd, split = false, checkValid = false, checkGameEnd = false, isWhitePlayerTurn = true;
 	private int maxTurns, turnNumber;
 
 	public ChessGameEngineImpl()
@@ -47,12 +47,6 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			}
 		}
 		return p;		
-	}
-
-	@Override
-	public void removePlayer(ChessPlayer player) 
-	{
-		//do we even do anything with this method lol
 	}
 
 	/*
@@ -319,5 +313,17 @@ public class ChessGameEngineImpl implements ChessGameEngine
 		{
 			isWhitePlayerTurn = true;
 		}
+	}
+
+	@Override
+	public void setSplitCheck(boolean c) 
+	{
+		this.split = c;
+	}
+
+	@Override
+	public boolean getSplitCheck() 
+	{
+		return split;
 	}
 }

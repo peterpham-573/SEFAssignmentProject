@@ -20,8 +20,6 @@ public interface ChessGameEngine {
 	
 	public ChessPlayer getPlayer(String user);
 	
-	public void removePlayer(ChessPlayer player);
-	
 	public ChessBoard getChessBoard();
 	
 	public ChessPlayer getPlayerOne();
@@ -61,4 +59,8 @@ public interface ChessGameEngine {
 	public boolean isWhitePlayerTurn();
 	//change player turn
 	public void changePlayerTurn();
+	
+	public void setSplitCheck(boolean c);
+	
+	public boolean getSplitCheck();
 }

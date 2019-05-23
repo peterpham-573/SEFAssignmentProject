@@ -19,14 +19,14 @@ public class ControlPanel extends JPanel{
 //	private JLabel turn;
 	private JButton startGame, splitPiece;
 	
-	public ControlPanel() {
+	public ControlPanel(ChessGameEngine ge) {
 		
 		setLayout(new GridLayout(1,6));
 		
-		create();
+		create(ChessGameEngine ge);
 	}
 	
-	public void create(){
+	public void create(ChessGameEngine ge){
 		
 		Font myFont = new Font("Arial", Font.PLAIN , 15);
 		
@@ -34,6 +34,7 @@ public class ControlPanel extends JPanel{
 		splitPiece.setFont(myFont);
 		splitPiece.setBackground(Color.WHITE);
 		splitPiece.setEnabled(false);
+		splitPiece.addActionListener(new SplitActionListener(ge))
 		
 		
 		startGame = new JButton("Start Game");
