@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 import org.omg.CORBA.Current;
 
+import models.interfaces.Board;
 import models.pieces.Bishook;
 import models.pieces.Bishop;
 import models.pieces.Knight;
@@ -14,7 +15,7 @@ import models.pieces.Knook;
 import models.pieces.Piece;
 import models.pieces.Rook;
 
-public class ChessBoard {
+public class ChessBoard implements Board{
 
 	Piece [][] chessBoardArr;
 	private Piece blackRook1, blackRook2, blackKnight1, blackKnight2, blackBishop1, blackBishop2;
@@ -40,7 +41,7 @@ public class ChessBoard {
 	}
 	
 	// Checks if the string input is of the correct form
-	PiecePosition toPos(String s) {
+	public PiecePosition toPos(String s) {
 		// Should change this to a Regex
 		String regex = "[A-Fa-f][0-5]";
 		Pattern pattern = Pattern.compile(regex);
@@ -134,7 +135,7 @@ public class ChessBoard {
 	
 	
 	// These values are just place holders for now
-	void setGameBoard() {
+	public void setGameBoard() {
 		
 		// Creating the black pieces
 		blackRook1 = new Rook(false, new PiecePosition(0, 0));
