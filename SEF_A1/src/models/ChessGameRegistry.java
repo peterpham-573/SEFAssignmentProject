@@ -10,8 +10,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import models.ChessPlayer;
+import models.interfaces.GameRegistry;
 
-public class ChessGameRegistry {
+public class ChessGameRegistry implements GameRegistry{
 
 	private ChessPlayer[] loginArray = new ChessPlayer[2];
 	private ArrayList<ChessPlayer> playerArray = new ArrayList<ChessPlayer>();
