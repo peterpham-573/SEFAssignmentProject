@@ -95,6 +95,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 						//Checks to see if capturing enemy or self
 						if((p.isWhite() != p2.isWhite()) && checkValid)
 						{
+							System.out.println("captured");
 							capture(p,p2);
 							turnNumber++;
 						}
@@ -109,6 +110,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 							else if(!(p2 instanceof Knook || p2 instanceof Knightshop || p2 instanceof Bishook) &&
 									 (p instanceof Knight || p instanceof Bishop || p instanceof Rook) && checkValid)
 							{
+								System.out.println("merged");
 								merge(p, p2, start, end);
 								turnNumber++;
 
@@ -452,6 +454,10 @@ public class ChessGameEngineImpl implements ChessGameEngine
 		{
 			isWhitePlayerTurn = true;
 		}
+		//make new array, scan piece board that is the same colour that is player turn
+		//add to an array, and have the engine check 
+		
+		
 	}
 
 	@Override

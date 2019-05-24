@@ -28,11 +28,19 @@ public class Rook extends Piece{
 		if((piece == null)) {
 			
 		} else {
-			potentialPositions.add(new PiecePosition(currRow + 1, currCol));
-			if (arr[currRow + 1][currCol + 1].getIcon().equalsIgnoreCase("_"))
-			{
-				potentialPositions.add(new PiecePosition(currRow + 2, currCol));
-			}
+//			if (!(arr[currRow + 1][currCol] instanceof Bishook    ||
+//				  arr[currRow + 1][currCol] instanceof Knightshop ||
+//				  arr[currRow + 1][currCol] instanceof Knook	  ) &&
+//				  (arr[currRow][currCol].isWhite() != arr[currRow + 1][currCol].isWhite() || arr[currRow + 1][currCol].getIcon().equalsIgnoreCase("_")))
+//			{
+					potentialPositions.add(new PiecePosition(currRow + 1, currCol));
+				
+				if (arr[currRow + 1][currCol].getIcon().equalsIgnoreCase("_"))
+				{
+					
+						potentialPositions.add(new PiecePosition(currRow + 2, currCol));
+				}
+//			}
 		}
 		
 		

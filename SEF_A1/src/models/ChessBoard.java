@@ -72,6 +72,7 @@ public class ChessBoard {
 			//System.out.println("Invalid Input");
 			return false;
 		}
+		//if the starting piece is merged, and it goes to a normal piece that is normal and it is white, then return false
 		if ((chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Knook ||
 			 chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Knightshop || 
 			 chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Bishook) &&
@@ -81,6 +82,26 @@ public class ChessBoard {
 			 chessBoardArr[startPos.getRow()][startPos.getCol()].isWhite() == chessBoardArr[endPos.getRow()][endPos.getCol()].isWhite())
 		{
 			return false;
+		}
+		else if ((chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Knight ||
+				 chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Bishop || 
+				 chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Rook) &&
+				(chessBoardArr[endPos.getRow()][endPos.getCol()] instanceof Knightshop ||
+				 chessBoardArr[endPos.getRow()][endPos.getCol()] instanceof Bishook || 
+				 chessBoardArr[endPos.getRow()][endPos.getCol()] instanceof Knook) &&
+				 chessBoardArr[startPos.getRow()][startPos.getCol()].isWhite() == chessBoardArr[endPos.getRow()][endPos.getCol()].isWhite())
+		{
+				return false;
+		}
+		else if ((chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Knightshop ||
+				 chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Bishook || 
+				 chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Knook) &&
+				(chessBoardArr[endPos.getRow()][endPos.getCol()] instanceof Knightshop ||
+				 chessBoardArr[endPos.getRow()][endPos.getCol()] instanceof Bishook || 
+				 chessBoardArr[endPos.getRow()][endPos.getCol()] instanceof Knook) &&
+				 chessBoardArr[startPos.getRow()][startPos.getCol()].isWhite() == chessBoardArr[endPos.getRow()][endPos.getCol()].isWhite())
+		{
+				return false;
 		}
 		
 		// Getting a List of all the valid movement positions 

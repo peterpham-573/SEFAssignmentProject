@@ -25,18 +25,18 @@ public class SplitActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
-		if (!ge.getSplitCheck())
-		{
-			System.out.println("SPLIT CLICKED");
-			JOptionPane.showMessageDialog(b, "Piece chosen to be split!");
-			ge.setSplitCheck(true);
-		}
-		else
-		{
-			System.out.println("SPLIT UNCLICKED");
-			JOptionPane.showMessageDialog(b, "Split action cancelled!");
-			ge.setSplitCheck(false);
-		}
+			if (!ge.getSplitCheck())
+			{
+				System.out.println("SPLIT CLICKED");
+				JOptionPane.showMessageDialog(b, "Piece chosen to be split!");
+				ge.setSplitCheck(true);
+			}
+			else
+			{
+				System.out.println("SPLIT UNCLICKED");
+				JOptionPane.showMessageDialog(b, "Split action cancelled!");
+				ge.setSplitCheck(false);
+			}
 	}
 
 }
