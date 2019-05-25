@@ -18,8 +18,8 @@ public class TopMenuBar extends JMenuBar
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private JMenu file, player;
-	private JMenuItem newGame, exit, login, signup;
+	private JMenu file;
+	private JMenuItem newGame, exit;
 
 	public TopMenuBar(Window window) {
 		
@@ -36,22 +36,6 @@ public class TopMenuBar extends JMenuBar
 		exit.setMnemonic(KeyEvent.VK_X);
 		exit.addActionListener(new ExitButtonListener());
 		file.add(exit);
-		
-		player = new JMenu("Player");
-		player.setMnemonic(KeyEvent.VK_P);
-		add(player);
-		
-		signup = new JMenuItem("Sign Up");
-		signup.setMnemonic(KeyEvent.VK_U);
-		//add listener for signing up
-		player.add(signup);
-		
-		login = new JMenuItem("Login");
-		login.setMnemonic(KeyEvent.VK_L);
-		//add listener for signing up
-		player.add(login);
-		
-		
 		
 		setVisible(true);
 	}
