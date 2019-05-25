@@ -56,7 +56,7 @@ public class PieceClickedButtonListener implements ActionListener {
 
 		if (ge.checkStart() == false)
 		{
-			if (ge.getChessBoard().getPieceOnBoard(i, j).isWhite() == ge.isWhitePlayerTurn())
+			if (ge.getChessBoard().getPieceOnBoard(i, j).isWhite() == ge.isWhitePlayerTurn() && !ge.getChessBoard().getPieceOnBoard(i, j).getIcon().equalsIgnoreCase("_"))
 			{
 				ge.setStart(i, j);
 
@@ -82,8 +82,6 @@ public class PieceClickedButtonListener implements ActionListener {
 
 			if (ge.getStart().isEqual(ge.getEnd()))
 			{
-				//if player selects same place; deselect
-				//JOptionPane.showMessageDialog(b, "Piece deselected!");
 				window.getBoard().repaintBackground();
 				window.getControl().setEnabled(false);
 				ge.resetChecks();

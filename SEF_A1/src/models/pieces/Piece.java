@@ -23,24 +23,6 @@ public class Piece {
 			this.icon = icon.toUpperCase();
 	}
 	
-	public boolean isEnemyOf(Piece enemy) {
-		if (isWhite != enemy.isWhite && !enemy.getIcon().equals("_")) {
-			// then it is an enemy Piece
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean isMergable(Piece mergePiece) {
-		// if pieces are of same color, not a blank spot, and not the same Piece
-		if (isWhite == mergePiece.isWhite && 
-				!mergePiece.getIcon().equals("_") &&
-				!icon.equals(mergePiece.getIcon())) {
-			return true;
-		}
-		return false;
-	}
-	
 	public Piece() {
 	}
 	
@@ -64,34 +46,6 @@ public class Piece {
 	// If any of the potential Positions of the Piece are out of the bounds
 	// of the 2D array then remove it from the list
 	//unused method
-	LinkedList<PiecePosition> removeInvalidPositions(LinkedList<PiecePosition> pos, Piece[][] arr) {
-		LinkedList<PiecePosition> goodPos = new LinkedList<>();
-		LinkedList<PiecePosition> goodMoves = new LinkedList<>();
-		
-		// May not need this for each loop
-		for (PiecePosition piecePosition : pos) {
-			// Filtering out all of the bad positions that are not in the bounds of 
-			// the game board
-			if ((piecePosition.getRow() > 5) ||
-					 (piecePosition.getRow() < 0) ||
-					 (piecePosition.getCol() > 5) ||
-					 (piecePosition.getCol() < 0)) {
-			 } else
-				 // Adding all of the good positions of the Piece to this List
-				 goodPos.add(piecePosition);
-		}
-		
-		// filter out if Pieces are in the way
-		for (PiecePosition piecePosition : goodPos) {
-			Piece piece = arr[piecePosition.getRow()][piecePosition.getCol()];
-			// If the space is blank then it is good
-			// Need to change to OR if it has a piece of the opposite color in it
-			if (piece.getIcon().equals("_") || (piece.isWhite != isWhite)) {
-				goodMoves.add(piecePosition);
-			}
-		}
-		return goodMoves;
-	}
 	
 	public String getIcon() {
 		return icon;
