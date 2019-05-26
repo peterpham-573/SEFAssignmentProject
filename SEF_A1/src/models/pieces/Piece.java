@@ -47,17 +47,21 @@ public class Piece {
 		if (this instanceof Knook || 
 				this instanceof Bishook || 
 				this instanceof Knightshop) {
-			System.out.println("Selected a merged piece");
+//			System.out.println("Selected a merged piece");
 			return true;
 		}
-		System.out.println("Not a Merged piece");
+//		System.out.println("Not a Merged piece");
 		return false;
 	}
 	
-	public boolean isEnemy(Piece enemy) {
-		if (isWhite != enemy.isWhite)
+	public boolean isEnemyOrEmpty(Piece enemy) {
+		if ((isWhite != enemy.isWhite && !enemy.getIcon().equals("_") )
+				|| enemy.getIcon().equals("_")) {
+//			System.out.println("Is enemy");
 			return true;
-		
+		}
+			
+//		System.out.println("Not enemy");
 		return false;
 	}
 	

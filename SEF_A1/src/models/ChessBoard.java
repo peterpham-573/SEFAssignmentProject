@@ -55,7 +55,8 @@ public class ChessBoard implements Board{
 	
 	
 	// Moves the selected Piece at start to the position at end
-	// add another argument of player to help determine if they should be moving a black or white piece
+	// add another argument of player to help determine if they 
+	// should be moving a black or white piece
 	public boolean movePiece(String start, String end) {
 		PiecePosition startPos = toPos(start);
 		PiecePosition endPos = toPos(end);
@@ -76,49 +77,14 @@ public class ChessBoard implements Board{
 		Piece enemyPiece = getPiece(endPos);
 		
 		if ((startPiece.isMergedPiece() || enemyPiece.isMergedPiece())
-				&& !startPiece.isEnemy(enemyPiece)) {
+				&& !startPiece.isEnemyOrEmpty(enemyPiece)) {
 			return false;
-		}
-		
-		
-		startPiece.isMergedPiece();
-		//if the starting piece is merged, and it goes to a normal piece that is normal and it is white, then return false
-		if ((chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Knook ||
-			 chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Knightshop || 
-			 chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Bishook) &&
-			(chessBoardArr[endPos.getRow()][endPos.getCol()] instanceof Knight ||
-			 chessBoardArr[endPos.getRow()][endPos.getCol()] instanceof Bishop || 
-			 chessBoardArr[endPos.getRow()][endPos.getCol()] instanceof Rook) &&
-			 chessBoardArr[startPos.getRow()][startPos.getCol()].isWhite() == chessBoardArr[endPos.getRow()][endPos.getCol()].isWhite())
-		{
-			return false;
-		}
-		else if ((chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Knight ||
-				 chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Bishop || 
-				 chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Rook) &&
-				(chessBoardArr[endPos.getRow()][endPos.getCol()] instanceof Knightshop ||
-				 chessBoardArr[endPos.getRow()][endPos.getCol()] instanceof Bishook || 
-				 chessBoardArr[endPos.getRow()][endPos.getCol()] instanceof Knook) &&
-				 chessBoardArr[startPos.getRow()][startPos.getCol()].isWhite() == chessBoardArr[endPos.getRow()][endPos.getCol()].isWhite())
-		{
-				return false;
-		}
-		else if ((chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Knightshop ||
-				 chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Bishook || 
-				 chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Knook) &&
-				(chessBoardArr[endPos.getRow()][endPos.getCol()] instanceof Knightshop ||
-				 chessBoardArr[endPos.getRow()][endPos.getCol()] instanceof Bishook || 
-				 chessBoardArr[endPos.getRow()][endPos.getCol()] instanceof Knook) &&
-				 chessBoardArr[startPos.getRow()][startPos.getCol()].isWhite() == chessBoardArr[endPos.getRow()][endPos.getCol()].isWhite())
-		{
-				return false;
 		}
 		
 		// Getting a List of all the valid movement positions 
 		//  the piece can move to
 		LinkedList<PiecePosition> validMovementsList = 
-				chessBoardArr[startPos.getRow()][startPos.getCol()]
-						.validMovementsList(chessBoardArr);
+				startPiece.validMovementsList(chessBoardArr);
 		
 		// if the validMovementsList is null then that means that the start
 		// Position is a blank space and therefore invalid
@@ -126,12 +92,9 @@ public class ChessBoard implements Board{
 			for (PiecePosition validPiecePosition : validMovementsList) {
 				if (validPiecePosition.isEqual(endPos)) {
 					// move is good so Move Piece
-					// need to check if it is capturing a piece
-					Piece piece = getPiece(startPos);
-					// Need to set the Piece position
-					setPiece(piece, endPos.getRow(), endPos.getCol());
+					setPiece(startPiece, endPos.getRow(), endPos.getCol());
 					// Replacing the now empty space with a Blank Piece
-					chessBoardArr[startPos.getRow()][startPos.getCol()] = new Piece();
+					setPiece(new Piece(), startPos.getRow(), startPos.getCol());
 			
 					return true;
 				}
