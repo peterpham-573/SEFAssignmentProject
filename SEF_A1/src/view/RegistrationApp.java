@@ -117,15 +117,7 @@ public class RegistrationApp extends JFrame {
 		case 2:
 			JOptionPane.showMessageDialog(null, "Player 2 added");
 			addNumberOfMoves(player);
-
-			this.setVisible(false);
-
-			new Thread() {
-				@Override
-				public void run() {
-					createBoard();
-				}
-			}.start();
+			createBoard();		
 			this.dispose();
 			break;
 
@@ -151,7 +143,6 @@ public class RegistrationApp extends JFrame {
 	}
 
 	public void createBoard() {
-		Board boardView = new Board();
 		ChessGameEngine ge = new ChessGameEngineImpl();
 		ge.setPlayerOne(chessGameRegistry.getplayers()[0]);
 		ge.setPlayerTwo(chessGameRegistry.getplayers()[1]);

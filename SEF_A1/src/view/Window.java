@@ -21,7 +21,7 @@ public class Window extends JFrame {
 	private ControlPanel controlPanel;
 	private TopMenuBar menuBar;
 	private StatusPanel status;
-	private Board2 board2;
+	private Board board2;
 
 	private ChessGameEngine gameEngine;
 	
@@ -36,7 +36,7 @@ public class Window extends JFrame {
 		menuBar = new TopMenuBar(this);
 		setJMenuBar(menuBar);
 		
-		board2 = new Board2(this.gameEngine, this);
+		board2 = new Board(this.gameEngine, this);
 		add(board2, BorderLayout.CENTER);
 		
 		controlPanel = new ControlPanel(this.gameEngine, this);
@@ -71,7 +71,7 @@ public class Window extends JFrame {
 		return status;
 	}
 	
-	public Board2 getBoard()
+	public Board getBoard()
 	{
 		return board2;
 	}

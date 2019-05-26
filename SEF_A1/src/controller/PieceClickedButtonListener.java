@@ -14,7 +14,7 @@ import models.pieces.Knightshop;
 import models.pieces.Knook;
 import models.pieces.Piece;
 import models.pieces.Rook;
-import view.Board2;
+import view.Board;
 import view.Window;
 
 public class PieceClickedButtonListener implements ActionListener {
@@ -38,9 +38,9 @@ public class PieceClickedButtonListener implements ActionListener {
 	private int j;
 	private ChessGameEngine ge;
 	private Window window;
-	private Board2 b;
+	private Board b;
 
-	public PieceClickedButtonListener(int i, int j, ChessGameEngine ge, Board2 b, Window window)
+	public PieceClickedButtonListener(int i, int j, ChessGameEngine ge, Board b, Window window)
 	{
 		this.b = b;
 		this.ge = ge;
