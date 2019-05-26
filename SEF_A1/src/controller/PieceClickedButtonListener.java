@@ -298,13 +298,13 @@ public class PieceClickedButtonListener implements ActionListener {
 			if (ge.getChessBoard().getPieceOnBoard(ge.getStart().getRow(), ge.getStart().getCol()).isWhite())
 			{
 				b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(whiteBishop);
-				window.getBoard().repaintBackground();
+				
 				startCheck = true;
 			}
 			else
 			{
 				b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(blackBishop);
-				window.getBoard().repaintBackground();
+			
 				startCheck = true;
 			}
 		}
@@ -313,13 +313,13 @@ public class PieceClickedButtonListener implements ActionListener {
 			if (ge.getChessBoard().getPieceOnBoard(ge.getStart().getRow(), ge.getStart().getCol()).isWhite())
 			{
 				b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(whiteRook);
-				window.getBoard().repaintBackground();
+			
 				startCheck = true;
 			}
 			else
 			{
 				b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(blackRook);
-				window.getBoard().repaintBackground();
+			
 				startCheck = true;
 			}
 		}
@@ -328,13 +328,13 @@ public class PieceClickedButtonListener implements ActionListener {
 			if (ge.getChessBoard().getPieceOnBoard(ge.getStart().getRow(), ge.getStart().getCol()).isWhite())
 			{
 				b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(whiteKnight);
-				window.getBoard().repaintBackground();
+			
 				startCheck = true;
 			}
 			else
 			{
 				b.getTile(ge.getStart().getRow(), ge.getStart().getCol()).setIcon(blackKnight);
-				window.getBoard().repaintBackground();
+		
 				startCheck = true;
 			}
 		}
@@ -344,13 +344,13 @@ public class PieceClickedButtonListener implements ActionListener {
 			if (ge.getChessBoard().getPieceOnBoard(ge.getEnd().getRow(), ge.getEnd().getCol()).isWhite())
 			{
 				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteBishop);
-				window.getBoard().repaintBackground();
+			
 				endCheck = true;
 			}
 			else
 			{
 				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackBishop);
-				window.getBoard().repaintBackground();
+		
 				endCheck = true;
 			}
 		}
@@ -359,13 +359,13 @@ public class PieceClickedButtonListener implements ActionListener {
 			if (ge.getChessBoard().getPieceOnBoard(ge.getEnd().getRow(), ge.getEnd().getCol()).isWhite())
 			{
 				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteRook);
-				window.getBoard().repaintBackground();
+			
 				endCheck = true;
 			}
 			else
 			{
 				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackRook);
-				window.getBoard().repaintBackground();
+			
 				endCheck = true;
 			}
 		}
@@ -374,13 +374,13 @@ public class PieceClickedButtonListener implements ActionListener {
 			if (ge.getChessBoard().getPieceOnBoard(ge.getEnd().getRow(), ge.getEnd().getCol()).isWhite())
 			{
 				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(whiteKnight);
-				window.getBoard().repaintBackground();
+
 				endCheck = true;
 			}
 			else
 			{
 				b.getTile(ge.getEnd().getRow(), ge.getEnd().getCol()).setIcon(blackKnight);
-				window.getBoard().repaintBackground();
+				
 				endCheck = true;
 			}
 		}
@@ -390,6 +390,7 @@ public class PieceClickedButtonListener implements ActionListener {
 				}
 		ge.setSplitCheck(false);
 		ge.resetChecks();
+		window.getBoard().repaintBackground();
 		window.getControl().setEnabled(false);
 	}
 
