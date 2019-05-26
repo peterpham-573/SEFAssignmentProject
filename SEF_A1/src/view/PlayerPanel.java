@@ -26,16 +26,17 @@ public class PlayerPanel extends JPanel {
 	public PlayerPanel(ChessGameEngine gameEngine)
 	{
 		this.gameEngine = gameEngine;
+	
+
+		setUpPlayerDetails();
+	}
+
+	public void setUpPlayerDetails()
+	{
 		
 		setLayout(new GridLayout(2, 1));
 		setPreferredSize(new Dimension(200, 150));
 		setBorder(BorderFactory.createBevelBorder(1));
-
-		setUp();
-	}
-
-	public void setUp()
-	{
 
 		Font myFont = new Font("Arial", Font.BOLD, 20);
 		

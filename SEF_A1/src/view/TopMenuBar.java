@@ -21,26 +21,31 @@ public class TopMenuBar extends JMenuBar
 	private JMenu file;
 	private JMenuItem newGame, exit;
 
-	public TopMenuBar(Window window) {
-		
-		file = new JMenu("File");
-		file.setMnemonic(KeyEvent.VK_F);
-		add(file);
-		
-		newGame = new JMenuItem("New Game");
-		newGame.setMnemonic(KeyEvent.VK_N);
-		newGame.addActionListener(new NewGameButtonListener(window));
-		file.add(newGame);
-				
-		exit = new JMenuItem("Exit");
-		exit.setMnemonic(KeyEvent.VK_X);
-		exit.addActionListener(new ExitButtonListener());
-		file.add(exit);
-		
-		setVisible(true);
+	public TopMenuBar(Window window) 
+	{	
+		setJMenuBarComponents(window);
 	}
 	
 
+public void setJMenuBarComponents(Window window)
+{
+	file = new JMenu("File");
+	file.setMnemonic(KeyEvent.VK_F);
+	add(file);
+	
+	newGame = new JMenuItem("New Game");
+	newGame.setMnemonic(KeyEvent.VK_N);
+	newGame.addActionListener(new NewGameButtonListener(window));
+	file.add(newGame);
+			
+	exit = new JMenuItem("Exit");
+	exit.setMnemonic(KeyEvent.VK_X);
+	exit.addActionListener(new ExitButtonListener());
+	file.add(exit);
+	
+	setVisible(true);
+}
+	
 	
 	
 }

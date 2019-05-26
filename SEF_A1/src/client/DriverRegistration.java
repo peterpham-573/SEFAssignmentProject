@@ -11,8 +11,5 @@ public class DriverRegistration
 	{
 		final ChessGameRegistry chessGameRegistry = new ChessGameRegistry();
 		SwingUtilities.invokeLater(() -> new RegistrationApp(chessGameRegistry));
-		
-		
-		
 	}
 }
