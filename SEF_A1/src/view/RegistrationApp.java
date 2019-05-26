@@ -16,7 +16,7 @@ import models.ChessGameRegistry;
 import models.ChessPlayer;
 import models.interfaces.ChessGameEngine;
 
-public class RegistrationApp extends JFrame{
+public class RegistrationApp extends JFrame {
 	/**
 	 * 
 	 */
@@ -26,184 +26,138 @@ public class RegistrationApp extends JFrame{
 	private JButton registerButton, loginButton;
 	private JPasswordField passwordField;
 	private ChessGameRegistry chessGameRegistry;
+
 	public RegistrationApp(ChessGameRegistry chessGameRegistry) {
-	super("Regisation App");
-	this.chessGameRegistry = chessGameRegistry;
-	  registrationLabel = new JLabel("Chess Game Registration Form");
-	  registrationLabel.setFont(new Font("SansSerif", Font.PLAIN, 25));
-	  usernameLabel = new JLabel("Username:");
-	  passwordLabel = new JLabel("Password:");
-	  usernameTextField = new JTextField();
-	  passwordField = new JPasswordField();
-	  registerButton = new JButton("Register Here");
-	  loginButton = new JButton("Login");
+		super("Regisation App");
+		this.chessGameRegistry = chessGameRegistry;
+		registrationLabel = new JLabel("Chess Game Registration Form");
+		registrationLabel.setFont(new Font("SansSerif", Font.PLAIN, 25));
+		usernameLabel = new JLabel("Username:");
+		passwordLabel = new JLabel("Password:");
+		usernameTextField = new JTextField();
+		passwordField = new JPasswordField();
+		registerButton = new JButton("Register Here");
+		loginButton = new JButton("Login");
 
-	  registrationLabel.setBounds(140, 50, 400, 30);
-	  usernameLabel.setBounds(90, 120, 200, 30);
-	  passwordLabel.setBounds(90, 170, 200, 30);
-	  usernameTextField.setBounds(320, 120, 200, 30);
-	  passwordField.setBounds(320, 170, 200, 30);
-	  registerButton.setBounds(90, 220, 200, 30);
-	  registerButton.addActionListener(new AddPlayerButtonActionListener(this));
-	  loginButton.setBounds(320, 220, 200, 30);
-	  loginButton.addActionListener(new LoginPlayerButtonActionListener(this));
-	  
-	  add(registrationLabel);
-	  add(usernameLabel);
-	  add(usernameTextField);
-	  add(passwordLabel);
-	  add(passwordField);
-	  add(registerButton);
-	  add(loginButton);
+		registrationLabel.setBounds(140, 50, 400, 30);
+		usernameLabel.setBounds(90, 120, 200, 30);
+		passwordLabel.setBounds(90, 170, 200, 30);
+		usernameTextField.setBounds(320, 120, 200, 30);
+		passwordField.setBounds(320, 170, 200, 30);
+		registerButton.setBounds(90, 220, 200, 30);
+		registerButton.addActionListener(new AddPlayerButtonActionListener(this));
+		loginButton.setBounds(320, 220, 200, 30);
+		loginButton.addActionListener(new LoginPlayerButtonActionListener(this));
 
-	  setSize(650, 350);
-	  setLocationRelativeTo(null);
-	  setLayout(null);
-	  setVisible(true);
-	 }
-	
-	public void CreatePlayer(){
-		//Creates a new player to add to the registry
+		add(registrationLabel);
+		add(usernameLabel);
+		add(usernameTextField);
+		add(passwordLabel);
+		add(passwordField);
+		add(registerButton);
+		add(loginButton);
+
+		setSize(650, 350);
+		setLocationRelativeTo(null);
+		setLayout(null);
+		setVisible(true);
+	}
+
+	// Creates a new player to add to the registry
+	public void CreatePlayer() {
 		String playerName;
 		playerName = JOptionPane.showInputDialog("Player name");
 		String username;
 		username = JOptionPane.showInputDialog("Player Username");
 		String password;
 		password = JOptionPane.showInputDialog("Player Password");
-		
+
 		if (!(!(username != null) || !(password != null) || !(playerName != null))) {
-			if(!(username.indexOf(' ') >= 0 || password.indexOf(' ') >= 0  || playerName.indexOf(' ') >= 0)) {
-				if(!(username.trim().equals("") || password.trim().equals("")) || playerName.trim().equals("")) {
+			if (!(username.indexOf(' ') >= 0 || password.indexOf(' ') >= 0 || playerName.indexOf(' ') >= 0)) {
+				if (!(username.trim().equals("") || password.trim().equals("")) || playerName.trim().equals("")) {
 					ChessPlayer newPlayer = new ChessPlayer(playerName, username, password);
-					if(!chessGameRegistry.userNameCheck(newPlayer)) {
+					if (!chessGameRegistry.userNameCheck(newPlayer)) {
 						chessGameRegistry.addPlayerToRegistration(newPlayer);
+					} else {
+						JOptionPane.showMessageDialog(null, "Username has been taken");
 					}
-					else {
-						JOptionPane.showMessageDialog(null,"Username has been taken");
-					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Invalid Name, Username or Password");
 				}
-				else {
-					JOptionPane.showMessageDialog(null,"Invalid Name, Username or Password");
-				}
-				
+
+			} else {
+				JOptionPane.showMessageDialog(null, "None of the fields is permitted to have a space");
 			}
-			else {
-				JOptionPane.showMessageDialog(null,"None of the fields is permitted to have a space");
-			}
-				
-		}
-		else {
-			JOptionPane.showMessageDialog(null,"Please Enter Your Name, Username and Password");
+
+		} else {
+			JOptionPane.showMessageDialog(null, "Please Enter Your Name, Username and Password");
 		}
 	}
-	
+
+	// Attempts a player to the game
 	public void addPlayer() {
-		//Logins a player to the game
 		String username = usernameTextField.getText();
 		char[] password = passwordField.getPassword();
 		String passwordString = new String(password);
-		String[] playerDetails = {username, passwordString};
+		String[] playerDetails = { username, passwordString };
 		ChessPlayer player = chessGameRegistry.getPlayer(playerDetails);
-	
-		switch(chessGameRegistry.playerLogin(player)){
+
+		switch (chessGameRegistry.playerLogin(player)) {
 		case 0:
-			JOptionPane.showMessageDialog(null,"Player 1 added");
+			JOptionPane.showMessageDialog(null, "Player 1 added");
 			addNumberOfMoves(player);
 			usernameTextField.setText("");
 			passwordField.setText("");
 			break;
 		case 1:
-			JOptionPane.showMessageDialog(null,"Invalid: Two of the same players cannot be added");
+			JOptionPane.showMessageDialog(null, "Invalid: Two of the same players cannot be added");
 			usernameTextField.setText("");
 			passwordField.setText("");
 			break;
 		case 2:
-			JOptionPane.showMessageDialog(null,"Player 2 added");
+			JOptionPane.showMessageDialog(null, "Player 2 added");
 			addNumberOfMoves(player);
-			
-			//MAKE NEW FRAME HERE
-			//THIS IS WHERE THE REGISTRATION ENDS
-			//THE TWO PLAYERS CAN BE RETRIVED VIA
-			//chessGameRegistry.getplayers() WHICH IS A ARRAY OF TWO PLAYERS
-			
+
 			this.setVisible(false);
-			
-			new Thread()
-			{
-			@Override
-			public void run()
-			{
-				createBoard();
-			}
+
+			new Thread() {
+				@Override
+				public void run() {
+					createBoard();
+				}
 			}.start();
-				
+			this.dispose();
 			break;
-			
+
 		case 3:
-			JOptionPane.showMessageDialog(null,"Player not in the system");
+			JOptionPane.showMessageDialog(null, "Player not in the system");
 			passwordField.setText("");
 			break;
 		}
 	}
-	
+
 	public void addNumberOfMoves(ChessPlayer player) {
-		//Gets input from the player for the number of turns they want
+		// Gets input from the player for the number of turns they want
 		String stringNoOfTurns;
 		int noOfTurns;
-		stringNoOfTurns =  JOptionPane.showInputDialog("Please enter No of turns");
-		if(stringNoOfTurns != null) {
-			while(!stringNoOfTurns.matches("[0-9]+")) {
+		stringNoOfTurns = JOptionPane.showInputDialog("Please enter No of turns");
+		if (stringNoOfTurns != null) {
+			while (!stringNoOfTurns.matches("[0-9]+")) {
 				stringNoOfTurns = JOptionPane.showInputDialog("Please enter VALID no of turns");
 			}
 		}
 		noOfTurns = Integer.parseInt(stringNoOfTurns);
 		player.setNoOfTurns(noOfTurns);
 	}
-	
-	
-	public void createBoard(){
-		//Scanner scanner = new Scanner(System.in);
+
+	public void createBoard() {
 		Board boardView = new Board();
-		
-
 		ChessGameEngine ge = new ChessGameEngineImpl();
-
 		ge.setPlayerOne(chessGameRegistry.getplayers()[0]);
 		ge.setPlayerTwo(chessGameRegistry.getplayers()[1]);
 		ge.calculateMaxTurns();
 		new Window(ge);
-	
-		
-		
-		//System.out.println("Player One Login");
-		// login code call 
-		//System.out.println("Player Two Login");
-		// Login code call 
-		
-		//Player one starts as White
-			
-		
-		boardView.printBoard(ge.getChessBoard().getChessBoardArr());
-		// Do a while loop that loops while game is not ended, Have a method call that checks on the 
-		// game Termination criteria (n moves, Pieces Captured/remaining)
-		while(terminate()) 
-		{
-//			System.out.println("Select Piece at Location: ");
-//			String startPosPiece = scanner.nextLine();
-//			System.out.println("Location to Move Piece To: ");
-//			String endPosPiece = scanner.nextLine();
-//			ge.movePiece(startPosPiece, endPosPiece);
-//			boardView.printBoard(ge.getChessBoard().getChessBoardArr());
-//			startPosPiece = null;
-//			endPosPiece = null;
-		}
-		// Selecting a Piece
-		// Must be white or black Piece depending on player, and icon != _
+
 	}
-	
-	
-	public boolean terminate() {
-		return true;
-	}
-	
+
 }
