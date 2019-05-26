@@ -43,6 +43,24 @@ public class Piece {
 		return null;
 	}
 	
+	public boolean isMergedPiece() { 
+		if (this instanceof Knook || 
+				this instanceof Bishook || 
+				this instanceof Knightshop) {
+			System.out.println("Selected a merged piece");
+			return true;
+		}
+		System.out.println("Not a Merged piece");
+		return false;
+	}
+	
+	public boolean isEnemy(Piece enemy) {
+		if (isWhite != enemy.isWhite)
+			return true;
+		
+		return false;
+	}
+	
 	// If any of the potential Positions of the Piece are out of the bounds
 	// of the 2D array then remove it from the list
 	//unused method

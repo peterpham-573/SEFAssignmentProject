@@ -51,7 +51,7 @@ public class PiecePosition {
 	}
 	
 	public boolean isEqual(PiecePosition pos) {
-		return ((col == pos.col) && (row == pos.row));
+		return ((col == pos.getCol()) && (row == pos.getRow()));
 	}
 
 	/*

@@ -73,6 +73,17 @@ public class ChessBoard implements Board{
 			//System.out.println("Invalid Input");
 			return false;
 		}
+		
+		Piece startPiece = getPiece(startPos);
+		Piece enemyPiece = getPiece(endPos);
+		
+		if ((startPiece.isMergedPiece() || enemyPiece.isMergedPiece())
+				&& !startPiece.isEnemy(enemyPiece)) {
+			return false;
+		}
+		
+		
+		startPiece.isMergedPiece();
 		//if the starting piece is merged, and it goes to a normal piece that is normal and it is white, then return false
 		if ((chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Knook ||
 			 chessBoardArr[startPos.getRow()][startPos.getCol()] instanceof Knightshop || 

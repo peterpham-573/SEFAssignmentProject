@@ -14,6 +14,7 @@ class ChessBoardTests {
 	void setUp() throws Exception {
 		chessBoard = new ChessBoard();
 	}
+	
 
 	@Test
 	void movePieceValidMove() {
