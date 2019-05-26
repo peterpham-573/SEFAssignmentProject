@@ -18,7 +18,7 @@ public class Window extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private PlayerPanel playerPanel;
-	private ControlPanel statusBarPanel;
+	private ControlPanel controlPanel;
 	private TopMenuBar menuBar;
 	private StatusPanel status;
 	private Board2 board2;
@@ -31,10 +31,7 @@ public class Window extends JFrame {
 		
 		this.gameEngine = gameEngine;
 		
-		setBounds(100, 100, 1250, 900);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLayout(new BorderLayout());
-		setMinimumSize(new Dimension(1250, 900));
+		setView();
 		
 		menuBar = new TopMenuBar(this);
 		setJMenuBar(menuBar);
@@ -42,20 +39,27 @@ public class Window extends JFrame {
 		board2 = new Board2(this.gameEngine, this);
 		add(board2, BorderLayout.CENTER);
 		
-		statusBarPanel = new ControlPanel(this.gameEngine, this);
-		add(statusBarPanel, BorderLayout.NORTH);
+		controlPanel = new ControlPanel(this.gameEngine, this);
+		add(controlPanel, BorderLayout.NORTH);
 		
 		playerPanel = new PlayerPanel(this.gameEngine);
 		add(playerPanel, BorderLayout.WEST);
 		
-		status = new StatusPanel();
-		status.updateTurnsRemaining(String.valueOf(gameEngine.remainingTurns()));
-		status.updateCurrentPlayer(gameEngine.getCurrentPlayerTurn());
+		status = new StatusPanel(this.gameEngine);
 		add(status, BorderLayout.SOUTH);
-		
 		
 		setVisible(true);
 	}
+	
+	private void setView()
+	{
+		setBounds(100, 100, 1250, 900);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(new BorderLayout());
+		setMinimumSize(new Dimension(1250, 900));
+		
+	}
+	
 
 	public PlayerPanel getPlayerPanel()
 	{
@@ -74,7 +78,7 @@ public class Window extends JFrame {
 	
 	public ControlPanel getControl()
 	{
-		return statusBarPanel;
+		return controlPanel;
 	}
 	
 }

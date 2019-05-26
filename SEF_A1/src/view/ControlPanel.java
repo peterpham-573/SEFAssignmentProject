@@ -24,12 +24,12 @@ public class ControlPanel extends JPanel{
 	
 	public ControlPanel(ChessGameEngine ge, Window b) {
 		
-		setLayout(new GridLayout(1,6));
-		
-		create(ge, b);
+		createButtons(ge, b);
 	}
 	
-	public void create(ChessGameEngine ge, Window b){
+	public void createButtons(ChessGameEngine ge, Window b){
+		
+		setLayout(new GridLayout(1,6));
 		
 		Font myFont = new Font("Arial", Font.PLAIN , 15);
 		

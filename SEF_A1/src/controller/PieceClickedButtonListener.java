@@ -163,11 +163,9 @@ public class PieceClickedButtonListener implements ActionListener {
 					}
 
 
-					String turns = String.valueOf(ge.remainingTurns());
-
 					//Updating of the player turn and the remaining turns -> White turn + Black turn = 1 Full Turn
-					window.getStatusPanel().updateTurnsRemaining(turns);
-					window.getStatusPanel().updateCurrentPlayer(ge.getCurrentPlayerTurn());
+					window.getStatusPanel().updateTurnsRemaining(ge);
+					window.getStatusPanel().updateCurrentPlayer(ge);
 
 
 					ge.resetChecks();

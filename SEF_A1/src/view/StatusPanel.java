@@ -6,6 +6,8 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import models.interfaces.ChessGameEngine;
+
 public class StatusPanel extends JPanel {
 	
 	/**
@@ -13,12 +15,18 @@ public class StatusPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JLabel turn, turnsRemaining;
+	private ChessGameEngine ge;
 	
 	
-	public StatusPanel(){
+	public StatusPanel(ChessGameEngine ge){
+		
+		this.ge = ge;
 		
 		setLayout(new GridLayout(1,2));
 		create();
+		
+		updateTurnsRemaining(ge);
+		updateCurrentPlayer(ge);
 		
 	}
 
@@ -27,25 +35,35 @@ public class StatusPanel extends JPanel {
 		
 		Font myFont = new Font("Arial", Font.PLAIN, 20);
 
-		turn = new JLabel("Current player's turn: ", JLabel.CENTER);
-		turn.setFont(myFont);
+		createCurrentPlayerTurnPanel(myFont);
+		createTurnsRemainingPanel(myFont);
 		
-		turnsRemaining = new JLabel("Turns remaining: ", JLabel.CENTER);
-		turnsRemaining.setFont(myFont);
 		
-		add(turn);
-		add(turnsRemaining);
+		
 	}
 
-	
-	public void updateTurnsRemaining(String a)
+	private void createCurrentPlayerTurnPanel(Font myFont)
 	{
-		turnsRemaining.setText("Turns remaining: " + a);
+		turn = new JLabel("Current player's turn: ", JLabel.CENTER);
+		turn.setFont(myFont);
+		add(turn);
 	}
 	
-	public void updateCurrentPlayer(String a)
+	private void createTurnsRemainingPanel(Font myFont)
 	{
-		turn.setText("Current player's turn: " + a);
+		turnsRemaining = new JLabel("Turns remaining: ", JLabel.CENTER);
+		turnsRemaining.setFont(myFont);
+		add(turnsRemaining);
+	}
+	
+	public void updateTurnsRemaining(ChessGameEngine ge)
+	{
+		turnsRemaining.setText("Turns remaining: " + ge.remainingTurns());
+	}
+	
+	public void updateCurrentPlayer(ChessGameEngine ge)
+	{
+		turn.setText("Current player's turn: " + ge.getCurrentPlayerTurn());
 	}
 	
 	

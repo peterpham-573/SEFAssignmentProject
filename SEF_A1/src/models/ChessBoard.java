@@ -4,8 +4,6 @@ import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.omg.CORBA.Current;
-
 import models.interfaces.Board;
 import models.pieces.Bishook;
 import models.pieces.Bishop;

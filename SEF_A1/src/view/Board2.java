@@ -40,8 +40,39 @@ public class Board2 extends JPanel{
 	public Board2(ChessGameEngine ge, Window window)
 	{
 
-		setLayout(new GridLayout(6,6));		
+		createBoard(ge, window);
+		
+		paintPieces();
+		
+		setVisible(true);
 
+	}
+
+	
+	
+	public void paintSelected(LinkedList<PiecePosition> pieces)
+	{
+		for (int i = 0; i < 6; i++)
+		{
+			for (int j = 0; j < 6; j++)
+			{
+				for (PiecePosition r : pieces)
+				{
+					if (i == r.getRow() && j == r.getCol())
+					{
+						squares[i][j].setBackground(selectSquare);
+					}
+				}
+			}
+		}
+	}
+	
+	
+	public void createBoard(ChessGameEngine ge, Window window)
+	{
+		
+		setLayout(new GridLayout(6,6));		
+		
 		for(int i = 0; i < 6; i++)
 		{
 			for(int j = 0; j < 6; j++)
@@ -62,31 +93,8 @@ public class Board2 extends JPanel{
 
 			}	
 		}
-		
-		//testing
-		
-		paintPieces();
-		
-		setVisible(true);
-
 	}
 	
-	public void paintSelected(LinkedList<PiecePosition> pieces)
-	{
-		for (int i = 0; i < 6; i++)
-		{
-			for (int j = 0; j < 6; j++)
-			{
-				for (PiecePosition r : pieces)
-				{
-					if (i == r.getRow() && j == r.getCol())
-					{
-						squares[i][j].setBackground(selectSquare);
-					}
-				}
-			}
-		}
-	}
 	
 	public void repaintBackground()
 	{
