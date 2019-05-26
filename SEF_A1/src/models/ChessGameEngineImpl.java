@@ -79,7 +79,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			{
 				//moving the piece positions
 				checkValid = chessboard.movePiece(start, end);
-				System.out.println(checkValid);
+				
 				// If where we move our chess piece has an existing piece AND is not their own piece then capture
 				if(chessboard.getChessBoardArr()[end.getRow()][end.getCol()] instanceof Piece)
 				{
@@ -95,13 +95,11 @@ public class ChessGameEngineImpl implements ChessGameEngine
 						//Checks to see if capturing enemy or self
 						if((p.isWhite() != p2.isWhite()) && checkValid)
 						{
-							System.out.println("captured");
 							capture(p,p2);
 							turnNumber++;
 						}
 						else
 						{
-							System.out.println(p.getIcon());
 							if(p instanceof Knook || p instanceof Knightshop || p instanceof Bishook)
 							{
 								checkValid = false;
@@ -110,7 +108,6 @@ public class ChessGameEngineImpl implements ChessGameEngine
 							else if(!(p2 instanceof Knook || p2 instanceof Knightshop || p2 instanceof Bishook) &&
 									 (p instanceof Knight || p instanceof Bishop || p instanceof Rook) && checkValid)
 							{
-								System.out.println("merged");
 								merge(p, p2, start, end);
 								turnNumber++;
 
