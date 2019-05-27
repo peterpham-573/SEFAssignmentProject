@@ -3,9 +3,10 @@ package models.pieces;
 import java.util.LinkedList;
 
 import models.PiecePosition;
+import models.interfaces.PieceInterface;
 
 // The merge of Knight and Bishop
-public class Knightshop extends Piece
+public class Knightshop extends Piece implements PieceInterface
 {
 	public Knightshop(boolean isWhite, PiecePosition piecePosition)
 	{

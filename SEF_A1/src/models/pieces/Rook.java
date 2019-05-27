@@ -3,8 +3,9 @@ package models.pieces;
 import java.util.LinkedList;
 
 import models.PiecePosition;
+import models.interfaces.PieceInterface;
 
-public class Rook extends Piece{
+public class Rook extends Piece implements PieceInterface{
 
 	public Rook(boolean isWhite, PiecePosition piecePosition) {
 		// TODO Auto-generated constructor stub

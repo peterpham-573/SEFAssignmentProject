@@ -3,9 +3,10 @@ package models.pieces;
 import java.util.LinkedList;
 
 import models.PiecePosition;
+import models.interfaces.PieceInterface;
 
 // The merge of Bishop and Rook
-public class Bishook extends Piece
+public class Bishook extends Piece implements PieceInterface
 {
 	public Bishook(boolean isWhite, PiecePosition piecePosition)
 	{

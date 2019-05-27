@@ -3,8 +3,9 @@ package models.pieces;
 import java.util.LinkedList;
 
 import models.PiecePosition;
+import models.interfaces.PieceInterface;
 
-public class Knight extends Piece{
+public class Knight extends Piece implements PieceInterface{
 	
 	public Knight(boolean isWhite, PiecePosition piecePosition) {
 		super(isWhite, piecePosition, "k");

@@ -3,8 +3,9 @@ package models.pieces;
 import java.util.LinkedList;
 
 import models.PiecePosition;
+import models.interfaces.PieceInterface;
 
-public class Bishop extends Piece {
+public class Bishop extends Piece implements PieceInterface{
 
 	public Bishop(boolean isWhite, PiecePosition piecePosition) {
 		super(isWhite, piecePosition, "b");

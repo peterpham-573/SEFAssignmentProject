@@ -3,12 +3,13 @@ package models.pieces;
 import java.util.LinkedList;
 
 import models.PiecePosition;
+import models.interfaces.PieceInterface;
 
 /*
  * All white Pieces are LowerCase and Black are UpperCase
  */
 
-public class Piece {
+public class Piece implements PieceInterface{
 	boolean isWhite; // true if Piece is white false if black
 	PiecePosition piecePosition;
 	String icon = "_"; // Blank space

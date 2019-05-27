@@ -3,9 +3,10 @@ package models.pieces;
 import java.util.LinkedList;
 
 import models.PiecePosition;
+import models.interfaces.PieceInterface;
 
 // The merge of Knight and Rook
-public class Knook extends Piece
+public class Knook extends Piece implements PieceInterface
 {
 	
 	public Knook(boolean isWhite, PiecePosition piecePosition)
