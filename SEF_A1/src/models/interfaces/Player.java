@@ -8,7 +8,7 @@ package models.interfaces;
  */
 
 public interface Player {
-	
+
 	   public String toString();
 	
 	   public abstract String getPlayerName();

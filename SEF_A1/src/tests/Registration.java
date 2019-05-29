@@ -16,6 +16,7 @@ import models.ChessPlayer;
 
 class Registration {
 	ChessGameRegistry chessGameRegistry;
+
 	//chessGameRegistry.playerLogin(Player player)
 	//Returns a int which represents the possible outcomes of trying to log in a player
 	//int = 0. Player 1 was added to the LoginArray (Attempt to login with valid login ID and password succeeds).
@@ -40,7 +41,7 @@ class Registration {
 	@AfterAll
 	public static void tearDown() throws Exception {
 		//Deletes the four players created after all the tests are run
-		final int PLAYERS_CREATED = 4;
+		final int PLAYERS_CREATED = 5;
 		deletePlayers(PLAYERS_CREATED);
 	}
 	
@@ -112,21 +113,11 @@ class Registration {
 	void registerOnePlayerTwice() {
 		ChessPlayer newPlayer = new ChessPlayer("newPlayer", "New", "Player");
 		
-		//Checks if the player already exists in the registry
-		assertEquals(chessGameRegistry.userNameCheck(newPlayer),false);	
+		//Checks if the player already exists in the registry and adds that player
+		assertEquals(chessGameRegistry.userNameCheckAndAdd(newPlayer),false);	
 		
-		//Player should be added to the registry as the player does not exist
-		if(!chessGameRegistry.userNameCheck(newPlayer)) {
-			chessGameRegistry.addPlayerToRegistration(newPlayer);
-		}
-		
-		//Checks if the player already exists in the registry
-		assertEquals(chessGameRegistry.userNameCheck(newPlayer),true);		
-		
-		//Player does not get added a second time
-		if(!chessGameRegistry.userNameCheck(newPlayer)) {
-			chessGameRegistry.addPlayerToRegistration(newPlayer);
-		}	
+		//Checks if the player already exists in the registry and Player does not get added a second time
+		assertEquals(chessGameRegistry.userNameCheckAndAdd(newPlayer),true);			
 	}
 	
 	//Login a player that does not exist in the registry
@@ -135,8 +126,7 @@ class Registration {
 	@Test
 	void loginThenRegisterPlayer() {
 		ChessPlayer newPlayer = new ChessPlayer("newPlayer2", "New2", "Player2");
-		assertEquals(chessGameRegistry.userNameCheck(newPlayer),false);
-		chessGameRegistry.addPlayerToRegistration(newPlayer);
+		assertEquals(chessGameRegistry.userNameCheckAndAdd(newPlayer),false);
 		assertEquals(chessGameRegistry.playerLogin(newPlayer),0);
 	}
 	
@@ -153,18 +143,15 @@ class Registration {
 		ChessPlayer newPlayer2 = new ChessPlayer("AllCases", "Player_2", "Player_2");
 		String[] playerDetails = {"Player_1" ,"Player_1"};
 		String[] playerDetails2 = {"Player_2" ,"Player_2"};
-		assertEquals(chessGameRegistry.userNameCheck(newPlayer),false);
 		assertEquals(chessGameRegistry.playerLogin(chessGameRegistry.getPlayer(playerDetails)),3);
-		if(!chessGameRegistry.userNameCheck(newPlayer)) {
-			chessGameRegistry.addPlayerToRegistration(newPlayer);
-		}	
+		assertEquals(chessGameRegistry.userNameCheckAndAdd(newPlayer),false);
+		
 		assertEquals(chessGameRegistry.playerLogin(newPlayer),0);
 		assertEquals(chessGameRegistry.playerLogin(newPlayer),1);
 		
 		assertEquals(chessGameRegistry.playerLogin(chessGameRegistry.getPlayer(playerDetails2)),3);
-		if(!chessGameRegistry.userNameCheck(newPlayer2)) {
-			chessGameRegistry.addPlayerToRegistration(newPlayer2);
-		}
+		assertEquals(chessGameRegistry.userNameCheckAndAdd(newPlayer2),false);
+		
 		assertEquals(chessGameRegistry.playerLogin(newPlayer2),2);
 	}
 

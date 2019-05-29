@@ -36,13 +36,14 @@ public class ChessGameRegistry implements GameRegistry {
 
 	// Checks if a Username is already in the system as Usernames are a unique Login
 	// ID
-	public boolean userNameCheck(ChessPlayer player) {
+	public boolean userNameCheckAndAdd(ChessPlayer player) {
 		boolean exist = false;
 		for (int i = 0; i < playerArray.size(); i++) {
 			if (equalsUsername(player, playerArray.get(i))) {
 				exist = true;
 			}
 		}
+        addPlayerToRegistration(player);
 		return exist;
 	}
 

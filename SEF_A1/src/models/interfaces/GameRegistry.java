@@ -5,7 +5,7 @@ import models.ChessPlayer;
 public interface GameRegistry {
 	
 	//Checks if a Username is already in the system as Usernames are a unique Login ID
-	public boolean userNameCheck(ChessPlayer player);
+	public boolean userNameCheckAndAdd(ChessPlayer player);
 	
 	//Adds a player into the registrationArray  from a file
 	public void addPlayerToRegistration(ChessPlayer player);

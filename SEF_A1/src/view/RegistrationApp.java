@@ -76,9 +76,7 @@ public class RegistrationApp extends JFrame {
 			if (!(username.indexOf(' ') >= 0 || password.indexOf(' ') >= 0 || playerName.indexOf(' ') >= 0)) {
 				if (username != null && password != null && playerName != null && username.length() != 0 && password.length() != 0 && playerName.length() != 0) {
 					ChessPlayer newPlayer = new ChessPlayer(playerName, username, password);
-					if (!chessGameRegistry.userNameCheck(newPlayer)) {
-						chessGameRegistry.addPlayerToRegistration(newPlayer);
-					} else {
+					if (chessGameRegistry.userNameCheckAndAdd(newPlayer)) {
 						JOptionPane.showMessageDialog(null, "Username has been taken");
 					}
 				} else {
