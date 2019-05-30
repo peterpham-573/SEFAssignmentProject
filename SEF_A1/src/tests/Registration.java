@@ -41,7 +41,7 @@ class Registration {
 	@AfterAll
 	public static void tearDown() throws Exception {
 		//Deletes the four players created after all the tests are run
-		final int PLAYERS_CREATED = 5;
+		final int PLAYERS_CREATED = 4;
 		deletePlayers(PLAYERS_CREATED);
 	}
 	

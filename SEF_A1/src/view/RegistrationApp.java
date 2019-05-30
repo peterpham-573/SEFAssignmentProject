@@ -72,15 +72,12 @@ public class RegistrationApp extends JFrame {
 		String password;
 		password = JOptionPane.showInputDialog("Player Password");
 
-		if ((username != null) && (password != null) && (playerName != null)) {
+		if ((username != null) && (password != null) && (playerName != null) && username.length() != 0
+				&& password.length() != 0 && playerName.length() != 0) {
 			if (!(username.indexOf(' ') >= 0 || password.indexOf(' ') >= 0 || playerName.indexOf(' ') >= 0)) {
-				if (username.length() != 0 && password.length() != 0 && playerName.length() != 0) {
-					ChessPlayer newPlayer = new ChessPlayer(playerName, username, password);
-					if (chessGameRegistry.userNameCheckAndAdd(newPlayer)) {
-						JOptionPane.showMessageDialog(null, "Username has been taken");
-					}
-				} else {
-					JOptionPane.showMessageDialog(null, "Name, Username and Password must have a lenght greater than zero");
+				ChessPlayer newPlayer = new ChessPlayer(playerName, username, password);
+				if (chessGameRegistry.userNameCheckAndAdd(newPlayer)) {
+					JOptionPane.showMessageDialog(null, "Username has been taken");
 				}
 
 			} else {
@@ -90,10 +87,11 @@ public class RegistrationApp extends JFrame {
 		} else {
 			JOptionPane.showMessageDialog(null, "Please Enter Your Name, Username and Password");
 		}
+
 	}
 
 	// Attempts to login a player to the game
-	public void addPlayer() {
+	public void loginPlayer() {
 		String username = usernameTextField.getText();
 		char[] password = passwordField.getPassword();
 		String passwordString = new String(password);
@@ -115,7 +113,7 @@ public class RegistrationApp extends JFrame {
 		case 2:
 			JOptionPane.showMessageDialog(null, "Player 2 added");
 			addNumberOfMoves(player);
-			createBoard();		
+			createBoard();
 			this.dispose();
 			break;
 
@@ -126,7 +124,7 @@ public class RegistrationApp extends JFrame {
 		}
 	}
 
-	//Prompts the player to enter the number of moves they want to play
+	// Prompts the player to enter the number of moves they want to play
 	public void addNumberOfMoves(ChessPlayer player) {
 		// Gets input from the player for the number of turns they want
 		String stringNoOfTurns;
@@ -141,7 +139,8 @@ public class RegistrationApp extends JFrame {
 		player.setNoOfTurns(noOfTurns);
 	}
 
-	//Add players into the game engine from the Chess Game Registry, Calculates the max turn and makes a 
+	// Add players into the game engine from the Chess Game Registry, Calculates the
+	// max turn and makes a
 	// new window
 	public void createBoard() {
 		ChessGameEngine ge = new ChessGameEngineImpl();
