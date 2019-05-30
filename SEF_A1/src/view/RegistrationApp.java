@@ -92,7 +92,7 @@ public class RegistrationApp extends JFrame {
 		}
 	}
 
-	// Attempts a player to the game
+	// Attempts to login a player to the game
 	public void addPlayer() {
 		String username = usernameTextField.getText();
 		char[] password = passwordField.getPassword();
@@ -126,6 +126,7 @@ public class RegistrationApp extends JFrame {
 		}
 	}
 
+	//Prompts the player to enter the number of moves they want to play
 	public void addNumberOfMoves(ChessPlayer player) {
 		// Gets input from the player for the number of turns they want
 		String stringNoOfTurns;
@@ -140,6 +141,8 @@ public class RegistrationApp extends JFrame {
 		player.setNoOfTurns(noOfTurns);
 	}
 
+	//Add players into the game engine from the Chess Game Registry, Calculates the max turn and makes a 
+	// new window
 	public void createBoard() {
 		ChessGameEngine ge = new ChessGameEngineImpl();
 		ge.setPlayerOne(chessGameRegistry.getplayers()[0]);

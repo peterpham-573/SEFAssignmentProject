@@ -34,17 +34,19 @@ public class ChessGameRegistry implements GameRegistry {
 		}
 	}
 
-	// Checks if a Username is already in the system as Usernames are a unique Login
-	// ID
+	// Checks if a Username is already in the system as Usernames are a unique Login 
+	// If the user enters a unique Username then add the player into the registry
 	public boolean userNameCheckAndAdd(ChessPlayer player) {
-		boolean exist = false;
+		boolean userNameExists = false;
 		for (int i = 0; i < playerArray.size(); i++) {
 			if (equalsUsername(player, playerArray.get(i))) {
-				exist = true;
+				userNameExists = true;
 			}
 		}
-        addPlayerToRegistration(player);
-		return exist;
+		if(!userNameExists) {
+			addPlayerToRegistration(player);
+		}
+		return userNameExists;
 	}
 
 	// Adds a player into the registrationArray from a file
@@ -98,8 +100,7 @@ public class ChessGameRegistry implements GameRegistry {
 
 	}
 
-	// Returns a player based on login details. Returns null if the play is not
-	// found
+	// Returns a player based on login details. Returns null if the play is not found
 	public ChessPlayer getPlayer(String[] playerDetails) {
 		for (ChessPlayer player : playerArray) {
 			if (playerDetails[0].equals(player.getPlayerUserName()) && playerDetails[1].equals(player.getPlayerPw())) {
@@ -118,6 +119,7 @@ public class ChessGameRegistry implements GameRegistry {
 		}
 	}
 
+	//Returns the players store in the login array
 	public ChessPlayer[] getplayers() {
 		return loginArray;
 	}
