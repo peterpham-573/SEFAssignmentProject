@@ -72,15 +72,15 @@ public class RegistrationApp extends JFrame {
 		String password;
 		password = JOptionPane.showInputDialog("Player Password");
 
-		if (!(!(username != null) || !(password != null) || !(playerName != null))) {
+		if ((username != null) && (password != null) && (playerName != null)) {
 			if (!(username.indexOf(' ') >= 0 || password.indexOf(' ') >= 0 || playerName.indexOf(' ') >= 0)) {
-				if (username != null && password != null && playerName != null && username.length() != 0 && password.length() != 0 && playerName.length() != 0) {
+				if (username.length() != 0 && password.length() != 0 && playerName.length() != 0) {
 					ChessPlayer newPlayer = new ChessPlayer(playerName, username, password);
 					if (chessGameRegistry.userNameCheckAndAdd(newPlayer)) {
 						JOptionPane.showMessageDialog(null, "Username has been taken");
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Invalid Name, Username or Password");
+					JOptionPane.showMessageDialog(null, "Name, Username and Password must have a lenght greater than zero");
 				}
 
 			} else {
