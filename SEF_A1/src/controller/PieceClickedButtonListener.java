@@ -53,7 +53,7 @@ public class PieceClickedButtonListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
-
+		//IF the start position has not been set, then set the starting posions (ge.setStart(i, j))
 		if (ge.checkStart() == false)
 		{
 			if (ge.getChessBoard().getPieceOnBoard(i, j).isWhite() == ge.isWhitePlayerTurn() && !ge.getChessBoard().getPieceOnBoard(i, j).getIcon().equalsIgnoreCase("_"))
@@ -63,7 +63,7 @@ public class PieceClickedButtonListener implements ActionListener {
 				Piece temp = ge.getChessBoard().getPiece(ge.getStart());
 				window.getBoard().paintSelected(temp.validMovementsList(ge.getChessBoard().getChessBoardArr()));
 			}
-
+			//IF the piece is a merged piece, enable the split button
 			if (
 					(ge.getChessBoard().getPieceOnBoard(i, j) instanceof Knook || 
 							ge.getChessBoard().getPieceOnBoard(i, j) instanceof Knightshop || 
@@ -80,12 +80,14 @@ public class PieceClickedButtonListener implements ActionListener {
 		{
 			ge.setEnd(i, j);
 
+			//IF the same tile is clicked twice, cancel the move
 			if (ge.getStart().isEqual(ge.getEnd()))
 			{
 				window.getBoard().repaintBackground();
 				window.getControl().setEnabled(false);
 				ge.resetChecks();
 			}
+			//ELSE IF the piece moving is a merged piece, and the end position is the same colour, call invalid movement
 			else if(((ge.getChessBoard().getPiece(ge.getStart()) instanceof Knight &&
 					ge.getChessBoard().getPiece(ge.getEnd()) instanceof Knight) ||
 
@@ -117,12 +119,13 @@ public class PieceClickedButtonListener implements ActionListener {
 				boolean mergeCheck = ge.movePiece(ge.getStart(), ge.getEnd());
 				window.getPlayerPanel().updateScore();
 				boolean check = ge.getValidCheck();
-
+				//if piece colour is not same as the colour of the player's turn
 				if (tempPiece.isWhite() != ge.isWhitePlayerTurn())
 				{
 					window.getBoard().repaintBackground();
 					ge.resetChecks();
 				}
+				//if piece is same as player turn
 				else if (tempPiece.isWhite() == ge.isWhitePlayerTurn())
 				{
 					if (ge.getSplitCheck())
@@ -137,6 +140,7 @@ public class PieceClickedButtonListener implements ActionListener {
 						}
 						else if (check == false)
 						{
+							//repaints the chessboard from the blue valid movements
 							window.getBoard().repaintBackground();
 							ge.resetChecks();
 						}
@@ -144,6 +148,8 @@ public class PieceClickedButtonListener implements ActionListener {
 						{
 							if(check == true)
 							{
+								//PAINTS WHAT EVER IS MOVED
+								
 								//MERGED PIECES
 								mergeMove();
 								//NORMAL PIECES
@@ -171,7 +177,7 @@ public class PieceClickedButtonListener implements ActionListener {
 			}
 		}
 	}
-
+	//normalMove(), mergeMove(), splitMove() are all repaints to repaint the icon according to what is on the tile
 	public void normalMove()
 	{
 		if (ge.getChessBoard().getPiece(ge.getEnd()) instanceof Rook)
