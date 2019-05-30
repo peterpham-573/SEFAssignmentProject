@@ -19,7 +19,6 @@ public class ControlPanel extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-//	private JLabel turn;
 	private JButton splitPiece;
 	
 	public ControlPanel(ChessGameEngine ge, Window b) {
