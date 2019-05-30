@@ -31,6 +31,8 @@ public class PlayerPanel extends JPanel {
 		setUpPlayerDetails();
 	}
 
+	
+	//Player details are set up and are given a modal feel. Each player will be contained in it's own cell with their username, points and color
 	public void setUpPlayerDetails()
 	{
 		
@@ -95,7 +97,9 @@ public class PlayerPanel extends JPanel {
 			
 	}
 
-	public void updateScore() {
+	//This visually updates the score of the players if a piece is captured
+	public void updateScore() 
+	{
 		playerOneScore.setText( String.valueOf(gameEngine.getPlayerOne().getPoints()));
 		playerTwoScore.setText( String.valueOf(gameEngine.getPlayerTwo().getPoints()));
 	}

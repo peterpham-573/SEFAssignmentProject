@@ -25,6 +25,8 @@ public class Window extends JFrame {
 
 	private ChessGameEngine gameEngine;
 	
+	
+	//The container that contains all components
 	public Window(ChessGameEngine gameEngine)
 	{
 		super("Chess");
@@ -51,16 +53,18 @@ public class Window extends JFrame {
 		setVisible(true);
 	}
 	
+	
+	//AppFrame methods which sets the views options
 	private void setView()
 	{
 		setBounds(100, 100, 1250, 900);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
-		setMinimumSize(new Dimension(1250, 900));
-		
+		setMinimumSize(new Dimension(1250, 900));	
 	}
 	
 
+	//Getters and setters
 	public PlayerPanel getPlayerPanel()
 	{
 		return playerPanel;

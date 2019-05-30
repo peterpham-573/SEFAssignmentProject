@@ -49,7 +49,7 @@ public class Board extends JPanel{
 	}
 
 	
-	
+	//Paints the tiles that the piece can possibly move once a tile is selected
 	public void paintSelected(LinkedList<PiecePosition> pieces)
 	{
 		for (int i = 0; i < 6; i++)
@@ -67,7 +67,7 @@ public class Board extends JPanel{
 		}
 	}
 	
-	
+	//This method creates the board out of an array of JButton, designates the colors in the squares
 	public void createBoard(ChessGameEngine ge, Window window)
 	{
 		
@@ -95,7 +95,7 @@ public class Board extends JPanel{
 		}
 	}
 	
-	
+	//After a move is made or if we deselect a piece, we need to repaint the blackground and remove the pieces' possible positions
 	public void repaintBackground()
 	{
 		for(int i = 0; i < 6; i++)
@@ -114,11 +114,14 @@ public class Board extends JPanel{
 		}
 	}
 	
+	//Getter
 	public JButton getTile(int i, int j)
 	{
 		return squares[i][j];
 	}
 
+	
+	//Creating piece icons for the board and giving the models an image icon
 	public void paintPieces()
 	{
 		squares[0][0].setIcon(blackRook);

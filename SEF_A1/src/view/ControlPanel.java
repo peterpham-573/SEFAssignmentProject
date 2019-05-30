@@ -26,6 +26,8 @@ public class ControlPanel extends JPanel{
 		createButtons(ge, b);
 	}
 	
+	
+	//This create method only creates a button - a split piece button which has an action listener
 	public void createButtons(ChessGameEngine ge, Window b){
 		
 		setLayout(new GridLayout(1,6));
@@ -43,6 +45,8 @@ public class ControlPanel extends JPanel{
 		add(new JPanel());
 		
 	}
+	
+	//This method is only called when a merge piece is selected, to enable the split piece option
 	public void setEnabled(boolean set) {
 		splitPiece.setEnabled(set);;
 	}

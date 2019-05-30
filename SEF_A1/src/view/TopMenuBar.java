@@ -27,6 +27,7 @@ public class TopMenuBar extends JMenuBar
 	}
 	
 
+	//Creating the menu components for the GUI
 public void setJMenuBarComponents(Window window)
 {
 	file = new JMenu("File");
