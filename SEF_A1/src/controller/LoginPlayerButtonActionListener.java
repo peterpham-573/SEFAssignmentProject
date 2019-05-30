@@ -12,7 +12,8 @@ public class LoginPlayerButtonActionListener implements ActionListener{
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent event) {
+	public void actionPerformed(ActionEvent event) 
+	{
 		registrationApp.addPlayer();
 	}
 

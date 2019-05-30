@@ -27,12 +27,14 @@ public class SplitActionListener implements ActionListener {
 	{
 			if (!ge.getSplitCheck())
 			{
+				//Backend callbacks
 				System.out.println("SPLIT CLICKED");
 				JOptionPane.showMessageDialog(b, "Piece chosen to be split!");
 				ge.setSplitCheck(true);
 			}
 			else
 			{
+				//Backend callbacks
 				System.out.println("SPLIT UNCLICKED");
 				JOptionPane.showMessageDialog(b, "Split action cancelled!");
 				ge.setSplitCheck(false);
