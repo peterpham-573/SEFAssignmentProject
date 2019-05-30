@@ -57,6 +57,19 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	@Override
 	public boolean movePiece(PiecePosition start, PiecePosition end)
 	{
+		/*::PSEUDOCODE::
+		 * GETS the piece of the start and end
+		 * IF piece is empty, then return false
+		 * 
+		 * if piece is the same colour as player, CHECK if split button has been clicked
+		 * 		IF split has been clicked, then split the pieces according.
+		 * 
+		 * ELSE move the piece.
+		 * IF piece has been moved, game engine will check if the end piece contains a piece.
+		 * IF piece is friendly & valid piece & valid movement, THEN merge the pieces together
+		 * ELSE if piece is enemy, and valid movement, then CAPTURE the piece
+		 * ADD points according to piece bounty ( +5 for normal piece, +10 for merged piece)
+		 */
 
 		//Checks for pieces on the board with the positions -- These are temporary values
 		Piece p = chessboard.getPiece(start);
@@ -95,6 +108,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 						//Checks to see if capturing enemy or self
 						if((p.isWhite() != p2.isWhite()) && checkValid)
 						{
+							//capturing is normal as moving the piece by itself, capturing is just setting up points
 							capture(p,p2);
 							turnNumber++;
 						}
@@ -126,8 +140,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	@Override
 	public void capture(Piece piece, Piece piece2) 
 	{
-		//Updates the player's points by 5 every time a capture is successful
-		//p.setPoints(p.getPoints()+ 5);
+		//Updates the player's points by 5 every time a capture is successful (or 10 if merged piece)
 		if (piece2 instanceof Rook || piece2 instanceof Knight || piece2 instanceof Bishop)
 		{
 			if (piece2.isWhite() == true)
@@ -156,6 +169,8 @@ public class ChessGameEngineImpl implements ChessGameEngine
 	@Override
 	public void merge(Piece piece, Piece piece2, PiecePosition start, PiecePosition end)
 	{
+		//sets the merged piece to the end position of where the player wants to move
+		//sets the start position as a new piece
 		if ( (piece instanceof Rook && piece2 instanceof Knight) || (piece instanceof Knight && piece2 instanceof Rook))
 		{
 			chessboard.setPiece(new Piece(), start.getRow(), start.getCol());
@@ -186,7 +201,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 		 * 
 		 *  Check for which piece split is,
 		 *  Check for where the end position is for the split pieces
-		 *  set piece at the position of the board if it is empty
+		 *  set piece at the position of the board if the tile is empty
 		 */
 		if(piece instanceof Knook)
 		{
@@ -200,6 +215,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			{
 				if (end.getRow() == k.getRow() && end.getCol() == k.getCol())
 				{
+					//if the position is valid, then set the correct piece at the valid end position
 					if (chessboard.getPiece(end).getIcon().equalsIgnoreCase("_"))
 					{
 						chessboard.putPiece(end.getRow(), end.getCol(), new Knight(piece.isWhite(), end));
@@ -213,6 +229,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			{
 				if (end.getRow() == r.getRow() && end.getCol() == r.getCol())
 				{
+					//if the position is valid, then set the correct piece at the valid end position
 					if (chessboard.getPiece(end).getIcon().equalsIgnoreCase("_"))
 					{
 						chessboard.putPiece(end.getRow(), end.getCol(), new Rook(piece.isWhite(), end));
@@ -235,6 +252,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			{
 				if (end.getRow() == k.getRow() && end.getCol() == k.getCol())
 				{
+					//if the position is valid, then set the correct piece at the valid end position
 					if (chessboard.getPiece(end).getIcon().equalsIgnoreCase("_"))
 					{
 						chessboard.putPiece(end.getRow(), end.getCol(), new Knight(piece.isWhite(), end));
@@ -248,6 +266,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			{
 				if (end.getRow() == b.getRow() && end.getCol() == b.getCol())
 				{
+					//if the position is valid, then set the correct piece at the valid end position
 					if (chessboard.getPiece(end).getIcon().equalsIgnoreCase("_"))
 					{
 						chessboard.putPiece(end.getRow(), end.getCol(), new Bishop(piece.isWhite(), end));
@@ -270,6 +289,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			{
 				if (end.getRow() == b.getRow() && end.getCol() == b.getCol())
 				{
+					//if the position is valid, then set the correct piece at the valid end position
 					if (chessboard.getPiece(end).getIcon().equalsIgnoreCase("_"))
 					{
 						chessboard.putPiece(end.getRow(), end.getCol(), new Bishop(piece.isWhite(), end));
@@ -283,6 +303,7 @@ public class ChessGameEngineImpl implements ChessGameEngine
 			{
 				if (end.getRow() == r.getRow() && end.getCol() == r.getCol())
 				{
+					//if the position is valid, then set the correct piece at the valid end position
 					if (chessboard.getPiece(end).getIcon().equalsIgnoreCase("_"))
 					{
 						chessboard.putPiece(end.getRow(), end.getCol(), new Rook(piece.isWhite(), end));
@@ -301,7 +322,6 @@ public class ChessGameEngineImpl implements ChessGameEngine
 		return s;
 	}
 
-	@Override
 	public ChessBoard getChessBoard() {
 		return chessboard;
 	}
@@ -349,19 +369,16 @@ public class ChessGameEngineImpl implements ChessGameEngine
 		checkEnd = true;
 	}
 
-	@Override
 	public boolean checkStart() 
 	{
 		return checkStart;
 	}
 
-	@Override
 	public boolean checkEnd() 
 	{
 		return checkEnd;
 	}
 
-	@Override
 	public void resetChecks() 
 	{
 		checkStart = false;
@@ -435,7 +452,6 @@ public class ChessGameEngineImpl implements ChessGameEngine
 		}
 	}
 
-
 	public boolean isWhitePlayerTurn()
 	{
 		return isWhitePlayerTurn;
@@ -450,20 +466,14 @@ public class ChessGameEngineImpl implements ChessGameEngine
 		else
 		{
 			isWhitePlayerTurn = true;
-		}
-		//make new array, scan piece board that is the same colour that is player turn
-		//add to an array, and have the engine check 
-		
-		
+		}		
 	}
 
-	@Override
 	public void setSplitCheck(boolean c) 
 	{
 		this.split = c;
 	}
 
-	@Override
 	public boolean getSplitCheck() 
 	{
 		return split;
