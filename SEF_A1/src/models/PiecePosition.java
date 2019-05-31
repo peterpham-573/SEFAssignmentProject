@@ -18,10 +18,6 @@ public class PiecePosition {
 			return "Column Letter identifier " + letter + " is invalid";
 		}
 
-		public ColumnExeption() {
-			// TODO Auto-generated constructor stub
-		}
-
 	}
 
 
