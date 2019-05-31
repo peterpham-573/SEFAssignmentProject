@@ -65,12 +65,9 @@ public class RegistrationApp extends JFrame {
 
 	// Creates a new player to add to the registry
 	public void CreatePlayer() {
-		String playerName;
-		playerName = JOptionPane.showInputDialog("Player name");
-		String username;
-		username = JOptionPane.showInputDialog("Player Username");
-		String password;
-		password = JOptionPane.showInputDialog("Player Password");
+		String playerName = JOptionPane.showInputDialog("Player name");
+		String username = JOptionPane.showInputDialog("Player Username");
+		String password = JOptionPane.showInputDialog("Player Password");
 
 		if ((username != null) && (password != null) && (playerName != null) && username.length() != 0
 				&& password.length() != 0 && playerName.length() != 0) {
